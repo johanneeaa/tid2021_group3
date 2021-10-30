@@ -1,20 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useTable } from 'react-table'
+import makeData from './dataForTable'
+
 function App() {
  
-  const data = React.useMemo( // .useMemo is to "memorize" the data so we dont re-render it
-    () => [
-      {col1: 'Today', col2: 'Rahim Sterling'}, // colX is a "key" we need to identify the column
-      {col1: 'Today', col2: 'Grethe Østerby', col3: 'Citroen'},
-      {col1: 'Torrow', col2: 'Hans Svendsen'},
-    ],[] // the [] is added to avoid infinite loop
-  )
+  const data = React.useMemo(() => makeData(30), [])
+
   const columns = React.useMemo(
     ()=>[
-      {Header: 'When', accessor: 'col1'},
-      {Header:'Customer', accessor: 'col2'},
-      {Header:'Car', accessor: 'col3'}
+      {Header: 'When', accessor: 'pickupDateTime'},
+      {Header: 'ID', accessor: 'bookingID'},
+      {Header:'First name', accessor: 'firstName'},
+      {Header:'Last name', accessor: 'lastName'},
+      {Header:'Car Group', accessor: 'carGroup'},
     ],[]
   ) 
   
@@ -28,6 +26,7 @@ function App() {
     prepareRow,
   } = tableInstance 
   // now we can use the react-table functions!
+
   return (
     <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
       <thead>
