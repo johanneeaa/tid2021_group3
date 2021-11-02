@@ -12,6 +12,10 @@ V1.1
 Added search global functionality for table and made minor layout adjustment
 lacl@itu.dk 31/oct/2021
 
+V1.2 Comitted, *NOT PUSHED*
+Layout of search bar FINALLY fixed to be not column restricted.
+lacl@itu.dk 02/nov/2021
+
 */
 
 function GlobalFilter({ //function that can be put into a table, to add a functioning search bar.
@@ -37,7 +41,8 @@ function GlobalFilter({ //function that can be put into a table, to add a functi
         placeholder={`${count} upcoming rentals...`}
         style={{
           fontSize: '1.1rem',
-          border: '0',
+          border: '1',
+          width: 350,
         }}
       />
     </span>
@@ -66,6 +71,7 @@ function App() { // our table function should soon be seperated from our App()
   const { 
     getTableProps,
     getTableBodyProps,
+    visibleColumns,
     headerGroups,
     rows,
     prepareRow,
@@ -76,15 +82,21 @@ function App() { // our table function should soon be seperated from our App()
   // now we can use the react-table functions!
 
   return (
+    
     <table {...getTableProps()} style={{ 
       border: 'solid 10px #F7E8A4'}}>
-      <thead>
         
-        <GlobalFilter
-          preGlobalFilteredRows={preGlobalFilteredRows}
-          globalFilter={state.globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
+      <thead>
+        <th colSpan={visibleColumns.length}
+          style={{
+          textAlign: 'left',
+        }}>
+          <GlobalFilter
+            preGlobalFilteredRows={preGlobalFilteredRows}
+            globalFilter={state.globalFilter}
+            setGlobalFilter={setGlobalFilter}
+          />
+        </th>
 
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
