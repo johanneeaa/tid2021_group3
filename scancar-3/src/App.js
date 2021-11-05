@@ -1,24 +1,8 @@
 import React from 'react'
-import { useTable, useGlobalFilter, useAsyncDebounce } from 'react-table'
+import { useTable, useGlobalFilter, useAsyncDebounce } from 'react-table' //React table documentaion https://react-table.tanstack.com/
 import makeData from './dataForTable'
 
 /*
-
-V1.0
-Creating a table in our App()
-lacl@itu.dk 30/oct/2021
-
-V1.1
-Added search global functionality for table and made minor layout adjustment
-lacl@itu.dk 31/oct/2021
-
-V1.1.1 *NOT PUSHED*
-Layout of search bar FINALLY fixed to be not column restricted.
-lacl@itu.dk 02/nov/2021
-
-V1.1.2 *NOT PUSHED*
-Added generic onRowClick
-lacl@itu.dk 05/nov/2021
 
 */
 
@@ -90,7 +74,8 @@ function App() { // our table component should soon be seperated from our App()
   return (
     
     <table {...getTableProps()} style={{ 
-      border: 'solid 10px #F7E8A4'}}
+      border: 'solid 10px #F7E8A4',
+      }}
       >        
       <thead>
         <th colSpan={visibleColumns.length}
@@ -111,7 +96,7 @@ function App() { // our table component should soon be seperated from our App()
                 {...column.getHeaderProps()}
                 style={{
                  
-                  borderBottom: 'solid 3px black',
+                  borderBottom: 'solid 30px black',
                   background: '#F7E8A4',
                   color: 'black',
                   fontWeight: 'bold',

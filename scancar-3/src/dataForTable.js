@@ -6,14 +6,6 @@ let DateGenerator = require('random-date-generator');
 
 /*
 
-V1.0
-Randomly generating table data based react-table examples
-lacl@itu.dk 30/oct/2021
-
-V1.1
-Cleaned the code up a little, added functionality randomFromArrray()
-lacl@itu.dk 31/oct/2021
-
 */ 
 
 
