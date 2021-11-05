@@ -12,13 +12,17 @@ V1.1
 Added search global functionality for table and made minor layout adjustment
 lacl@itu.dk 31/oct/2021
 
-V1.2 Comitted, *NOT PUSHED*
+V1.1.1 *NOT PUSHED*
 Layout of search bar FINALLY fixed to be not column restricted.
 lacl@itu.dk 02/nov/2021
 
+V1.1.2 *NOT PUSHED*
+Added generic onRowClick
+lacl@itu.dk 05/nov/2021
+
 */
 
-function GlobalFilter({ //function that can be put into a table, to add a functioning search bar.
+function GlobalFilter({ //component that can be put into a table, to add a functioning search bar.
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
@@ -50,10 +54,11 @@ function GlobalFilter({ //function that can be put into a table, to add a functi
 }
 function onRowClick(row) {
   console.log(row.original);
+  console.log();
 }
 
-function App() { // our table function should soon be seperated from our App()
- 
+function App() { // our table component should soon be seperated from our App()
+  
   const data = React.useMemo(() => makeData(30), [])
 
   const columns = React.useMemo(
@@ -86,9 +91,7 @@ function App() { // our table function should soon be seperated from our App()
     
     <table {...getTableProps()} style={{ 
       border: 'solid 10px #F7E8A4'}}
-      >
-        
-        
+      >        
       <thead>
         <th colSpan={visibleColumns.length}
           style={{
