@@ -48,8 +48,9 @@ function GlobalFilter({ //function that can be put into a table, to add a functi
     </span>
   )
 }
-
-
+function onRowClick(row) {
+  console.log(row.original);
+}
 
 function App() { // our table function should soon be seperated from our App()
  
@@ -84,7 +85,9 @@ function App() { // our table function should soon be seperated from our App()
   return (
     
     <table {...getTableProps()} style={{ 
-      border: 'solid 10px #F7E8A4'}}>
+      border: 'solid 10px #F7E8A4'}}
+      >
+        
         
       <thead>
         <th colSpan={visibleColumns.length}
@@ -122,7 +125,7 @@ function App() { // our table function should soon be seperated from our App()
         {rows.map(row => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()}>
+            <tr {...row.getRowProps() } onClick={() => onRowClick(row)}>
               {row.cells.map(cell => {
                 return (
                   <td
