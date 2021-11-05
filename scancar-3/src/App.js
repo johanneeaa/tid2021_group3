@@ -38,7 +38,12 @@ function GlobalFilter({ //component that can be put into a table, to add a funct
 }
 function onRowClick(row) {
   console.log(row.original);
-  console.log();
+  console.log(row.style);
+
+}
+
+const rowStyle = {
+  background : 'white'
 }
 
 function App() { // our table component should soon be seperated from our App()
@@ -113,7 +118,7 @@ function App() { // our table component should soon be seperated from our App()
         {rows.map(row => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps() } onClick={() => onRowClick(row)}>
+            <tr {...row.getRowProps() } style={rowStyle} onClick={() => onRowClick(row)}>
               {row.cells.map(cell => {
                 return (
                   <td
@@ -121,7 +126,7 @@ function App() { // our table component should soon be seperated from our App()
                     style={{
                       padding: '15px',
                       border: 'solid 1px gray',
-                      background: '#FBF3D0',
+                      
                     }}
                   >
                     {cell.render('Cell')}
