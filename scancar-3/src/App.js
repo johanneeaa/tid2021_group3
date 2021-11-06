@@ -20,7 +20,7 @@ function App() {
     ],[]
   ) 
   return(
-    <Table columns={rentalColumns} data={rentalData} />
+    <Table columns={rentalColumns} data={rentalData}/>
   )
 }
 

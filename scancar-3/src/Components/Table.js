@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTable, useGlobalFilter } from 'react-table' //React table documentaion https://react-table.tanstack.com/
 import { GlobalFilter } from './GlobalFilter'
-import { TableRow } from './TableRow'
 
 export default function Table({ columns, data }) {
-    // Table component logic and UI come here
-    const rentalTable = useTable({ columns, data }, useGlobalFilter)
+// Table component logic and UI come here
+
+  const rentalTable = useTable({ columns, data }, useGlobalFilter)
   // with this we can now hook onto a table that utilize our colums and data
 
   const { 
@@ -20,6 +20,37 @@ export default function Table({ columns, data }) {
     setGlobalFilter,
   } = rentalTable 
   // now we can use the react-table functions!
+  
+  function TableRow(props){
+  //TableRow component, no table without it, so made in here.
+  const [testCount, setTestCount] = useState(0);
+  
+
+    return <tbody {...getTableBodyProps()}>
+    {rows.map(row => {
+      prepareRow(row)
+      return (
+        <tr 
+          {...row.getRowProps()} 
+          style={props.rowStyle} 
+          onClick={() => setTestCount(testCount+1) + console.log('testing row click ' +testCount)}
+        >
+          {row.cells.map(cell => {
+            return (
+              <td
+                {...cell.getCellProps()}
+                style={
+                  props.cellStyle}
+              >
+                {cell.render('Cell')}
+              </td>
+            )
+          })}
+        </tr>
+      )
+    })}
+  </tbody>;
+  }
 
   return (
     <div>
@@ -47,7 +78,6 @@ export default function Table({ columns, data }) {
                 <th
                   {...column.getHeaderProps()}
                   style={{
-                  
                     borderBottom: 'solid 5px black',
                     background: '#F7E8A4',
                     color: 'black',
@@ -61,31 +91,16 @@ export default function Table({ columns, data }) {
           ))}
         </thead>
 
-        <TableRow subject = "TableRow"/> 
-
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps() }>
-                {row.cells.map(cell => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{
-                        padding: '15px',
-                        border: 'solid 1px gray',
-                        
-                      }}
-                    >
-                      {cell.render('Cell')}
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
+        <TableRow subject = "TableRow" 
+          cellStyle = {{
+            padding: '15px',
+            border: 'solid 1px gray',
+          }} 
+          rowStyle = {{
+            background: 'white'
+          }} 
+          
+        />         
         
       </table>
     </div>
