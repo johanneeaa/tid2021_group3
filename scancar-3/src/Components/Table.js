@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTable, useGlobalFilter } from "react-table"; //React table documentaion https://react-table.tanstack.com/
+import { useTable, useGlobalFilter } from "react-table"; //React table documentation https://react-table.tanstack.com/
 import { GlobalFilter } from "./GlobalFilter";
 
 export default function Table({ columns, data }) {
