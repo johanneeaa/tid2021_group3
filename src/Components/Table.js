@@ -1,11 +1,51 @@
 import React, { useState } from "react";
-import { useTable, useGlobalFilter } from "react-table"; //React table documentation https://react-table.tanstack.com/
+import { useTable, useGlobalFilter, useFilters } from "react-table"; //React table documentation https://react-table.tanstack.com/
 import { GlobalFilter } from "./GlobalFilter";
+
+// snippets from https://react-table.tanstack.com/docs/examples/filtering
+
+function DefaultColumnFilter({
+  column: { filterValue, preFilteredRows, setFilter },
+}) {
+  const count = preFilteredRows.length
+
+  return (
+    <input
+      value={filterValue || ''}
+      onChange={e => {
+        setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
+      }}
+      placeholder={`Search ${count} records...`}
+    />
+  )
+}
 
 export default function Table({ columns, data }) {
   // Table component logic and UI come here
 
-  const rentalTable = useTable({ columns, data }, useGlobalFilter);
+const filterTypes = React.useMemo( // from example
+  () => ({
+    text: (rows, id, filterValue) => {
+      return rows.filter(row => {
+        const rowValue = row.values[id]
+        return rowValue !== undefined
+          ? String(rowValue)
+              .toLowerCase()
+              .startsWith(String(filterValue).toLowerCase())
+          : true
+      })
+    },
+  }),
+  []
+)
+  const defaultColumn = React.useMemo(
+    () => ({
+      Filter: DefaultColumnFilter,
+    }),
+    []
+  )
+
+  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes,}, useGlobalFilter,useFilters);
   // with this we can now hook onto a table that utilize our colums and data
 
   const {
@@ -14,15 +54,14 @@ export default function Table({ columns, data }) {
     visibleColumns,
     headerGroups,
     rows,
-    prepareRow,
+    prepareRow, 
     preGlobalFilteredRows,
     state,
     setGlobalFilter,
-  } = rentalTable;
-  // now we can use the react-table functions!
+  } = rentalTable
 
   function TableRow(props) {
-    //TableRow component, no table without it, so made in here.
+  //TableRow component, no table without it, so made in here.
     const [testCount, setTestCount] = useState(0);
 
     return (
@@ -86,6 +125,9 @@ export default function Table({ columns, data }) {
                     fontWeight: "bold",
                   }}
                 >
+                 
+                 <div>{column.localFilter ? column.render('Filter') : null}</div>
+            
                   {column.render("Header")}
                 </th>
               ))}
