@@ -1,9 +1,13 @@
 import React from "react";
 import makeData from "./Data/dataForTable";
 import Table from "./Components/Table";
-import SelectColumnFilter from "./Components/SelectColumnFilter";
+import SelectColumnFilter from "./Components/Filters";
 
-function App() {
+// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
+// functions marked ## are snippets with our own modifications
+// functions marked ### are OC 
+
+function App() { // ###
   const rentalData = React.useMemo(() => makeData(30), []);
 
   const rentalColumns = React.useMemo(

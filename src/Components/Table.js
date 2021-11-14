@@ -1,52 +1,41 @@
 import React, { useState } from "react";
-import { useTable, useGlobalFilter, useFilters } from "react-table"; //React table documentation https://react-table.tanstack.com/
-import { GlobalFilter } from "./GlobalFilter";
+import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; //React table documentation https://react-table.tanstack.com/
+import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 
-// snippets from https://react-table.tanstack.com/docs/examples/filtering
+// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
+// functions marked ## are snippets with our own modifications
+// functions marked ### are OC 
 
-function DefaultColumnFilter({
-  column: { filterValue, preFilteredRows, setFilter },
-}) {
-  const count = preFilteredRows.length
-
-  return (
-    <input
-      value={filterValue || ''}
-      onChange={e => {
-        setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-      }}
-      placeholder={`Search ${count} records...`}
-    />
-  )
-}
-
-export default function Table({ columns, data }) {
+export default function Table({ columns, data }) {   // ##
   // Table component logic and UI come here
 
-const filterTypes = React.useMemo( // from example
-  () => ({
-    text: (rows, id, filterValue) => {
-      return rows.filter(row => {
-        const rowValue = row.values[id]
-        return rowValue !== undefined
-          ? String(rowValue)
-              .toLowerCase()
-              .startsWith(String(filterValue).toLowerCase())
-          : true
-      })
-    },
-  }),
-  []
-)
-  const defaultColumn = React.useMemo(
+ 
+  const filterTypes = React.useMemo( //#
+    () => ({
+      text: (rows, id, filterValue) => {
+        return rows.filter(row => {
+          const rowValue = row.values[id]
+          return rowValue !== undefined
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true
+        })
+      },
+    }),
+    []
+  )
+
+  const defaultColumn = React.useMemo( //#
     () => ({
       Filter: DefaultColumnFilter,
     }),
     []
   )
 
-  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes,}, useGlobalFilter,useFilters);
+  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes}, useGlobalFilter,useFilters,useSortBy);
   // with this we can now hook onto a table that utilize our colums and data
+  // ####
 
   const {
     getTableProps,
@@ -58,13 +47,15 @@ const filterTypes = React.useMemo( // from example
     preGlobalFilteredRows,
     state,
     setGlobalFilter,
-  } = rentalTable
+  } = rentalTable //##
 
   function TableRow(props) {
-  //TableRow component, no table without it, so made in here.
+  //TableRow component, no table without it, so made in Table component.
+  // ##
+
     const [testCount, setTestCount] = useState(0);
 
-    return (
+    return ( // ##
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
@@ -91,7 +82,7 @@ const filterTypes = React.useMemo( // from example
     );
   }
 
-  return (
+  return ( // ##
     <div>
       <table
         {...getTableProps()}
@@ -117,7 +108,7 @@ const filterTypes = React.useMemo( // from example
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  {...column.getHeaderProps()}
+                  {...column.getHeaderProps( column.localFilter ? console.log ("Loocal filter on " + column.id) : column.getSortByToggleProps()) }
                   style={{
                     borderBottom: "solid 5px black",
                     background: "#F7E8A4",
@@ -125,9 +116,8 @@ const filterTypes = React.useMemo( // from example
                     fontWeight: "bold",
                   }}
                 >
-                 
-                 <div>{column.localFilter ? column.render('Filter') : null}</div>
-            
+                  <div>{column.localFilter ? column.render('Filter') : null}</div> 
+                  <SortOnClick column={column}/>
                   {column.render("Header")}
                 </th>
               ))}
