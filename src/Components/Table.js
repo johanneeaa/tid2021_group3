@@ -49,7 +49,7 @@ export default function Table({ columns, data }) {
               })}
             </tr>
           ); //below is the new PopUp component initialized - not sure if this is the best place, but it compiles here :)
-        })}<PopUp trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}><h3>My PopUp!</h3></PopUp>
+        })}<PopUp trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}></PopUp>
       </tbody>
     );
   }
