@@ -24,7 +24,7 @@ export default function Table({ columns, data }) {
 
   function TableRow(props) {
     //TableRow component, no table without it, so made in here.
-    const [testCount, setTestCount] = useState(0);
+    const [clickedRowObject, setClickedRowObject] = useState(0);
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); //added the onClick functionality for the PopUp component
 
     return (
@@ -36,8 +36,7 @@ export default function Table({ columns, data }) {
               {...row.getRowProps()}
               style={props.rowStyle} 
               onClick={() => setOnclickRowPopUp(true) +
-                setTestCount(testCount + 1) +
-                console.log("testing row click " + testCount)
+                + setClickedRowObject(row.values)
               }
               >
               {row.cells.map((cell) => {
@@ -49,7 +48,8 @@ export default function Table({ columns, data }) {
               })}
             </tr>
           ); //below is the new PopUp component initialized - not sure if this is the best place, but it compiles here :)
-        })}<PopUp trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}></PopUp>
+        })}
+        <PopUp object={clickedRowObject} trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}></PopUp>
       </tbody>
     );
   }
