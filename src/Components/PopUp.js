@@ -18,18 +18,18 @@ function PopUp(props) {
             <div className="popup">
                 <div className="popup-inner">
                     <div className="popup-info"> 
-                        <main><b>Booking Details</b></main>
+                        <main><b>Booking ID {rowInfo.bookingID}</b></main>
                         <br></br>
                         <input placeholder={rowInfo.firstName}/> 
-                        <input placeholder="Last Name"/>
+                        <input placeholder={rowInfo.lastName}/>
                         <br></br>
                         <input placeholder="Driver's license"/>
                         <input placeholder="Date of Birth"/>
                         <br></br><br></br>
-                        <input placeholder="Requested Car Group"/>
+                        <input placeholder={rowInfo.carGroup}/>
                         <input placeholder="Appointed Car i.e. license plate number"/>
                         <br></br><br></br>
-                        <input placeholder="Pick Up Time"/>
+                        <input placeholder={rowInfo.pickupDateTime}/>
                         <input placeholder="Pick Up Office"/>
                         <br></br>
                         <input placeholder="Mileage"/>
