@@ -16,7 +16,7 @@ function App() {
     []
   );
 
-  return <Table columns={rentalColumns} data={rentalData} />;
+  return <Table columns={rentalColumns} data={rentalData}/>;
 }
 
 export default App;
