@@ -7,8 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import Parse from "parse";
 
 Parse.initialize(
-  "AgzfzDrOFClmY4jztxiZnNa3dlEN8fbiDAsWV6lf",
-  "SsjNuDrQGMddrkRrL3vV5tYUYhZQf7RrTTwHHngB"
+  process.env.REACT_APP_APP_KEY, 
+  process.env.REACT_APP_JS_KEY
 );
 
 Parse.serverURL = "https://parseapi.back4app.com/";
