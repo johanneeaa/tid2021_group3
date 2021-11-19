@@ -1,13 +1,41 @@
 import React, { useState } from "react";
-import { useTable, useGlobalFilter } from "react-table"; //React table documentation https://react-table.tanstack.com/
-import { GlobalFilter } from "./GlobalFilter";
 import PopUp from "./PopUp";
+import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; //React table documentation https://react-table.tanstack.com/
+import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 
-export default function Table({ columns, data }) {
+// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
+// functions marked ## are snippets with our own modifications
+// functions marked ### are OC 
+
+export default function Table({ columns, data }) {   // ##
   // Table component logic and UI come here
 
-  const rentalTable = useTable({ columns, data }, useGlobalFilter, PopUp); //added the PopUp component
+  const filterTypes = React.useMemo( //#
+    () => ({
+      text: (rows, id, filterValue) => {
+        return rows.filter(row => {
+          const rowValue = row.values[id]
+          return rowValue !== undefined
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true
+        })
+      },
+    }),
+    []
+  )
+
+  const defaultColumn = React.useMemo( //#
+    () => ({
+      Filter: DefaultColumnFilter,
+    }),
+    []
+  )
+
+  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes}, useGlobalFilter,useFilters,useSortBy, PopUp);
   // with this we can now hook onto a table that utilize our colums and data
+  // ####
 
   const {
     getTableProps,
@@ -15,19 +43,22 @@ export default function Table({ columns, data }) {
     visibleColumns,
     headerGroups,
     rows,
-    prepareRow,
+    prepareRow, 
     preGlobalFilteredRows,
     state,
     setGlobalFilter,
-  } = rentalTable;
-  // now we can use the react-table functions!
+  } = rentalTable //##
 
   function TableRow(props) {
     //TableRow component, no table without it, so made in here.
     const [clickedRowObject, setClickedRowObject] = useState(0);
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); //added the onClick functionality for the PopUp component
+  //TableRow component, no table without it, so made in Table component.
+  // ##
 
-    return (
+    const [testCount, setTestCount] = useState(0);
+
+    return ( // ##
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
@@ -54,7 +85,7 @@ export default function Table({ columns, data }) {
     );
   }
 
-  return (
+  return ( // ##
     <div>
       <table
         {...getTableProps()}
@@ -80,7 +111,7 @@ export default function Table({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  {...column.getHeaderProps()}
+                  {...column.getHeaderProps( column.localFilter ? console.log ("Loocal filter on " + column.id) : column.getSortByToggleProps()) }
                   style={{
                     borderBottom: "solid 5px black",
                     background: "#F7E8A4",
@@ -88,6 +119,8 @@ export default function Table({ columns, data }) {
                     fontWeight: "bold",
                   }}
                 >
+                  <div>{column.localFilter ? column.render('Filter') : null}</div> 
+                  <SortOnClick column={column}/>
                   {column.render("Header")}
                 </th>
               ))}
