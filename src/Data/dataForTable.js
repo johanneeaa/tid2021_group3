@@ -59,6 +59,7 @@ export default function makeData(...lens) { //#
     return range(len).map((d) => {
       return {
         ...newRental(),
+  
         subRows: lens[depth + 1] ? makeDataRow(depth + 1) : undefined,
       };
     });

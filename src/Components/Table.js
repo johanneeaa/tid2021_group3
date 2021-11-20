@@ -50,13 +50,10 @@ export default function Table({ columns, data }) {   // ##
   } = rentalTable //##
 
   function TableRow(props) {
-    //TableRow component, no table without it, so made in here.
+    //TableRow component, no table without it, so made in here. ##
+    
     const [clickedRowObject, setClickedRowObject] = useState(0);
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); //added the onClick functionality for the PopUp component
-  //TableRow component, no table without it, so made in Table component.
-  // ##
-
-    const [testCount, setTestCount] = useState(0);
 
     return ( // ##
       <tbody {...getTableBodyProps()}>

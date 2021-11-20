@@ -2,7 +2,7 @@ import React from "react";
 import makeData from "./Data/dataForTable";
 import Table from "./Components/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { NavigationBar } from "./Components/NavigationBar";
 import Cars from "./Cars";
 import SelectColumnFilter from "./Components/Filters";
