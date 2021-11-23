@@ -20,7 +20,7 @@ function App() { // ###
           <Route path="/rental" element={<Rental />} />
         </Routes>
       </BrowserRouter>
-
+    temp. front page. use tabs to acces data
   </>
   );
 }

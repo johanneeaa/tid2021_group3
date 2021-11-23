@@ -5,7 +5,10 @@ import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
 
-//function that returns a car searchable, filterable table, based on our database (hurray!) - we should work towards seperating the data from the table component
+//look into adding "loading" on while waiting for data, see this stackoverflow: [ https://bit.ly/3xt3IaZ ]
+
+//function that returns a car searchable, filterable table, based on our database (hurray!) 
+//- we should work towards seperating the data from the table component
 export default () => {
     
     const [carsData, setCarsData] = useState([])
@@ -21,7 +24,7 @@ export default () => {
             { Header: "Mileage", accessor: "mileage"},
             { Header: "Fuel level", accessor: "fuelLevel" },
             { Header: "Fuel type", accessor: "fuelType", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
-            { Header: "Notes", accessor: "notes"}
+            { Header: "Notes", accessor: "notes"} 
         ],
         []
     );

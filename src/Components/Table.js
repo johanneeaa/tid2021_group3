@@ -8,7 +8,6 @@ import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 
 export default function Table({ columns, data, color }) {   
 
-
   const filterTypes = React.useMemo( 
     () => ({
       text: (rows, id, filterValue) => {
