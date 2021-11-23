@@ -7,7 +7,7 @@ import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 // functions marked ## are snippets with our own modifications
 // functions marked ### are OC 
 
-export default function Table({ columns, data }) {   // ##
+export default function Table({ columns, data, color }) {   // ##
   // Table component logic and UI come here
 
   const filterTypes = React.useMemo( //#
@@ -87,7 +87,7 @@ export default function Table({ columns, data }) {   // ##
       <table
         {...getTableProps()}
         style={{
-          border: "solid 10px #F7E8A4",
+          border: `solid 10px ${color}`,
         }}
       >
         <thead>
@@ -108,10 +108,10 @@ export default function Table({ columns, data }) {   // ##
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  {...column.getHeaderProps( column.localFilter ? console.log ("Loocal filter on " + column.id) : column.getSortByToggleProps()) }
+                  {...column.getHeaderProps( column.localFilter ? console.log ("Local filter on " + column.id) : column.getSortByToggleProps()) }
                   style={{
                     borderBottom: "solid 5px black",
-                    background: "#F7E8A4",
+                    background: color,
                     color: "black",
                     fontWeight: "bold",
                   }}

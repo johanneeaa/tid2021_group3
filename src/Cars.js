@@ -1,35 +1,37 @@
-//import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Table from "./Components/Table";
 import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
 
 
-export default function Cars() {
-
-    const query = new Parse.Query(Car);
-
-    const getCarID = () =>{
-        query.find().then(clickedCar => {    
-            return clickedCar.id 
-        })
-    }
+export default () => {
     
-    query.get(getCarID).then((specificCar) => {
-        
-        const color = specificCar.get("Color")
-        
-        console.log("id number " + specificCar.id + " has the color " + color);
-    }, (error) => {
-        console.log({error} + 'Cant get specific car');
-        // error is a Parse.Error with an error code and message.
-    });
+    const [carsData, setCarsData] = useState([])
     
-    const carsss = getAllCars()
+    //Missing carGroup for now
+    const carsColumns = React.useMemo(
+        () => [
+            { Header: "ID", accessor: "id" },
+            { Header: "Color", accessor: "color" },
+            { Header: "Fuel level", accessor: "fuelLevel" },
+            { Header: "Fuel type", accessor: "fuelType"},
+            { Header: "License plate", accessor: "carGroup"},
+            { Header: "Mileage", accessor: "mileage"},
+            { Header: "Model", accessor: "model"},
+            { Header: "Notes", accessor: "notes"}
+            // we create the "localFilter" boolean to make sure only that column gets a Filter on top, as the other gets global"
+        ],
+        []
+    );
+        
+    useEffect( async () => {
+        const carsDataTemp = await getAllCars()
+        setCarsData(carsDataTemp)
+    },[])
 
-    console.log(carsss)
-
-
-    return <>The cars tabbed is here</>
+    
+    return <Table columns={carsColumns} data={carsData} color={"#a4f7ae"}/>
 }
 
 
@@ -38,33 +40,22 @@ async function getAllCars() {
     const allCarsQuery = new Parse.Query(Car);
     const allCars = await allCarsQuery.find();
 
-    console.log(allCars)
-
-
-    for (let i = 0; i < allCars.length; i++) {
-        const car = allCars[i]
-
-        var id =            car.id
-        var carGroup =      car.get("CarGroup") //Car group is another object, so this doesn't return correctly.
-        var color =         car.get("Color")
-        var fuelLevel =     car.get("FuelLevel")
-        var fuelType =      car.get("FuelType")
-        var licensePlate =  car.get("LicensePlate")
-        var mileage =       car.get("Mileage")
-        var model =         car.get("Model")
-        var notes =         car.get("Notes")
-        
-        console.log("Car with id \"" + id + "\" has the following attributes: \n Cargroup = " + carGroup + " \n Color = " + color + " \n Fuel level = " + fuelLevel + " \n Fuel type = " + fuelType + " \n License plate = " + licensePlate + " \n Milage = " + mileage + " \n Model = " + model)
-
-        if (notes != "undefined") {
-            console.log(notes)
+    const allCarsFormatted = allCars.map((car) => {
+        return {
+            id: car.id,
+            color: car.get("Color"),
+            fuelLevel: car.get("FuelLevel"),
+            fuelType: car.get("FuelType"),
+            licensePlate: car.get("LicensePlate"),
+            mileage: car.get("Mileage"),
+            model: car.get("Model"),
+            notes: car.get("Notes") ? car.get("Notes") : false
         }
+    })
 
-
-    }
-
-
+    return allCarsFormatted
 
 }
+
 
 
