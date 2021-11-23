@@ -25,7 +25,7 @@ export function GlobalFilter({ //# (##) component that can be put into a table, 
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} upcoming rentals...`} 
+        placeholder={`Search through ${count} elements`} 
         style={{
           fontSize: "1.1rem",
           border: "1",
@@ -55,9 +55,9 @@ export function DefaultColumnFilter({ // #
 
 export function SortOnClick(props){ //### m
 return(                 
-<span>
-  {props.column.isSorted ? props.column.isSortedDesc ? ' ▼ ' : ' ▲ ' : ''}
-</span>)
+  <span>
+    {props.column.isSorted ? props.column.isSortedDesc ? ' ▼ ' : ' ▲ ' : ''}
+  </span>)
 }
 
 export default function SelectColumnFilter({ //##

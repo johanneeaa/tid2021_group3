@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Table from "./Components/Table";
+import Table from "../Components/Table";
+import SelectColumnFilter from "../Components/Filters";
 import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
 
-
+//function that returns a car searchable, filterable table, based on our database (hurray!) - we should work towards seperating the data from the table component
 export default () => {
     
     const [carsData, setCarsData] = useState([])
@@ -13,14 +14,14 @@ export default () => {
     const carsColumns = React.useMemo(
         () => [
             { Header: "ID", accessor: "id" },
-            { Header: "Color", accessor: "color" },
-            { Header: "Fuel level", accessor: "fuelLevel" },
-            { Header: "Fuel type", accessor: "fuelType"},
-            { Header: "License plate", accessor: "carGroup"},
-            { Header: "Mileage", accessor: "mileage"},
             { Header: "Model", accessor: "model"},
+            { Header: "Color", accessor: "color", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter}, 
+            // maybe we need the filters to be multiple checkboxes if you want to search more than one color at once?
+          //  { Header: "License plate", accessor: "carGroup"}, // no data on theese yet
+            { Header: "Mileage", accessor: "mileage"},
+            { Header: "Fuel level", accessor: "fuelLevel" },
+            { Header: "Fuel type", accessor: "fuelType", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
             { Header: "Notes", accessor: "notes"}
-            // we create the "localFilter" boolean to make sure only that column gets a Filter on top, as the other gets global"
         ],
         []
     );
@@ -32,8 +33,7 @@ export default () => {
 
     
     return <Table columns={carsColumns} data={carsData} color={"#a4f7ae"}/>
-}
-
+};
 
 async function getAllCars() {
 

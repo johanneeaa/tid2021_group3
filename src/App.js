@@ -2,8 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import { NavigationBar } from "./Components/NavigationBar";
-import Cars from "./Cars";
-import Rental from "./Rental";
+import Cars from "./Pages/Cars";
+import Rental from "./Pages/Rental";
 
 // functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
 // functions marked ## are snippets with our own modifications

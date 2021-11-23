@@ -2,6 +2,8 @@
 
 Added the object to access information from the clicked row where the popup arrives from
 Maybe the "onClick" should be defined in here, instead of in our table. -> I think that would be nice, but I couldn't make it work :)
+
+Needs to be more "generic" instead of hardcoded for rental only.
 */
 
 import React from 'react';

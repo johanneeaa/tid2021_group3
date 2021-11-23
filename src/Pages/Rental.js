@@ -1,8 +1,8 @@
 import React from "react";
 
-import makeData from "./Data/dataForTable";
-import Table from "./Components/Table";
-import SelectColumnFilter from "./Components/Filters";
+import makeData from "../Data/mockRentalData";
+import Table from "../Components/Table";
+import SelectColumnFilter from "../Components/Filters";
 
 
 const RentalTable = () => {

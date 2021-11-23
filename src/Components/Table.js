@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import PopUp from "./PopUp";
-import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; //React table documentation https://react-table.tanstack.com/
+import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 
-// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
-// functions marked ## are snippets with our own modifications
-// functions marked ### are OC 
+//Created a table based on input. Used in our pages.
+//Code based on react-table [https://react-table.tanstack.com/] & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
-export default function Table({ columns, data, color }) {   // ##
-  // Table component logic and UI come here
+export default function Table({ columns, data, color }) {   
 
-  const filterTypes = React.useMemo( //#
+
+  const filterTypes = React.useMemo( 
     () => ({
       text: (rows, id, filterValue) => {
         return rows.filter(row => {
@@ -26,7 +25,7 @@ export default function Table({ columns, data, color }) {   // ##
     []
   )
 
-  const defaultColumn = React.useMemo( //#
+  const defaultColumn = React.useMemo( 
     () => ({
       Filter: DefaultColumnFilter,
     }),
@@ -34,9 +33,6 @@ export default function Table({ columns, data, color }) {   // ##
   )
 
   const rentalTable = useTable({ columns, data, defaultColumn, filterTypes}, useGlobalFilter,useFilters,useSortBy, PopUp);
-  // with this we can now hook onto a table that utilize our colums and data
-  // ####
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -47,7 +43,7 @@ export default function Table({ columns, data, color }) {   // ##
     preGlobalFilteredRows,
     state,
     setGlobalFilter,
-  } = rentalTable //##
+  } = rentalTable 
 
   function TableRow(props) {
     //TableRow component, no table without it, so made in here. ##
@@ -75,7 +71,7 @@ export default function Table({ columns, data, color }) {   // ##
                 );
               })}
             </tr>
-          ); //below is the new PopUp component initialized - not sure if this is the best place, but it compiles here :)
+          ); // Goal for next sprint: generic and more "effective" PopUp component - but this works for now. 
         })}
         <PopUp object={clickedRowObject} trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}></PopUp>
       </tbody>
@@ -95,6 +91,7 @@ export default function Table({ columns, data, color }) {   // ##
             colSpan={visibleColumns.length}
             style={{
               textAlign: "left",
+              backgroundColor: color
             }}
           >
             <GlobalFilter
@@ -114,11 +111,12 @@ export default function Table({ columns, data, color }) {   // ##
                     background: color,
                     color: "black",
                     fontWeight: "bold",
-                  }}
+                  }} // header style - move to stylesheet
                 >
-                  <div>{column.localFilter ? column.render('Filter') : null}</div> 
+                  
                   <SortOnClick column={column}/>
                   {column.render("Header")}
+                  <div>{column.localFilter ? column.render('Filter') : null}</div> 
                 </th>
               ))}
             </tr>
@@ -128,12 +126,13 @@ export default function Table({ columns, data, color }) {   // ##
         <TableRow
           subject="TableRow"
           cellStyle={{
-            padding: "15px",
+            padding: "5px",
             border: "solid 1px gray",
+            textAlign: "left"
           }}
           rowStyle={{
             background: "white",
-          }}
+          }} 
         />
       </table>
     </div>
