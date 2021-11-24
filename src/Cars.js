@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Table from "./Components/Table";
 import Parse from "parse";
-
-const Car = Parse.Object.extend("Car");
-const CarGroups = Parse.Object.extend("CarGroups");
-
+import SelectColumnFilter from "./Components/Filters";
 
 export default () => {
     
     const [carsData, setCarsData] = useState([])
-    const [carGroupsData, setCarGroupsData] = useState([]) //adding the carGroups data
 
-    //Missing carGroup for now
     const carsColumns = React.useMemo(
         () => [
             
-            //{ Header: "ID", accessor: "id" },
-            { Header: "Car Group", acessor: "carGroup"},
+            { Header: "Car Group", accessor: "group", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter}, // we create the "localFilter" boolean to make sure only that column gets a Filter on top, as the other gets global"
             { Header: "License plate", accessor: "licensePlate"},
             { Header: "Model", accessor: "model"},
             { Header: "Color", accessor: "color" },
@@ -25,7 +19,7 @@ export default () => {
             { Header: "Fuel level", accessor: "fuelLevel" },
             { Header: "Fuel type", accessor: "fuelType"},
             { Header: "Mileage in KM", accessor: "mileage"},
-            // we create the "localFilter" boolean to make sure only that column gets a Filter on top, as the other gets global"
+            
         ],
         []
     );
@@ -35,34 +29,10 @@ export default () => {
         setCarsData(carsDataTemp)
     },[])
 
-    //adding the carGroups data
-    useEffect(async () => {
-        const carGroupsDataTemp = await getCarGroups()
-        setCarGroupsData(carGroupsDataTemp)
-    },[])
-
     return <Table columns={carsColumns} data={carsData} color={"#a4f7ae"}/>
 }
 
-//adding the carGroups data from the relational database
-async function getCarGroups() {
-
-    const CarGroupsQuery = new Parse.Query(CarGroups);
-    const allCarGroups = await CarGroupsQuery.find();
-
-    const allCarGroupsFormatted = allCarGroups.map((carGroups) => {
-        return {
-            id: carGroups.id,
-            groupID: carGroups.get("GroupID"),
-            carRelations: carGroups.get("Cars")
-        }
-    })
-
-    return allCarGroupsFormatted
-}
-
 async function getAllCars() {
-
     const Car = Parse.Object.extend('Car');
     const allCarsQuery = new Parse.Query(Car);
     const allCars = await allCarsQuery.find();
@@ -72,7 +42,7 @@ async function getAllCars() {
             id: car.id,
             color: car.get('Color'),
             numberOfDoors: car.get('NumberOfDoors'), //added
-            carGroup: car.get('CarGroup'),
+            group: car.get('Group'), //added
             fuelLevel: car.get('FuelLevel'),
             fuelType: car.get('FuelType'),
             licensePlate: car.get('LicensePlate'),
@@ -81,8 +51,6 @@ async function getAllCars() {
             notes: car.get('Notes') ? car.get("Notes") : false
         }   
     })
-
-    //console.log(Car.get({ "__type": "Pointer", "className": "1VdPsWWYFZ", "objectId": "car.id"}));
 
     return allCarsFormatted
 }
