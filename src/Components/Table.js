@@ -94,7 +94,7 @@ export default function Table({ columns, data, color }) {   // ##
           <th
             colSpan={visibleColumns.length}
             style={{
-              textAlign: "left",
+              textAlign: "center",
             }}
           >
             <GlobalFilter
@@ -114,6 +114,7 @@ export default function Table({ columns, data, color }) {   // ##
                     background: color,
                     color: "black",
                     fontWeight: "bold",
+                    textAlign: "center",
                   }}
                 >
                   <div>{column.localFilter ? column.render('Filter') : null}</div> 
@@ -130,6 +131,7 @@ export default function Table({ columns, data, color }) {   // ##
           cellStyle={{
             padding: "15px",
             border: "solid 1px gray",
+            textAlign: "center",
           }}
           rowStyle={{
             background: "white",
