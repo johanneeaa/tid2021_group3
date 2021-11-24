@@ -3,8 +3,12 @@ import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 
-//Created a table based on input. Used in our pages.
-//Code based on react-table [https://react-table.tanstack.com/] & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
+// Created a table based on input. Used in our pages.
+// We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
+// Most styling still in here, need to create a functioning stylesheet.
+
+// Code based on react-table [https://react-table.tanstack.com/] 
+// & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
 export default function Table({ columns, data, color }) {   
 
@@ -44,13 +48,14 @@ export default function Table({ columns, data, color }) {
     setGlobalFilter,
   } = rentalTable 
 
-  function TableRow(props) {
-    //TableRow component, no table without it, so made in here. ##
+  function TableRow(props) { //TableRow component, no table without it, so made in here. 
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
-    const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); //added the onClick functionality for the PopUp component
 
-    return ( // ##
+    const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); 
+    //added the onClick functionality for the PopUp component, not for sorting as it is handeled differently
+
+    return ( 
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
@@ -58,7 +63,8 @@ export default function Table({ columns, data, color }) {
             <tr
               {...row.getRowProps()}
               style={props.rowStyle} 
-              onClick={() => setOnclickRowPopUp(true) +
+              onClick={
+                () => setOnclickRowPopUp(true) +
                 + setClickedRowObject(row.values)
               }
               >

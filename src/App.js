@@ -5,9 +5,10 @@ import { NavigationBar } from "./Components/NavigationBar";
 import Cars from "./Pages/Cars";
 import Rental from "./Pages/Rental";
 
-// navigation needs styling
+// our App(), should containt our navigation with paths to pages
+// Tab navigation needs styling, we can't see what are pressed
 
-function App() { // ###
+function App() { 
   return (
     <>
     <NavigationBar /> 
@@ -15,10 +16,10 @@ function App() { // ###
       <BrowserRouter>
         <Routes>
           <Route path="/cars" element={<Cars />} />
-          <Route path="/rental" element={<Rental />} />
+          <Route path="/rental" element={<Rental /> } />
         </Routes>
       </BrowserRouter>
-    temp. front page. use tabs to acces data
+    Temporary front page. Use tabs to acces data 
   </>
   );
 }

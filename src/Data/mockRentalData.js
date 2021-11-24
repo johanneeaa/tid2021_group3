@@ -3,8 +3,8 @@ import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { format } from "date-fns";
 
 // Creating mock data for our table. 
-// The newRental const will contain an object with randomized rental information
-// Based on snippets from react table examples [ https://react-table.tanstack.com/docs/examples/filtering ]
+// The newRental const will contain an object with randomized, but realistic, rental information
+// based on react table examples [ https://react-table.tanstack.com/docs/examples/filtering ]
 
 let DateGenerator = require("random-date-generator");
 
@@ -30,6 +30,7 @@ function randomizeDate() {
 
 // config for generated names, 
 // documentation and additional settings:  [ https://bit.ly/3mseVnY ]
+
 const nameSettings = {
   dictionaries: [names],
   style: "capital",

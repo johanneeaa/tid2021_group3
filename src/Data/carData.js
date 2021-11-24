@@ -1,4 +1,6 @@
-// NOT IMPLIMENTED YET - all functionality still in Cars.js - 23/NOV/2021 LACL
+// NOT IMPLIMENTED YET FROM THIS FILE !
+// all functionality still in Cars.js
+// code by PHILIP; Comment and move 24/NOV/2021 by LACL
 
 import React, { useEffect, useState } from "react";
 import Table from "../Components/Table";

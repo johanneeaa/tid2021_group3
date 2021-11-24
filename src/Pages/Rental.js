@@ -4,6 +4,7 @@ import makeData from "../Data/mockRentalData";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 
+// our rental page, returns a table containing mock data generated ourselves.
 
 const RentalTable = () => {
 
@@ -23,6 +24,5 @@ const RentalTable = () => {
 
     return <Table columns={rentalColumns} data={rentalData} color={"#F7E8A4"}/>
 }
-
 
 export default RentalTable
