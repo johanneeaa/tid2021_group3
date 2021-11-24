@@ -5,14 +5,12 @@ import { NavigationBar } from "./Components/NavigationBar";
 import Cars from "./Pages/Cars";
 import Rental from "./Pages/Rental";
 
-// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
-// functions marked ## are snippets with our own modifications
-// functions marked ### are OC 
+// navigation needs styling
 
 function App() { // ###
   return (
     <>
-    <NavigationBar />
+    <NavigationBar /> 
 
       <BrowserRouter>
         <Routes>
