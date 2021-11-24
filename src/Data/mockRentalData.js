@@ -2,13 +2,13 @@ import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { format } from "date-fns";
 
-// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
-// functions marked ## are snippets with our own modifications
-// functions marked ### are OC 
+// Creating mock data for our table. 
+// The newRental const will contain an object with randomized, but realistic, rental information
+// based on react table examples [ https://react-table.tanstack.com/docs/examples/filtering ]
 
 let DateGenerator = require("random-date-generator");
 
-function randomFromArray(array) { //###
+function randomFromArray(array) { 
   return array[Math.floor(Math.random() * array.length)];
 }
 
@@ -16,11 +16,10 @@ const carGroups = ["A", "B", "C", "D", "E"];
 
 const minuteIntervals = ["00", "15", "30", "45"];
 
-//Create random, formatted, dated. Maybe needs logic to be increasing all the time?
-function randomizeDate() { // ###
+function randomizeDate() { 
   const randomDate = DateGenerator.getRandomDateInRange(
     new Date(),
-    new Date(2021, 11, 0)
+    new Date(2021, 12, 0)
   );
   const formattedDate = format(
     randomDate,
@@ -29,13 +28,15 @@ function randomizeDate() { // ###
   return formattedDate;
 }
 
-//config for name generator, documentation here [ https://bit.ly/3mseVnY ]
+// config for generated names, 
+// documentation and additional settings:  [ https://bit.ly/3mseVnY ]
+
 const nameSettings = {
   dictionaries: [names],
   style: "capital",
 };
 
-const newRental = () => { // ###
+const newRental = () => { 
   return {
     pickupDateTime: randomizeDate(),
     bookingID: Math.floor(Math.random() * 10000000),
@@ -45,7 +46,7 @@ const newRental = () => { // ###
   };
 };
 
-const range = (len) => { //#
+const range = (len) => { //lifted from react table examples
   const arr = [];
   for (let i = 0; i < len; i++) {
     arr.push(i);
@@ -53,12 +54,13 @@ const range = (len) => { //#
   return arr;
 };
 
-export default function makeData(...lens) { //#
+export default function makeData(...lens) { //lifted from react table examples
   const makeDataRow = (depth = 0) => {
     const len = lens[depth];
     return range(len).map((d) => {
       return {
         ...newRental(),
+
         subRows: lens[depth + 1] ? makeDataRow(depth + 1) : undefined,
       };
     });
