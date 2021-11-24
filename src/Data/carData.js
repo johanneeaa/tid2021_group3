@@ -17,7 +17,9 @@ export default async function getAllCars() {
     const allCarsFormatted = allCars.map((car) => {
         return {
             id: car.id,
+            group: car.get('Group'),
             color: car.get("Color"),
+            numberOfDoors: car.get('NumberOfDoors'),
             fuelLevel: car.get("FuelLevel"),
             fuelType: car.get("FuelType"),
             licensePlate: car.get("LicensePlate"),

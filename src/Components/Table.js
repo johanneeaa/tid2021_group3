@@ -48,12 +48,11 @@ export default function Table({ columns, data, color }) {
     setGlobalFilter,
   } = rentalTable 
 
-  function TableRow(props) { //TableRow component, no table without it, so made in here. 
+  function TableRow(props) { 
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
 
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); 
-    //added the onClick functionality for the PopUp component, not for sorting as it is handeled differently
 
     return ( 
       <tbody {...getTableBodyProps()}>
@@ -116,7 +115,8 @@ export default function Table({ columns, data, color }) {
                     background: color,
                     color: "black",
                     fontWeight: "bold",
-                  }} // header style - move to stylesheet
+                    textAlign: "center",
+                  }} 
                 >
                   
                   <SortOnClick column={column}/>
@@ -133,7 +133,7 @@ export default function Table({ columns, data, color }) {
           cellStyle={{
             padding: "5px",
             border: "solid 1px gray",
-            textAlign: "left"
+            textAlign: "center"
           }}
           rowStyle={{
             background: "white",

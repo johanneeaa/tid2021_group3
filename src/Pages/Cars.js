@@ -10,16 +10,15 @@ import getAllCars from "../Data/carData";
 const CarTable = () => {
     
     const [carsData, setCarsData] = useState([])
-    
-    //Missing carGroup for now
+
     const carsColumns = React.useMemo(
         () => [
-            { Header: "ID", accessor: "id" },
+            { Header: "Car Group", accessor: "group", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
+            { Header: "License plate", accessor: "licensePlate"},
             { Header: "Model", accessor: "model"},
             { Header: "Color", accessor: "color", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter}, 
-        // maybe we need the filters to be multiple checkboxes if you want to search more than one color at once?
-        //  { Header: "License plate", accessor: "carGroup"}, // no data on theese yet
-            { Header: "Mileage", accessor: "mileage"},
+            { Header: "No. of doors", accessor: "numberOfDoors"}, 
+            { Header: "Mileage in KM", accessor: "mileage"},
             { Header: "Fuel level", accessor: "fuelLevel" },
             { Header: "Fuel type", accessor: "fuelType", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
             { Header: "Notes", accessor: "notes", } 
@@ -37,5 +36,4 @@ const CarTable = () => {
 };
 
 export default CarTable
-
 
