@@ -17,7 +17,7 @@
   position: relative;
   padding: 32px;
   width: 55%;
-  height: fit-content;
+  height: auto;
   background-color: #F7E8A4;
 }
 
