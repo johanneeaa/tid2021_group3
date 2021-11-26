@@ -53,7 +53,7 @@ export default function Table({ columns, data, color }) {
     const [clickedRowObject, setClickedRowObject] = useState(0);
 
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); 
-
+  
     return ( 
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
@@ -77,11 +77,16 @@ export default function Table({ columns, data, color }) {
             </tr>
           ); // Goal for next sprint: generic and more "effective" PopUp component - but this works for now. 
         })}
-        <PopUp object={clickedRowObject} trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}></PopUp>
+        <PopUp 
+          object={clickedRowObject}
+          rowHeaders ={headerGroups.headers}
+          
+          trigger={onCLickRowPopUp} 
+          setTrigger={setOnclickRowPopUp}
+        />    
       </tbody>
     );
-  }
-
+  } 
   return ( // ##
     <div>
       <table
