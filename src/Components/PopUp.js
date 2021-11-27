@@ -8,26 +8,27 @@ Needs to be more "generic" instead of hardcoded for rental only.
 
 import Textbox4Info from './TextBox4Info';
 import React from 'react';
-import { useColumnOrder } from 'react-table';
 import './PopUp.css';
-import CarTable from '../Pages/Cars';
 
 function PopUp(props) {
 
-    //console.log(props.object);
     var rowInfo = props.object; // use rowInfo.cellName to get the value of the desired cell
-    var rowHeaders = props.rowHeaders;
 
+    console.log(props.rowHeaders);
 
         return (props.trigger) ? (      //if the trigger is 'true' then the popUp will show, if false it will not
             <div className="popup">
  
-                <div className="popup-inner">
+                <div className="popup-inner" style={{background: props.color}}>
                 <main><h1>Booking ID {rowInfo.bookingID}</h1></main>
 
                     <div className="popup-info"> 
-                        <Textbox4Info title="Title goes here" info ="HELLO"/>
-                        
+
+
+                         <Textbox4Info title={props.rowHeaders} info ="hest"/>
+
+                      
+
                     </div>
                     <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>
                     {props.children}

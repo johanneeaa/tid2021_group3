@@ -11,6 +11,13 @@ import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 // & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
 export default function Table({ columns, data, color }) {   
+  
+  const myHeaders =[]
+
+  columns.forEach(columns => {
+    myHeaders.push(columns.Header)
+  }); 
+// myHeaders is created to gain acces to "nice" headers instead of accessors
 
   const filterTypes = React.useMemo( 
     () => ({
@@ -51,7 +58,6 @@ export default function Table({ columns, data, color }) {
   function TableRow(props) { 
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
-
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); 
   
     return ( 
@@ -79,8 +85,8 @@ export default function Table({ columns, data, color }) {
         })}
         <PopUp 
           object={clickedRowObject}
-          rowHeaders ={headerGroups.headers}
-          
+          rowHeaders ={myHeaders}
+          color={color}
           trigger={onCLickRowPopUp} 
           setTrigger={setOnclickRowPopUp}
         />    
