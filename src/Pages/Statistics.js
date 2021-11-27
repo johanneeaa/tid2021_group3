@@ -2,38 +2,25 @@ import React from "react"
 import Parse from "parse";
 
 
+export default function statistics() {
 
-export default function placeHolder() {
-
-    Statistics()
-
-    return <>temporayplaceholdertext</>
+    const avgMileage = avgMileageStats()
+    const mostPopCG = mostPopularCargroupStats()
+    
+    return (
+      <div>Stats page</div>
+    )
 }
 
+async function avgMileageStats() {
 
-async function Statistics() {
-
-    const helloFunction = await Parse.Cloud.run("hello");
-    console.log(helloFunction)
-
+  const avgMileage = await Parse.Cloud.run("averageMileage");
+  console.log("The average mileage of a car in the fleet is: " + avgMileage)
+  return avgMileage
 }
+async function mostPopularCargroupStats() {
 
-
-/* Parse.Cloud.define("averageMileage", async (request) => {
-
-        const query = new Parse.Query("Car");
-
-        console.log(query)
-        
-        query.equalTo("car", request.params.car);
-        const results = await query.find();
-        let sum = 0;
-        for (let i = 0; i < results.length; ++i) {
-          sum += results[i].get("mileage");
-        }
-
-        console.log("Total kms = " + sum)
-        console.log("Avg kms = " + sum / results.length)
-
-        return sum / results.length;
-      }); */
+  const mostPopularCargroup = await Parse.Cloud.run("mostPopularCargroup");
+  console.log("The most popular cargroup in the fleet is: " + mostPopularCargroup)
+  return mostPopularCargroup
+}
