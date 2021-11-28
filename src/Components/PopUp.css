@@ -16,14 +16,16 @@
 .popup-inner {
   position: relative;
   padding: 20px;
-  width: 55%;
-  height: 65%;
 }
 
 .popup-info {
   font-style: helvetica;
   font-size: x-large;
   text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 20px;
+
 }
 
 .popup-inner .close-button {
