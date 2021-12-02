@@ -11,13 +11,13 @@ function App() {
     <main>
       <b>Temporary front page. Use tabs to access data</b>
     </main>
-  );
+  ); 
   return (
     <>
       <NavigationBar />
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={temp} />
+          <Route path="" element={temp} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/rental" element={<Rental />} />
         </Routes>
