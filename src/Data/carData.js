@@ -2,9 +2,7 @@
 // all functionality still in Cars.js
 // code by PHILIP; Comment and move 24/NOV/2021 by LACL
 
-import React, { useEffect, useState } from "react";
-import Table from "../Components/Table";
-import SelectColumnFilter from "../Components/Filters";
+
 import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
