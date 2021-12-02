@@ -1,12 +1,11 @@
 import React from "react";
-import Select from 'react-select';
-import { useAsyncDebounce } from "react-table"; //React table documentaion https://react-table.tanstack.com/
+import { useAsyncDebounce } from "react-table"; 
 
-// functions marked # are snippets from https://react-table.tanstack.com/docs/examples/filtering without modifications
-// functions marked ## are snippets with our own modifications
-// functions marked ### are OC 
+// Filter components for use in our tables
+// Snippets from table-filters [ https://react-table.tanstack.com/docs/examples/filtering ]
 
-export function GlobalFilter({ //# (##) component that can be put into a table, to add a functioning search bar.
+// component that can be put into a table, to add a functioning search bar.
+export function GlobalFilter({ 
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
@@ -26,7 +25,7 @@ export function GlobalFilter({ //# (##) component that can be put into a table, 
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} upcoming rentals...`} 
+        placeholder={`Search through ${count} elements`} 
         style={{
           fontSize: "1.1rem",
           border: "1",
@@ -37,7 +36,7 @@ export function GlobalFilter({ //# (##) component that can be put into a table, 
   );
 }
 
-export function DefaultColumnFilter({ // #
+export function DefaultColumnFilter({ 
 
   column: { filterValue, preFilteredRows, setFilter },
 }) {
@@ -54,27 +53,27 @@ export function DefaultColumnFilter({ // #
   )
 }
 
-export function SortOnClick(props){ //### m
+export function SortOnClick(props){ 
 return(                 
-<span>
-  {props.column.isSorted ? props.column.isSortedDesc ? ' ▼ ' : ' ▲ ' : ''}
-</span>)
+  <span>
+    {props.column.isSorted ? props.column.isSortedDesc ? ' ▼ ' : ' ▲ ' : ''}
+  </span>)
 }
 
-export default function SelectColumnFilter({ //##
+export default function SelectColumnFilter({ 
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {
   const options = React.useMemo(() => {
-    const options = new Set() //## Set is a kin to a hash; only holds unique values - but accesable with keys, not index
+    const options = new Set() // Set() kinda like a hash; only holds unique values - but accesable with keys, not index
     preFilteredRows.forEach(row => {
       options.add(row.values[id])
     })
-   const sortedOptions = Array.from(options).sort() //### sort aplhabetacally for easier use
-   // testing: console.log(sortedOptions);
+   const sortedOptions = Array.from(options).sort() // sort aplhabetacally for easier use
+   
     return [...sortedOptions.values()]  
   }, [id, preFilteredRows])
 
-  // # Render a multi-select box 
+  // render a multi-select box 
   return (
     <select
       value={filterValue}
