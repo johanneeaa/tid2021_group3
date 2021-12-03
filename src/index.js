@@ -15,9 +15,9 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <App />
-  </React.StrictMode>,
+  </>,
   document.getElementById('root')
 );
 

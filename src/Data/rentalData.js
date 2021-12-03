@@ -11,12 +11,21 @@ export default async function getAllBookings() {
     //const date = new Date(yourvariable).toISOstring();
 
     const allBookingsFormatted = allBookings.map((booking) => {
+
+        const pickUpInfo = booking.get("PickUpTime").toISOString()
+        const pickUpDate = pickUpInfo.slice(5,10)
+        const pickUpHour = pickUpInfo.slice(11,16)
+
+        const returnInfo = booking.get("ReturnTime").toISOString()
+        const returnDate = returnInfo.slice(5,10)
+        const returnHour = returnInfo.slice(11,16)
+
         return {
             id: booking.id,
             pickUpOffice: booking.get("PickUpOffice"),
-            pickUpTime: new Date(booking.get("PickUpTime")).toISOString().slice(5,10) + " ETA: " + new Date(booking.get("PickUpTime")).toISOString().slice(11,16),
+            pickUpTime: pickUpDate + " ETA: " + pickUpHour,
             returnOffice: booking.get("ReturnOffice"),
-            returnTime: new Date(booking.get("ReturnTime")).toISOString().slice(5,10) + " ETA: " + new Date(booking.get("ReturnTime")).toISOString().slice(11,16),
+            returnTime: returnDate + " ETA: " + returnHour,
             bookingNumber: booking.get("BookingID"),
             fullName: booking.get("LastName") + ", " + booking.get("FirstName"),
             dateOfBirth: new Date(booking.get("DoB")).toISOString().slice(0,10), // for hours and minutes (slicing on characters from index 0 - 10)
