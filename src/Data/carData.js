@@ -3,9 +3,16 @@
 // code by PHILIP; Comment and move 24/NOV/2021 by LACL
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> cloud-functions-statistics
+=======
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+>>>>>>> rentalData-from-database
 import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
