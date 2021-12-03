@@ -42,6 +42,8 @@ export default function Table({ columns, data, color }) {
     []
   )
 
+  /* It's important that we're using React.useMemo here to ensure that our data isn't recreated on every render ( https://bit.ly/3xSqtVD )*/
+
   const rentalTable = useTable({ columns, data, defaultColumn, filterTypes}, useGlobalFilter,useFilters,useSortBy, PopUp);
   const {
     getTableProps,
