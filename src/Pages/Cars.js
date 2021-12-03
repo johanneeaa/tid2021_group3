@@ -26,19 +26,12 @@ const CarTable = () => {
         []
     );
         
-<<<<<<< HEAD
-    useEffect(async () => {
-        const carsDataTemp = await getAllCars()
-        setCarsData(carsDataTemp)
-
-=======
     useEffect(() => {
         async function fetchData() {
             const carsDataTemp = await getAllCars()
             setCarsData(carsDataTemp)
         }
         fetchData();
->>>>>>> rentalData-from-database
     },[])
     
     //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
