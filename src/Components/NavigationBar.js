@@ -10,6 +10,7 @@ export function NavigationBar() {
                     <Nav className="me-auto">
                         <Nav.Link href="Rental">Rental</Nav.Link>
                         <Nav.Link href="Cars">Cars</Nav.Link>
+                        <Nav.Link href="Statistics">Statistics</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

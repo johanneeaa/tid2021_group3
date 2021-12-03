@@ -29,6 +29,7 @@ const CarTable = () => {
     useEffect(async () => {
         const carsDataTemp = await getAllCars()
         setCarsData(carsDataTemp)
+
     },[])
     //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
     

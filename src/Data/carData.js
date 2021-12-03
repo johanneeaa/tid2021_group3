@@ -2,7 +2,10 @@
 // all functionality still in Cars.js
 // code by PHILIP; Comment and move 24/NOV/2021 by LACL
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cloud-functions-statistics
 import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
