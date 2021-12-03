@@ -1,28 +1,34 @@
-import React from "react";
-
-import makeData from "../Data/mockRentalData";
+import React, { useEffect, useState } from "react";
+import getAllBookings from "../Data/rentalData";
 import Table from "../Components/Table";
-import SelectColumnFilter from "../Components/Filters";
-
-// our rental page, returns a table containing mock data generated ourselves.
+// import SelectColumnFilter from "../Components/Filters";
 
 const RentalTable = () => {
 
-    const rentalData = React.useMemo(() => makeData(30), []);
+    const [rentalData, setRentalData] = useState([])
 
     const rentalColumns = React.useMemo(
     () => [
-        { Header: "When", accessor: "pickupDateTime" },
-        { Header: "ID", accessor: "bookingID" },
-        { Header: "First name", accessor: "firstName" },
-        { Header: "Last name", accessor: "lastName", },
-        { Header: "Car Group", accessor: "carGroup", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
-        // we create the "localFilter" boolean to make sure only that column gets a Filter on top, as the other gets global"
+        
+        { Header: "Booking Number", accessor: "bookingNumber"},
+        { Header: "Pick Up Office", accessor: "pickUpOffice"}, //, localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
+        { Header: "Pick Up Time", accessor: "pickUpTime"},
+        { Header: "Return Office", accessor: "returnOffice"}, //, localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
+        { Header: "Return Time", accessor: "returnTime"},
+        { Header: "Customer Name", accessor: "fullName"},
+        { Header: "Date of Birth", accessor: "dateOfBirth"},
+        { Header: "Drivers License", accessor: "driversLicense"},
+        //{ Header: "Requested Car Group", accessor: "requestedCarGroup"},
         ],
         []
     );
 
+    useEffect(async () => {
+        const rentalDataTemp = await getAllBookings()
+        setRentalData(rentalDataTemp)
+    },[])
+
     return <Table columns={rentalColumns} data={rentalData} color={"#F7E8A4"}/>
-}
+};
 
 export default RentalTable

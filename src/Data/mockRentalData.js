@@ -1,4 +1,4 @@
-import namor from "namor";
+/* import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { format } from "date-fns";
 
@@ -67,3 +67,4 @@ export default function makeData(...lens) { //lifted from react table examples
   };
   return makeDataRow();
 }
+ */
