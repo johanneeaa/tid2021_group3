@@ -8,19 +8,30 @@ export default async function getAllBookings() {
     const allBookingsQuery = new Parse.Query(Booking);
     const allBookings = await allBookingsQuery.find();
 
-    //const date = new Date(yourvariable).toISOstring();
-
     const allBookingsFormatted = allBookings.map((booking) => {
+
+        const pickUpDate = new Date(booking.get("PickUpTime")).toISOString().slice(5,10); // for hours and minutes (slicing on characters from index 0 - 10)
+        const pickUpTime = new Date(booking.get("PickUpTime")).toISOString().slice(11,16); // for hours and minutes (slicing on characters from index 0 - 10)
+
+        const returnDate = new Date(booking.get("ReturnTime")).toISOString().slice(5,10);
+        const returnTime = new Date(booking.get("ReturnTime")).toISOString().slice(11,16);
+
+        const dob = new Date(booking.get("DoB")).toISOString().slice(0,10);
+
+
         return {
             id: booking.id,
             pickUpOffice: booking.get("PickUpOffice"),
-            pickUpTime: new Date(booking.get("PickUpTime")).toISOString().slice(5,10) + " ETA: " + new Date(booking.get("PickUpTime")).toISOString().slice(11,16),
+            pickUpDate:pickUpDate,
+            pickUpTime: pickUpTime,
             returnOffice: booking.get("ReturnOffice"),
-            returnTime: new Date(booking.get("ReturnTime")).toISOString().slice(5,10) + " ETA: " + new Date(booking.get("ReturnTime")).toISOString().slice(11,16),
+            returnDate: returnDate,
+            returnTime: returnTime,
             bookingNumber: booking.get("BookingID"),
             fullName: booking.get("LastName") + ", " + booking.get("FirstName"),
-            dateOfBirth: new Date(booking.get("DoB")).toISOString().slice(0,10), // for hours and minutes (slicing on characters from index 0 - 10)
+            dateOfBirth: dob,
             driversLicense: booking.get("DriversLicense"),
+            reqCarGroup: booking.get("ReqCarGroup"),  // hardcoded requested car group - so far not able to get the data from the pointer values from back4app 
             //requestedCarGroup: booking.get("RequestedCarGroup"), //this won't work (only for show), but I still haven't found a solution for accessing the pointer values in the database
         }
     })
