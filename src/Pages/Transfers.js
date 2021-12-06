@@ -12,7 +12,7 @@ const TransferTable = () => {
         { Header: "Model", accessor: "model"},
         { Header: "Rental Office", accessor: "office"}, //this is hardcoded - not from database, if we want if from database we need to add a new column + data
         { Header: "Color", accessor: "color"}, 
-        { Header: "Car Group", accessor: "group"}
+        { Header: "Car Group", accessor: "group"},
     ],
     []
   );

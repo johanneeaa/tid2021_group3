@@ -5,6 +5,7 @@ import { NavigationBar } from "./Components/NavigationBar";
 import Cars from "./Pages/Cars";
 import Rental from "./Pages/Rental";
 import Transfers from "./Pages/Transfers";
+import Customer from "./Pages/Customer";
 import Statistics from "./Pages/Statistics";
 
 // our App(), should containt our navigation with paths to pages
@@ -25,6 +26,7 @@ function App() {
           <Route path="/cars" element={<Cars />} />
           <Route path="/rental" element={<Rental />} />
           <Route path="/transfers" element={<Transfers/>} />
+          <Route path="/customer" element={<Customer/>} />
           <Route path="/statistics" element={<Statistics/>} />
         </Routes>
       </BrowserRouter>

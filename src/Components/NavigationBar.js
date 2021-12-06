@@ -11,6 +11,7 @@ export function NavigationBar() {
                         <Nav.Link href="Rental">Rental</Nav.Link>
                         <Nav.Link href="Cars">Cars</Nav.Link>
                         <Nav.Link href="Transfers">Transfers</Nav.Link>
+                        <Nav.Link href="Customer">Customer</Nav.Link>
                         <Nav.Link href="Statistics">Statistics</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
