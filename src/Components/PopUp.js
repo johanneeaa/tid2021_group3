@@ -32,7 +32,7 @@ function PopUp(props) { if (props.rowHeaders) {
     return (props.trigger) ? (      //if the trigger is 'true' then the popUp will show, if false it will not
         <div className="popup">
             <div className="popup-inner" style={{background: props.color}}>
-                <main><h1> Booking ID: {props.object.bookingID} </h1></main>
+                {/* <main><h1> Booking ID: {props.object.bookingID} </h1></main> */} 
                 <div className="popup-info"> 
                     {contentBoxes}
                 </div>
