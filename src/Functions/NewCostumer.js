@@ -1,6 +1,8 @@
 
 
-// funciton for adding a new costumer with "hardcoded" values.  Used for testing purposes.
+// funciton for adding a new costumer with "hardcoded" values. Used for testing purposes.
+// Next step: generic input
+
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 export default async function addALars() {
     

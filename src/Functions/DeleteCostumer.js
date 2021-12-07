@@ -1,5 +1,7 @@
 
-// Deleting 
+// Deleting a costumer based off an input in the form of an ID
+
+// built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 
 export default async function deleteCostumerByID(ID) {
     
@@ -14,12 +16,12 @@ export default async function deleteCostumerByID(ID) {
         }); 
     
         if (!response.ok) { 
-          throw new Error(response.status); 
+          throw new Error(response.status);
         } 
         const data = await response.json(); 
-        console.log("Removed object! "+data); 
-    
-      } catch (error) { 
+        console.log("Removed object! "+data);   
+      } 
+        catch (error) { 
         console.log(error); 
       }
 
