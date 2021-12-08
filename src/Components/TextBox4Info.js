@@ -5,7 +5,7 @@ export default function Textbox4Info(props){
 
         return (
             <div>
-            <h3>{props.title}</h3>
+            <h6><b>{props.title}</b></h6>
             <div className="inputBox">
                 <input 
                     placeholder = "..."        

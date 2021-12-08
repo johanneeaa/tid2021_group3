@@ -17,15 +17,17 @@
   padding: 20px;
   background: color;
   justify-content: center;
+  border-radius: 5px;
 }
 
 .popup-info {
   font-style: helvetica;
-  font-size: x-large;
+  font-size: medium;
   text-align: center;
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 40px;
+  border-radius: 5px;
 }
 
 .popup-inner .close-button {
