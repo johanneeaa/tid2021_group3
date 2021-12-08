@@ -18,7 +18,8 @@ export function GlobalFilter({
   }, 200);
 
   return (
-    <span> 
+    <span>  
+      <br/>
       Search:{" "}
       <input className = "inputfield"
         value={value || ""}

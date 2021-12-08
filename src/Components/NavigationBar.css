@@ -6,20 +6,35 @@
 }
 
 .carslink:hover {
-  background-color: #a4f7ae;
+  background-color: #6bb78b;
   font-weight: 500;
   font-size: larger;
   border-radius: 5px;
 }
 
 .customerslink:hover {
-  background-color: #f790ce;
+  background-color: #b4c3f4;
   font-weight: 500;
   font-size: larger;
   border-radius: 5px;
 }
 
 .logo:hover {
+  border-radius: 5px;
   font-weight: bold;
   font-size: 20px;
+}
+
+.transferlink:hover {
+  background-color: #f790ce;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 5px;
+}
+
+.statisticslink:hover {
+  background-color: #949494;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 5px;
 }

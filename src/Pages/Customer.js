@@ -3,6 +3,7 @@ import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
 import InputBox from "../Components/InputBox";
 import addALars from "../Functions/NewCostumer";
+import './Customer.css';
 
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);
@@ -30,8 +31,11 @@ const CustomerTable = () => {
 
   return (
     <div>
+    <div className = "customercontainer">
       <br/>
-      <button onClick={()=>addALars() }> Add a new "Lars" costumer</button><br/><InputBox/>
+      <button className = "larsButton" onClick={()=>addALars() }> Add a new "Lars" costumer</button><br/><InputBox/>
+      <br/>
+      </div>
       <br/>
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} />
     </div>
