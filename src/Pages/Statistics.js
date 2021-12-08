@@ -20,7 +20,7 @@ const Statistics = () => {
   return (
     <div>
       <h1>Statistics from the cloud</h1>
-      Avarage milage on cars: {Math.floor(avrgMilage)} miles
+      Average mileage on cars: {Math.floor(avrgMilage)} kilometers
       <br />
       Most popular car group right now: {mostPopCG}
     </div>
