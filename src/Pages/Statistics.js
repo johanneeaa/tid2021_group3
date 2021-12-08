@@ -1,17 +1,35 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Parse from "parse";
 
+// This is the statisics page, containing the functions to fetch cloud computing statistics.
+// Statistics is a const in itself, so we can return something before the "await" promises return.
+// 
 
-export default function statistics() {
+const Statistics = () => {
 
-    const avgMileage = avgMileageStats()
-    const mostPopCG = mostPopularCargroupStats()
-    
-    return (
-      <div>Stats page</div>
-    )
+  const [avrgMilage, setAvrgMilage] = useState("loading...")
+  const [mostPopCG, setMostPopCG] = useState("loading...")
+
+  useEffect(() => {
+    async function getCloudData() {
+      setAvrgMilage(await avgMileageStats());
+      setMostPopCG(await mostPopularCargroupStats());
+    }
+    getCloudData();
+  },[])
+
+  return (
+    <div>
+      <h1>Statistics from the cloud</h1>
+      Avarage milage on cars: {Math.floor(avrgMilage)} miles
+      <br/>
+      Most popular car group right now: {mostPopCG}
+    </div>)
 }
 
+export default Statistics
+
+// functions to run the cloud computation written in back4app
 async function avgMileageStats() {
 
   const avgMileage = await Parse.Cloud.run("averageMileage");

@@ -96,7 +96,9 @@ export default function Table({ columns, data, color }) {
     );
   } 
   return ( // ##
+    
     <div>
+
       <table
         {...getTableProps()}
         style={{

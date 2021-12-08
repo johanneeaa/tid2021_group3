@@ -7,6 +7,8 @@ import Rental from "./Pages/Rental";
 import Transfers from "./Pages/Transfers";
 import Customer from "./Pages/Customer";
 import Statistics from "./Pages/Statistics";
+import InputBox from "./Components/InputBox";
+import addALars from "./Functions/NewCostumer";
 
 // our App(), should containt our navigation with paths to pages
 // Tab navigation needs styling, we can't see what are pressed
@@ -14,7 +16,9 @@ import Statistics from "./Pages/Statistics";
 function App() {
   const temp = (
     <main>
-      <b>Temporary front page. Use tabs to access data</b>
+      <h1>Temporary front page. Use tabs to access data</h1> <br/>  
+      <button onClick={()=>addALars()}> For Testing: Add new "Lars" costumer</button><br/>
+      <InputBox/>
     </main>
   ); 
   return (
@@ -30,6 +34,7 @@ function App() {
           <Route path="/statistics" element={<Statistics/>} />
         </Routes>
       </BrowserRouter>
+
     </>
   );
 }
