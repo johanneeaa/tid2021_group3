@@ -12,6 +12,7 @@ export default async function getAllCustomers() {
             id: customer.id,
             fullName: customer.get('LastName') + ", " + customer.get('FirstName'),
             lastBooking: customer.get('LatestBooking'),
+            email: customer.get('Email'),
             lastCarGroup: customer.get("LatestCarGroup"),
             totalBookings: customer.get('TotalBookings'),
         }

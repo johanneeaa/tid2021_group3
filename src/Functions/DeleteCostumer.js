@@ -24,4 +24,6 @@ export default async function deleteCostumerByID(ID) {
         console.log(error); 
       }
 
+      window.location.reload(false)
+
 }

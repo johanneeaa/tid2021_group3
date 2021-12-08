@@ -34,4 +34,5 @@ export default async function addALars() {
   } catch (error) { 
     console.log(error); 
   }
+  window.location.reload(false)
 }

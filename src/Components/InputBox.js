@@ -5,6 +5,11 @@ export default function InputBox(props) {
 
     const [input, setInput] = useState('');
 
+    function removeAndRefresh(input) {
+        deleteCostumerByID(input)
+        window.location.reload(false)
+    }
+
     return (
         <div>
             <label>Enter costumer ID for deletion: </label>
