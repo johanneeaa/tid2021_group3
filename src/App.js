@@ -16,9 +16,7 @@ import addALars from "./Functions/NewCostumer";
 function App() {
   const temp = (
     <main>
-      <h1>Temporary front page. Use tabs to access data</h1> <br/>  
-      <button onClick={()=>addALars()}> For Testing: Add new "Lars" costumer</button><br/>
-      <InputBox/>
+      <h3>Temporary front page. Use tabs to access data</h3> <br/>  
     </main>
   ); 
   return (
