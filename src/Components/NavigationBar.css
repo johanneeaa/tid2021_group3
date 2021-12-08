@@ -1,0 +1,25 @@
+.rentallink:hover {
+  background-color: #f7e8a4;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 5px;
+}
+
+.carslink:hover {
+  background-color: #a4f7ae;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 5px;
+}
+
+.customerslink:hover {
+  background-color: #f790ce;
+  font-weight: 500;
+  font-size: larger;
+  border-radius: 5px;
+}
+
+.logo:hover {
+  font-weight: bold;
+  font-size: 20px;
+}
