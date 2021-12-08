@@ -6,7 +6,8 @@ export default async function addALars() {
   const postData = {
     LastName: "Clausen",
     FirstName: "Lars",
-    Notes: "none",
+    //Notes: "",                    //notes is not a required field, can remain undefined upon creation
+    LatestCarGroup: "A",
     Email: "larsTheMan@gmail.com",
   };
 

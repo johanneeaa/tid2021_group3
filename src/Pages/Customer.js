@@ -31,7 +31,7 @@ const CustomerTable = () => {
   return (
     <div>
       <br/>
-      <button onClick={()=>addALars() }> For Testing: Add new "Lars" costumer</button><br/><InputBox/>
+      <button onClick={()=>addALars() }> Add a new "Lars" costumer</button><br/><InputBox/>
       <br/>
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} />
     </div>
