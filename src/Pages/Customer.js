@@ -17,17 +17,16 @@ const CustomerTable = () => {
       { Header: "Last Booking", accessor: "lastBooking"},
       { Header: "Total Bookings", accessor: "totalBookings"},
       { Header: "Internal ID", accessor : "id"}
-
     ],
     []
   );
 
   useEffect(() => {
-    async function fetchData() {
-      const customerDataTemp = await getAllCustomers();
-      setCustomerData(customerDataTemp);
-    }
-    fetchData();
+      async function fetchData() {
+        const customerDataTemp = await getAllCustomers();
+        setCustomerData(customerDataTemp);
+      }
+      fetchData();
   },[])
 
   return (
