@@ -1,14 +1,22 @@
-// funciton for adding a new costumer with "hardcoded" values. Used for testing purposes.
+// funciton for adding a new Customer with "hardcoded" values. Used for testing purposes.
 // Next step: generic input
 
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
-export default async function addALars() {
+import {newCustomer} from "../Data/makeCustomerData"
+
+const randomCustomer = newCustomer()
+
+console.log(randomCustomer.email);
+
+export default async function addRandomCustomer() {
+
   const postData = {
-    LastName: "Clausen",
-    FirstName: "Lars",
-    //Notes: "",                    //notes is not a required field, can remain undefined upon creation
-    LatestCarGroup: "A",
-    Email: "larsTheMan@gmail.com",
+    LastName: randomCustomer.lastName,
+    FirstName: randomCustomer.firstName,
+    LatestCarGroup: randomCustomer.lastCarGroup,
+    Email: randomCustomer.email,
+    TotalBookings: randomCustomer.totalBookings,
+    //LatestBooking: randomCustomer.lastBookingDate
   };
 
   try {

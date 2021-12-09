@@ -1,7 +1,7 @@
-// Deleting a costumer based off an input in the form of an ID
+// Deleting a Customer based off an input in the form of an ID
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 
-export default async function deleteCostumerByID(ID) {
+export default async function deleteCustomerByID(ID) {
   try {
     const response = await fetch(
       "https://parseapi.back4app.com/classes/Customer/" + ID,
