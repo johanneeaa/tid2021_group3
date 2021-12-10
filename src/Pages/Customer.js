@@ -33,7 +33,7 @@ const CustomerTable = () => {
     <div>
     <div className = "customercontainer">
       <br/>
-      <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new  Customer</button><br/><InputBox/>
+      <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new Customer</button><br/><InputBox/>
       <br/>
       </div>
       <br/>

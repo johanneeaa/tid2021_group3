@@ -25,8 +25,8 @@ export default async function addRandomCustomer() {
       {
         method: "POST",
         headers: {
-          "X-Parse-Application-Id": "AgzfzDrOFClmY4jztxiZnNa3dlEN8fbiDAsWV6lf",
-          "X-Parse-REST-API-Key": "ljeZr2KM6A4n3PyvZE2pOS8R4BbKyLULGVq8mhXI",
+          "X-Parse-Application-Id": "iQDmAaMFGOGaZCqW5DiVEhRrY7jhCG5hdFHdyybL",
+          "X-Parse-REST-API-Key": "vxMVWv38VwCeNy8wU3h8e83w5ad7zGGMp5QgEuZv",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(postData),

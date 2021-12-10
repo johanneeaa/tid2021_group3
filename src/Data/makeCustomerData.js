@@ -13,7 +13,7 @@ const carGroups = ["A", "B", "C", "D", "E"];
 const domains = ["@geMail.com", "@hutmail.com", "@ito.dk"];
 
 
-/*function randomizeDate() { 
+/* function randomizeDate() { 
   const randomDate = DateGenerator.getRandomDateInRange(
     new Date(),
     new Date(2021, 12, 0)
@@ -23,7 +23,7 @@ const domains = ["@geMail.com", "@hutmail.com", "@ito.dk"];
     "MMM do "
   );
   return formattedDate;
-}*/  
+} */
 
 
 // config for generated names, 

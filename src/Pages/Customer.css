@@ -1,9 +1,10 @@
 .customercontainer {
   display: flex;
+  justify-content: center;
+  width: 80%;
 }
 
 .customercontainer .larsButton {
-  margin-right: 340px;
-  margin-left: 115px;
+  margin-right: 360px;
   border-radius: 5px;
 }
