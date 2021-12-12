@@ -36,7 +36,7 @@ const CarTable = () => {
     
     //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
     
-    return <Table columns={carsColumns} data={carsData} color={"#6BB78B"}/>
+    return <Table columns={carsColumns} data={carsData}/>
 };
 
 export default CarTable

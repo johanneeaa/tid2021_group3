@@ -7,9 +7,12 @@ import Rental from "./Pages/Rental";
 import Transfers from "./Pages/Transfers";
 import Customer from "./Pages/Customer";
 import Statistics from "./Pages/Statistics";
+import { AppProvider } from "./Components/AppProvider";
 
 // our App(), should containt our navigation with paths to pages
 // Tab navigation needs styling, we can't see what are pressed
+
+//AppProvider added and used to pass theme according to current page
 
 function App() {
   const temp = (
@@ -18,7 +21,7 @@ function App() {
     </main>
   );
   return (
-    <>
+    <AppProvider>
       <NavigationBar />
       <BrowserRouter>
         <Routes>
@@ -30,7 +33,7 @@ function App() {
           <Route path="/statistics" element={<Statistics />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </AppProvider>
   );
 }
 export default App;

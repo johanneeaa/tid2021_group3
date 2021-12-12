@@ -1,11 +1,13 @@
 .navbar {
-  background: #f7e8a4; 
   font-size: 48px; 
   font-weight: bold; 
   margin-left: auto; 
   margin-right: auto
 }
 
+.navbar a {
+  margin: 0 20px;
+}
 
 .logo:hover {
   border-radius: 5px;
@@ -13,27 +15,26 @@
   font-size: 20px;
 }
 
+.nav-link {
+  border-radius: 10px;
+}
+
 .rentallink:hover {
   background-color: #f7e8a4;
-  border-radius: 5px;
 }
 
 .carslink:hover {
   background-color: #6bb78b;
-  border-radius: 5px;
 }
 
 .customerslink:hover {
   background-color: #b4c3f4;
-  border-radius: 5px;
 }
 
 .transferlink:hover {
   background-color: #f790ce;
-  border-radius: 5px;
 }
 
 .statisticslink:hover {
   background-color: #949494;
-  border-radius: 5px;
 }

@@ -31,7 +31,7 @@ const RentalTable = () => {
     fetchData();
   },[])
 
-  return <Table columns={rentalColumns} data={rentalData} color={"#F7E8A4"} />;
+  return <Table columns={rentalColumns} data={rentalData}/>;
 };
 
 export default RentalTable;

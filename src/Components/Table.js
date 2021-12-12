@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 import './Table.css';
+import { AppContext } from "./AppProvider";
+import styled from "styled-components"
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
@@ -11,9 +13,22 @@ import './Table.css';
 // Code based on react-table [https://react-table.tanstack.com/] 
 // & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
-export default function Table({ columns, data, color}) {   
+export default function Table({columns, data}) {   
   
+  //AppContext is used to access the state of the app and to get the theme.
+  const {getTheme} = useContext(AppContext)
+
   const myHeaders =[]
+
+  //New styled component to match theme of page
+  const Row = styled.tr`
+  &:nth-child(odd) {
+    background-color: ${getTheme().disabled};
+  }
+  &:hover {
+    background-color: ${getTheme().highlight};
+    transition: all .3s ease-in-out
+  }`
 
   columns.forEach(columns => {
     myHeaders.push(columns.Header)
@@ -68,7 +83,7 @@ export default function Table({ columns, data, color}) {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr className = "tablerow"
+            <Row className = "tablerow"
               {...row.getRowProps()}
               style={props.rowStyle} 
               onClick={
@@ -83,13 +98,13 @@ export default function Table({ columns, data, color}) {
                   </td>
                 );
               })}
-            </tr>
+            </Row>
           ); // Goal for next sprint: generic and more "effective" PopUp component - but this works for now. 
         })}
         <PopUp 
           object={clickedRowObject}
           rowHeaders ={myHeaders}
-          color={color}
+          color={getTheme().primary}
           trigger={onCLickRowPopUp} 
           setTrigger={setOnclickRowPopUp}
         />    
@@ -105,7 +120,7 @@ export default function Table({ columns, data, color}) {
           <th className = "th"
             colSpan={visibleColumns.length}
             style={{
-              background: color,
+              background: getTheme().primary,
             }}
           >
             <GlobalFilter
@@ -122,7 +137,7 @@ export default function Table({ columns, data, color}) {
                 <th className = "th2"
                   {...column.getHeaderProps( column.localFilter ? console.log ("Local filter on " + column.id) : column.getSortByToggleProps()) }
                   style={{
-                    background: color,
+                    background: getTheme().primary,
                   }} 
                 >
                   

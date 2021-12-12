@@ -13,7 +13,6 @@
 
 .th {
   text-align: left;
-  background-color: color;
   border: 1rem;
   padding: 20px;
 }
@@ -23,17 +22,6 @@
   color: black;
   font-weight: 800;
   text-align: center;
-}
-
-/* TODO: Color needs to match specific tab */
-tr:nth-child(odd) {
-  background-color: #FDF9E8;
-}
-
-/* TODO: Color needs to match specific tab */
-.tablerow:hover {
-  background-color: #F6DF76;
-  transition: all .3s ease-in-out
 }
 
 .tablecell {
