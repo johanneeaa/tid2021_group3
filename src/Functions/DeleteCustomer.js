@@ -8,8 +8,8 @@ export default async function deleteCustomerByID(ID) {
       {
         method: "DELETE",
         headers: {
-          "X-Parse-Application-Id": "AgzfzDrOFClmY4jztxiZnNa3dlEN8fbiDAsWV6lf",
-          "X-Parse-REST-API-Key": "ljeZr2KM6A4n3PyvZE2pOS8R4BbKyLULGVq8mhXI",
+          "X-Parse-Application-Id": "iQDmAaMFGOGaZCqW5DiVEhRrY7jhCG5hdFHdyybL",
+          "X-Parse-REST-API-Key": "mvnUSNoetrJ4qEaaUDOyuOdLGqpUYbFPcopiwEke",  //note - this is the REST API key - and not the JavaScriptKey!
         },
       }
     );

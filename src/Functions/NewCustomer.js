@@ -11,10 +11,11 @@ console.log(randomCustomer.email);
 export default async function addRandomCustomer() {
 
   const postData = {
-    LastName: randomCustomer.lastName,
     FirstName: randomCustomer.firstName,
-    LatestCarGroup: randomCustomer.lastCarGroup,
+    LastName: randomCustomer.lastName,
     Email: randomCustomer.email,
+    LatestCarGroup: randomCustomer.lastCarGroup,
+    Notes: "",
     TotalBookings: randomCustomer.totalBookings,
     //LatestBooking: randomCustomer.lastBookingDate
   };
@@ -25,8 +26,8 @@ export default async function addRandomCustomer() {
       {
         method: "POST",
         headers: {
-          "X-Parse-Application-Id": "AgzfzDrOFClmY4jztxiZnNa3dlEN8fbiDAsWV6lf",
-          "X-Parse-REST-API-Key": "ljeZr2KM6A4n3PyvZE2pOS8R4BbKyLULGVq8mhXI",
+          "X-Parse-Application-Id": "iQDmAaMFGOGaZCqW5DiVEhRrY7jhCG5hdFHdyybL",
+          "X-Parse-REST-API-Key": "mvnUSNoetrJ4qEaaUDOyuOdLGqpUYbFPcopiwEke",  //note - this is the REST API key - and not the JavaScriptKey!
           "Content-Type": "application/json",
         },
         body: JSON.stringify(postData),

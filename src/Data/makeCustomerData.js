@@ -1,14 +1,14 @@
 import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
-import { format } from "date-fns";
+//import { format } from "date-fns";
 
-let DateGenerator = require("random-date-generator");
+//let DateGenerator = require("random-date-generator");
 
 function randomFromArray(array) { 
   return array[Math.floor(Math.random() * array.length)];
 }
 
-const carGroups = ["A", "B", "C", "D", "E"];
+const carGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 const domains = ["@geMail.com", "@hutmail.com", "@ito.dk"];
 
@@ -40,6 +40,6 @@ export const newCustomer = () => {
     email: namor.generate({ words: 1, saltLength: 0 })+randomFromArray(domains),
     firstName: uniqueNamesGenerator(nameSettings),
     lastName: namor.generate({ words: 1, saltLength: 0 }),
-    totalBookings: Math.floor(Math.random(10)*10)
+    totalBookings: Math.floor(Math.random(10)*10 + 1)  //added +1 to avoid it from creating a totalbooking of 0 
   };
 };
