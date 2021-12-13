@@ -8,6 +8,9 @@ const randomCustomer = newCustomer()
 
 console.log(randomCustomer.email);
 
+const APP_ID_KEY = process.env.REACT_APP_APP_KEY
+const APP_REST_KEY = process.env.REACT_APP_REST_KEY //note - this is the REST API key - and not the JavaScriptKey!
+
 export default async function addRandomCustomer() {
 
   const postData = {
@@ -26,8 +29,8 @@ export default async function addRandomCustomer() {
       {
         method: "POST",
         headers: {
-          "X-Parse-Application-Id": "iQDmAaMFGOGaZCqW5DiVEhRrY7jhCG5hdFHdyybL",
-          "X-Parse-REST-API-Key": "mvnUSNoetrJ4qEaaUDOyuOdLGqpUYbFPcopiwEke",  //note - this is the REST API key - and not the JavaScriptKey!
+          "X-Parse-Application-Id": APP_ID_KEY,
+          "X-Parse-REST-API-Key": APP_REST_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(postData),
