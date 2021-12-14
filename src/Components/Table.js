@@ -103,6 +103,7 @@ export default function Table({columns, data}) {
         })}
         <PopUp 
           object={clickedRowObject}
+          //internalID={}
           rowHeaders ={myHeaders}
           color={getTheme().primary}
           trigger={onCLickRowPopUp} 

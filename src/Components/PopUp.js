@@ -1,5 +1,6 @@
 import Textbox4Info from './TextBox4Info';
 import React from 'react';
+import deleteCustomerByID from '../Functions/DeleteCustomer';
 import './PopUp.css';
 
 // Popup made with a trigger to show/hide. 
@@ -11,9 +12,11 @@ import './PopUp.css';
 
 function PopUp(props) { if (props.rowHeaders) {
 
+    // save ID in a const for utilie later
+    const ID = props.object.id; 
+
     // we need array to access the object by index instead of key
     var rowInfoArray = [] 
-        
     for (var key in props.object) {
         if (props.object.hasOwnProperty(key)) {
             rowInfoArray.push(props.object[key])
@@ -21,23 +24,23 @@ function PopUp(props) { if (props.rowHeaders) {
     }
 
     // create an array of JSX elements "TextBox4Info" utilizing our array from the object & inherited rowHeaders from the click.
-    // we call this array later on. 
+    // we call this array of JSX in the return
     const contentBoxes = [] 
-    var numOfContent = 0 // could have been [ i ] but chose naming because we want acces in styling
+    var i = 0 
     for(const header of props.rowHeaders){
-        contentBoxes.push(<Textbox4Info title={header} info={rowInfoArray[numOfContent]}/>)
-        numOfContent++
+        contentBoxes.push(<Textbox4Info title={header} info={rowInfoArray[i]}/>)
+        i++
     }
 
     return (props.trigger) ? (      //if the trigger is 'true' then the popUp will show, if false it will not
         <div className="popup" >
             <div className="popup-inner" style={{background: props.color}}>
-                {/* <main><h1> Booking ID: {props.object.bookingID} </h1></main> */} 
                 <div className="popup-info"> 
-                    {contentBoxes}
+                    {contentBoxes}          
                 </div>
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>
             </div>
+            <button className="close-button" onClick={() => deleteCustomerByID(ID)}>DELETE</button>
         </div>
     ) : null;
 

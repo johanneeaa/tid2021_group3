@@ -1,20 +1,16 @@
-// funciton for adding a new Customer with "hardcoded" values. Used for testing purposes.
-// Next step: generic input
-
-// built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 import {newCustomer} from "../Data/makeCustomerData"
 
-const randomCustomer = newCustomer()
+// Funciton for adding a new Customer with random, plausible, values imported from ../Data/makeCustomerData
+// Used for testing, next step; utlizing user input
 
-console.log(randomCustomer.email);
+// built on example from TID course and [ https://dashboard.back4app.com/apidocs/ ]
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
-const APP_JS_KEY = process.env.REACT_APP_JS_KEY
+const REACT_APP_REST_KEY = process.env.REACT_APP_REST_KEY
+
+const randomCustomer = newCustomer() //grab a random customer
 
 export default async function addRandomCustomer() {
-
-  console.log(APP_ID_KEY)
-  console.log(APP_JS_KEY)
 
   const postData = {
     LastName: randomCustomer.lastName,
@@ -32,7 +28,7 @@ export default async function addRandomCustomer() {
         method: "POST",
         headers: {
           "X-Parse-Application-Id": APP_ID_KEY, //Getting key from .env
-          "X-Parse-REST-API-Key": APP_JS_KEY, //Getting key from .env
+          "X-Parse-REST-API-Key": REACT_APP_REST_KEY, //Getting key from .env
           "Content-Type": "application/json",
         },
         body: JSON.stringify(postData),

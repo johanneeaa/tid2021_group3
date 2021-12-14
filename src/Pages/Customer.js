@@ -14,7 +14,6 @@ const CustomerTable = () => {
       { Header: "Name", accessor: "fullName" },
       { Header: "E-Mail", accessor: "email"},
       { Header: "Car Group", accessor: "lastCarGroup"},
-     // { Header: "Last Booking", accessor: "lastBooking"},
       { Header: "Total Bookings", accessor: "totalBookings"},
       { Header: "Internal ID", accessor : "id"}
     ],
@@ -37,7 +36,7 @@ const CustomerTable = () => {
       <br/>
       </div>
       <br/>
-      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} />
+      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} dataID={null} />
     </div>
   )
 };

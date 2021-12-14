@@ -1,8 +1,10 @@
+
 // Deleting a Customer based off an input in the form of an ID
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 
+//getting keys from .env
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
-const APP_JS_KEY = process.env.REACT_APP_JS_KEY
+const REACT_APP_REST_KEY = process.env.REACT_APP_REST_KEY
 
 export default async function deleteCustomerByID(ID) {
   try {
@@ -11,8 +13,8 @@ export default async function deleteCustomerByID(ID) {
       {
         method: "DELETE",
         headers: {
-          "X-Parse-Application-Id": APP_ID_KEY, //Getting key from .env
-          "X-Parse-REST-API-Key": APP_JS_KEY, //Getting key from .env
+          "X-Parse-Application-Id": APP_ID_KEY, 
+          "X-Parse-REST-API-Key": REACT_APP_REST_KEY, 
         },
       }
     );
