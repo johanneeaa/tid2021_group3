@@ -36,8 +36,7 @@ const RentalTable = () => {
   return     <div>
   <div className = "bookingcontainer">
     <br/>
-    <button className = "createNewBookingButton" onClick={window.location.href = '/newbooking'}> Create new Booking</button><br/>
-    <br/>
+    <button className = "createNewBookingButton" /* onClick={window.location.href = '/newbooking'} return false */> Create new Booking</button><br/>
     </div>
     <br/><Table columns={rentalColumns} data={rentalData}/>
     </div>;

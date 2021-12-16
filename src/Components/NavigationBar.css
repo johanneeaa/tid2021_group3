@@ -1,5 +1,5 @@
 .navbar {
-  font-size: 48px; 
+  font-size: 32px; /* changed the font size here, was very big - we should decide which size is optimal */
   font-weight: bold; 
   margin-left: auto; 
   margin-right: auto

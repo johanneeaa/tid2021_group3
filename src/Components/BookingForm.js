@@ -1,5 +1,22 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import './BookingForm.css';
+
+/* function BackButton() {
+  const goBack = useHistory();
+
+  function handleOnClick() {
+    goBack.push("/rental");
+}
+
+return (
+  <button type="button_goBack" onClick={handleOnClick}>
+    Cancel and return to rental overview
+  </button>
+);
+}
+
+const backButton = BackButton(); */
 
 export default class BookingForm extends React.Component {
   constructor(props) {
