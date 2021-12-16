@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import getAllBookings from "../Data/rentalData";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
+//import createNewBooking from "../Functions/NewBooking";
+import './Rental.css';
 
 const RentalTable = () => {
   const [rentalData, setRentalData] = useState([]);
@@ -31,7 +33,14 @@ const RentalTable = () => {
     fetchData();
   },[])
 
-  return <Table columns={rentalColumns} data={rentalData}/>;
+  return     <div>
+  <div className = "bookingcontainer">
+    <br/>
+    <button className = "createNewBookingButton" onClick={window.location.href = '/newbooking'}> Create new Booking</button><br/>
+    <br/>
+    </div>
+    <br/><Table columns={rentalColumns} data={rentalData}/>
+    </div>;
 };
 
 export default RentalTable;
