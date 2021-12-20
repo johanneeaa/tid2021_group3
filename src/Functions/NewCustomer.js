@@ -6,7 +6,7 @@ import {newCustomer} from "../Data/makeCustomerData"
 
 const randomCustomer = newCustomer()
 
-console.log(randomCustomer.email);
+//console.log(randomCustomer.email);
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY

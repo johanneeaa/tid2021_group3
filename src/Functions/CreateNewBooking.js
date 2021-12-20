@@ -1,8 +1,9 @@
 import {newBooking} from "../Data/newBookingData"
 
-const input = newBooking();
-
-console.log(input.firstName);
+const input1 = newBooking().object[0]; //this is not yet working
+const input2 = newBooking().object[1]; //this is not yet working
+console.log(input1.firstName);
+console.log(input2.firstName);
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY
@@ -12,11 +13,13 @@ export default async function createNewBooking() {
   console.log(APP_ID_KEY)
   console.log(APP_REST_KEY)
 
+  //this is not yet working
   const postBookingData = {
-    //LastName: createBooking.lastName,
-    //FirstName: createBooking.firstName,
+    input1,input2
+/*     LastName: createBooking.lastName,
+    FirstName: createBooking.firstName,
 
-/*  createBooking.set('DoB', new Date());
+    createBooking.set('DoB', new Date());
     createBooking.set('PickUpTime', new Date());
     createBooking.set('ReturnTime', new Date());
     createBooking.set('BookingID', 1);
@@ -26,8 +29,6 @@ export default async function createNewBooking() {
     createBooking.set('ReturnOffice', 'A string');
     createBooking.set('PickUpOffice', 'A string');
     createBooking.set('ReqCarGroup', 'A string'); */
-
-
   };
 
   try {
