@@ -1,8 +1,8 @@
-//import {newBooking} from "../Data/newBookingData"
+import {newBooking} from "../Data/newBookingData"
 
-/* const createBooking = newBooking();
+const input = newBooking();
 
-console.log(createBooking.firstName); */
+console.log(input.firstName);
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY
@@ -12,7 +12,7 @@ export default async function createNewBooking() {
   console.log(APP_ID_KEY)
   console.log(APP_REST_KEY)
 
-  const postData = {
+  const postBookingData = {
     //LastName: createBooking.lastName,
     //FirstName: createBooking.firstName,
 
@@ -26,6 +26,8 @@ export default async function createNewBooking() {
     createBooking.set('ReturnOffice', 'A string');
     createBooking.set('PickUpOffice', 'A string');
     createBooking.set('ReqCarGroup', 'A string'); */
+
+
   };
 
   try {
@@ -38,7 +40,7 @@ export default async function createNewBooking() {
           "X-Parse-REST-API-Key": APP_REST_KEY,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(postData),
+        body: JSON.stringify(postBookingData),
       }
     );
 

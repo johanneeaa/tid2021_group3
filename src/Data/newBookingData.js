@@ -1,23 +1,32 @@
 import Parse from "parse";
+import {booking, customer} from "../Components/BookingForm";
 
 const createBooking = new Parse.Object('Booking');
+const createCustomer = new Parse.Object('Customer');
 
 export default async function newBooking() {
  
-  createBooking.set('DoB', new Date().props);
-  createBooking.set('PickUpTime', new Date().props);
-  createBooking.set('ReturnTime', new Date().props);
-  createBooking.set('BookingID', 1);
-  createBooking.set('FirstName', 'A string');
-  createBooking.set('DriversLicense', 1);
-  createBooking.set('LastName', 'A string');
-  createBooking.set('ReturnOffice', 'A string');
-  createBooking.set('PickUpOffice', 'A string');
-  createBooking.set('ReqCarGroup', 'A string');
+  //booking data
+  createBooking.set('PickUpTime', booking.pickuptime);
+  createBooking.set('ReturnTime', booking.returntime);
+  createBooking.set('BookingID', Math.floor(Math.random(10)*10));
+  createBooking.set('FirstName', booking.firstname);
+  createBooking.set('LastName', booking.lastname);
+  createBooking.set('DoB', booking.dob);
+  createBooking.set('ReturnOffice', booking.returnoffice);
+  createBooking.set('PickUpOffice', booking.pickupoffice);
+  createBooking.set('ReqCarGroup', booking.cargroup);
+  
+  //customer data
+  createCustomer.set('FirstName', customer.firstname);
+  createCustomer.set('LastName', customer.lastname);
+  createCustomer.set('DriversLicense', customer.driverslicense);
+  createCustomer.set('Notes', customer.notes);
+
     try {
       const result = await newBooking.save();
       // Access the Parse Object attributes using the .GET method
-      console.log('Booking created', result);
+      console.log('New Booking created', result);
     } catch (error) {
       console.error('Error while creating Booking: ', error);
     }
@@ -25,7 +34,8 @@ export default async function newBooking() {
   return createBooking;
 };
 
-/* export const newbooking = () => { 
+/* 
+export const newbooking = () => { 
   return {
     bookingID: Math.floor(Math.random(10)*10),
     firstName: ,

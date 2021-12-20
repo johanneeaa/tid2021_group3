@@ -1,8 +1,8 @@
 import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
-import { format } from "date-fns";
+//import { format } from "date-fns";
 
-let DateGenerator = require("random-date-generator");
+//let DateGenerator = require("random-date-generator");
 
 function randomFromArray(array) { 
   return array[Math.floor(Math.random() * array.length)];
