@@ -6,8 +6,8 @@ import "./CustomerForm.css";
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
-const LatestCarGroup = "N/A";
-const TotalBookings = 0;
+const LatestCarGroup = "N/A";  //this needs functionality to change once a customer has been connected to a booking
+const TotalBookings = 0;      //this needs functionality to increment everytime a customer is registered on a new booking
 
 export default class CustomerForm extends React.Component {
   constructor(props) {
