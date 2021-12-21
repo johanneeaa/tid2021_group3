@@ -1,3 +1,5 @@
+// lacl 21/dec/2021 comment: this page needs more info to meet requirement. Where is transfer from/to? At what date? 
+
 import React, { useEffect, useState } from "react";
 import getAllCars from "../Data/carData";
 import Table from "../Components/Table";

@@ -30,13 +30,9 @@ const CustomerTable = () => {
 
   return (
     <div>
-    <div className = "customercontainer">
-      <br/>
-      <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new Customer</button><br/><InputBox/>
-      <br/>
-      </div>
-      <br/>
+    <div className = "customercontainer"/>
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} dataID={null} />
+      <button className = "larsButton" onClick={()=>addRandomCustomer() }> For testing: Add a new Customer</button><br/>
     </div>
   )
 };

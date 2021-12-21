@@ -39,8 +39,8 @@ function PopUp(props) { if (props.rowHeaders) {
                     {contentBoxes}          
                 </div>
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>
+                <button onClick={() => deleteCustomerByID(ID)}>DELETE</button>
             </div>
-            <button className="close-button" onClick={() => deleteCustomerByID(ID)}>DELETE</button>
         </div>
     ) : null;
 
