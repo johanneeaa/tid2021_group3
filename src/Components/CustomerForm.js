@@ -1,3 +1,5 @@
+//this form should render if button 'create new customer' is clicked in BookingForm OR it
+
 import React from "react";
 import "./CustomerForm.css";
 
@@ -52,10 +54,10 @@ export default class CustomerForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="inputcontainer">
+        <div className="inputcontainercustomer">
           <h1>Create new customer</h1>
 
-          <label className="label">
+          <label className="labelcustomer">
             First Name:
             <input
               className="input"
@@ -67,7 +69,7 @@ export default class CustomerForm extends React.Component {
             />
           </label>
 
-          <label className="label">
+          <label className="labelcustomer">
             Last Name:
             <input
               className="input"
@@ -81,7 +83,7 @@ export default class CustomerForm extends React.Component {
 
           <br />
 
-          <label className="label">E-mail:</label>
+          <label className="labelcustomer">E-mail:</label>
           <input
             className="input"
             type="email"
@@ -90,7 +92,7 @@ export default class CustomerForm extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label className="label">Notes:</label>
+          <label className="labelcustomer">Notes:</label>
           <input
             className="input"
             type="text"
@@ -101,7 +103,7 @@ export default class CustomerForm extends React.Component {
           />
 
           <br />
-          
+
           <input
             className="button_newB"
             type="submit"

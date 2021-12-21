@@ -1,4 +1,6 @@
-import Parse from "parse";
+//this is not being used, should be deleted before hand-in
+
+/* import Parse from "parse";
 import {booking, customer} from "../Components/BookingForm";
 
 const createBooking = new Parse.Object('Booking');
@@ -32,7 +34,7 @@ export default async function newBooking() {
     }
 
   return createBooking;
-};
+}; */
 
 /* 
 export const newbooking = () => { 

@@ -88,6 +88,12 @@ export default class BookingForm extends React.Component {
             className="button_addCustomer"
             type="button"
             value=" Add Existing Customer "
+          ></input>{" "}
+          <span></span>
+          <input
+            className="button_addCustomer"
+            type="button"
+            value=" Create a new Customer "
           ></input>
           {/*  <label className="label">
             First Name:
@@ -187,19 +193,17 @@ export default class BookingForm extends React.Component {
             <option value="G">G</option>
             <option value="H">H</option>
             <option value="I">I</option>
-          </select>
-          <br />
-          <br />
+          </select> <span></span>
           <input
             className="button_newB"
             type="submit"
-            value="Confirm booking"
+            value=" Confirm booking "
           ></input>{" "}
           <span></span>
           <input
             className="button_newB"
             type="button"
-            value="Cancel booking"
+            value=" Cancel booking "
           ></input>
         </div>
       </form>

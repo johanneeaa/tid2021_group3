@@ -1,4 +1,6 @@
-import {newBooking} from "../Data/newBookingData"
+//this is not currently implemented, delete before hand-in if it is still the case
+
+/* import {newBooking} from "../Data/newBookingData"
 
 const input1 = newBooking().object[0]; //this is not yet working
 const input2 = newBooking().object[1]; //this is not yet working
@@ -11,9 +13,9 @@ const APP_REST_KEY = process.env.REACT_APP_REST_KEY
 export default async function createNewBooking() {
 
   console.log(APP_ID_KEY)
-  console.log(APP_REST_KEY)
+  console.log(APP_REST_KEY) */
 
-  //this is not yet working
+/*   //this is not yet working
   const postBookingData = {
     input1,input2
 /*     LastName: createBooking.lastName,
@@ -28,10 +30,10 @@ export default async function createNewBooking() {
     createBooking.set('LastName', 'A string');
     createBooking.set('ReturnOffice', 'A string');
     createBooking.set('PickUpOffice', 'A string');
-    createBooking.set('ReqCarGroup', 'A string'); */
-  };
+    createBooking.set('ReqCarGroup', 'A string'); 
+  };*/
 
-  try {
+/*   try {
     const response = await fetch(
       "https://parseapi.back4app.com/classes/Booking",
       {
@@ -54,4 +56,4 @@ export default async function createNewBooking() {
     console.log(error);
   }
   window.location.reload(false);
-}
+} */

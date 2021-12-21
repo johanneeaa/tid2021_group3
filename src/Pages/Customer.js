@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
 import InputBox from "../Components/InputBox";
-import addRandomCustomer from "../Functions/NewCustomer";
+//import addRandomCustomer from "../Functions/NewCustomer";  //removed this, as we now have an inputform for customer
 import './Customer.css';
 
 const CustomerTable = () => {
@@ -32,8 +32,8 @@ const CustomerTable = () => {
   return (
     <div>
     <div className = "customercontainer">
-      <br/>
-      <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new Customer</button><br/><InputBox/>
+      <br/> <button className = "larsButton" onClick={()=>{window.location.href = '/newbooking'}}> Add a new Customer</button>
+      {/* <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new Customer</button> */}<br/><InputBox/>
       <br/>
       </div>
       <br/>

@@ -1,24 +1,24 @@
-.inputcontainer {
+.inputcontainercustomer {
     text-align: center;
     display: flex-box;
     width: 100%;
     height: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    background-color: #F7E8A4;
+    background-color: #B4C3F4;
 }
 
 .h1 {
     text-align: center;
 }
 
-.label {
+.labelcustomer {
     display: inline-block;
     text-align:start;
     position:relative;
     padding: 4px 4px;
     margin: 4px 0;
-    border: 2px solid #F7E8A4;
+    border: 2px solid #B4C3F4;
     border-radius: 25px;
 }
 
