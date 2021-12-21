@@ -1,30 +1,28 @@
 import React from "react";
 import "./BookingForm.css";
 
-const APP_ID_KEY = process.env.REACT_APP_APP_KEY
-const APP_REST_KEY = process.env.REACT_APP_REST_KEY
-
+const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
+const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
-    //for some reason the state values are not properly parsed to the database...
     this.state = {
-        //BookingID: Math.floor(Math.random(10)*1000), --  Number value! 
-        firstname: props.firstname,
-        lastname: props.lastname,
-        //driverslicense: props.driverslicense, -- Number value!
-        //dob:props.dob, -- Date() value
-        pickupoffice: props.pickupoffice,
-        //pickuptime: props.pickuptime, //-- Date() value
-        returnoffice:props.returnoffice,
-        //returntime:props.returntime, -- Date() value
-        cargroup:props.cargroup
+      //BookingID: Math.floor(Math.random(10)*1000), --  Number value!
+      firstname: props.firstname,
+      lastname: props.lastname,
+      //driverslicense: props.driverslicense, -- Number value!
+      //dob:props.dob, -- Date() value
+      pickupoffice: props.pickupoffice,
+      //pickuptime: props.pickuptime, //-- Date() value
+      returnoffice: props.returnoffice,
+      //returntime:props.returntime, -- Date() value
+      cargroup: props.cargroup,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    //this.handleChangeInt = this.handleChange.bind(this); 
+    //this.handleChangeInt = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -33,7 +31,7 @@ export default class BookingForm extends React.Component {
   //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -58,26 +56,27 @@ export default class BookingForm extends React.Component {
       
     }
   } */
-  
+
   handleSubmit(event) {
-    alert('A new booking was submitted: ' + this.state);
-    
-    try{
-    fetch("https://parseapi.back4app.com/classes/Booking",{
-          method: "POST",
-          headers: {
-            "X-Parse-Application-Id": APP_ID_KEY,
-            "X-Parse-REST-API-Key": APP_REST_KEY,
-            "Content-Type": "application/json",
-          },
-          //body: this.state,  //--this doesn't work - trying to see if we can parse it as JSON with different values - stringify only works on the string values
-          body: JSON.stringify(this.state), //has to be this.state in order to parse - still need to find a solution to parse numbers and Date()
-        }).then(Booking => {
-          console.log(Booking)
-          return Booking.json();
-        });
-     } 
-     finally {event.preventDefault();}
+    alert("A new booking was submitted: " + this.state);
+
+    try {
+      fetch("https://parseapi.back4app.com/classes/Booking", {
+        method: "POST",
+        headers: {
+          "X-Parse-Application-Id": APP_ID_KEY,
+          "X-Parse-REST-API-Key": APP_REST_KEY,
+          "Content-Type": "application/json",
+        },
+        //body: this.state,  //--this doesn't work - trying to see if we can parse it as JSON with different values - stringify only works on the string values
+        body: JSON.stringify(this.state), //has to be this.state in order to parse - still need to find a solution to parse numbers and Date()
+      }).then((Booking) => {
+        console.log(Booking);
+        return Booking.json();
+      });
+    } finally {
+      event.preventDefault();
+    }
   }
 
   render() {
@@ -85,8 +84,12 @@ export default class BookingForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <div className="inputcontainer">
           <h1>Create new booking</h1>
-
-          <label className="label">
+          <input
+            className="button_addCustomer"
+            type="button"
+            value=" Add Existing Customer "
+          ></input>
+          {/*  <label className="label">
             First Name:
             <input
               className="input"
@@ -96,9 +99,8 @@ export default class BookingForm extends React.Component {
               onChange={this.handleChange}
               required
             />
-          </label>
-
-          <label className="label">
+          </label> */}
+          {/*           <label className="label">
             Last Name:
             <input
               className="input"
@@ -108,22 +110,12 @@ export default class BookingForm extends React.Component {
               onChange={this.handleChange}
               required
             />
-          </label>
+          </label> */}
           <br />
-
-          <label className="label">E-mail:</label>
-          <input
-            className="input"
-            type="email"
-            name="Email"
-            value={this.state.email} //change to customer later
-            onChange={this.handleChange}
-            //required
-          />
           <label className="label">Drivers License No.:</label>
           <input
             className="input"
-            type="number"
+            type="number" //need to find a way to parse this value to DB
             name="DriversLicense"
             value={this.state.driverslicense}
             onChange={this.handleChange}
@@ -133,7 +125,7 @@ export default class BookingForm extends React.Component {
           <input
             className="input"
             type="date"
-            name="DoB"
+            name="DoB" //need to find a way to parse this value to DB - consider making it into a string or number?
             value={this.state.dob}
             onChange={this.handleChange}
             //required
@@ -151,7 +143,7 @@ export default class BookingForm extends React.Component {
           <label className="label">Pick Up Time:</label>
           <input
             className="input"
-            type="datetime-local"
+            type="datetime-local" //need to find a way to parse this value to DB
             name="PickUpTime"
             value={this.state.pickuptime}
             onChange={this.handleChange}
@@ -170,22 +162,13 @@ export default class BookingForm extends React.Component {
           <label className="label">Return Time:</label>
           <input
             className="input"
-            type="datetime-local"
+            type="datetime-local" //need to find a way to parse this value to DB
             name="ReturnTime"
             value={this.state.returntime}
             onChange={this.handleChange}
             //required
           />
           <br />
-          <label className="label">Notes:</label>
-          <input
-            className="input"
-            type="text"
-            name="Notes"
-            value={this.state.notes}
-            onChange={this.handleChange}
-            //required
-          />
           <label className="label">Select Car Group:</label>
           <select
             className="input"
@@ -193,7 +176,7 @@ export default class BookingForm extends React.Component {
             name="CarGroup"
             value={this.state.cargroup}
             onChange={this.handleChange}
-            //required
+            required
           >
             <option value="A">A</option>
             <option value="B">B</option>
@@ -211,7 +194,8 @@ export default class BookingForm extends React.Component {
             className="button_newB"
             type="submit"
             value="Confirm booking"
-          ></input>
+          ></input>{" "}
+          <span></span>
           <input
             className="button_newB"
             type="button"
