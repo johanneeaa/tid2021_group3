@@ -36,7 +36,7 @@ export default class BookingForm extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangeInt = this.handleChange.bind(this);
+    //this.handleChangeInt = this.handleChange.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -49,11 +49,12 @@ export default class BookingForm extends React.Component {
     });
   }
 
-  handleChangeInt(event){
+  //trying to see if this would help parsing numbers, but no...
+/*   handleChangeInt(event){
     this.setState({
       [event.target.name]: parseInt(event.target.value)
     });
-  }
+  } */
 
 /*   jsonParsing(event) {
     if ([event.target.type] === "text" || "email") {
@@ -137,7 +138,7 @@ export default class BookingForm extends React.Component {
             type="number"
             name="DriversLicense"
             value={this.state.driverslicense}
-            onChange={this.handleChangeInt}
+            onChange={this.handleChange}
             //required
           />
           <label className="label">Date of Birth:</label>
