@@ -45,7 +45,7 @@ export default class BookingForm extends React.Component {
   //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
   handleChange(event) {
     this.setState({
-      [event.target.name]: JSON.stringify(event.target.value)
+      [event.target.name]: event.target.value
     });
   }
 
@@ -82,7 +82,7 @@ export default class BookingForm extends React.Component {
             "X-Parse-REST-API-Key": APP_REST_KEY,
             "Content-Type": "application/json",
           },
-          //body: this.state,  //-- trying to see if we can parse it as JSON with different values - stringify only works on the string values
+          //body: this.state,  //--this doesn't work - trying to see if we can parse it as JSON with different values - stringify only works on the string values
           body: JSON.stringify(this.state), //has to be this.state in order to parse - still need to find a solution to parse numbers and Date()
         }).then(Booking => {
           console.log(Booking)
