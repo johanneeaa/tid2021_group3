@@ -6,6 +6,9 @@ import "./CustomerForm.css";
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
+const LatestCarGroup = "N/A";
+const TotalBookings = 0;
+
 export default class CustomerForm extends React.Component {
   constructor(props) {
     super(props);
@@ -15,11 +18,15 @@ export default class CustomerForm extends React.Component {
       lastname: props.lastname,
       email: props.email,
       notes: props.notes,
+      LatestCarGroup,
+      TotalBookings
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
@@ -31,7 +38,7 @@ export default class CustomerForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A new customer has been created: " + this.state.firstname);
+    alert("A new customer has been created: " + this.state);
 
     try {
       fetch("https://parseapi.back4app.com/classes/Customer", {
@@ -99,7 +106,7 @@ export default class CustomerForm extends React.Component {
             name="Notes"
             value={this.state.notes}
             onChange={this.handleChange}
-            required
+            //required  -- removing this as notes should not be a required field
           />
 
           <br />
