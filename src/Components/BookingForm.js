@@ -1,6 +1,4 @@
 import React from "react";
-//import Parse from "parse";
-//import { useState } from "react";
 import "./BookingForm.css";
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
@@ -11,63 +9,69 @@ export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
+    //for some reason the state values are not properly parsed to the database...
     this.state = {
-      booking: {
-        FirstName: props.firstName,
-        LastName: props.lastName,
-        DriversLicense: props.driverslicense,
-        DoB:props.dob,
-        Email:props.email,
-        PickUpOffice: props.pickupoffice,
-        PickUpTime:props.pickuptime,
-        ReturnOffice:props.returnoffice,
-        ReturnTime:props.returntime,
-        Notes:props.notes,
-        Cargroup:props.cargroup
-      },
+      //Booking: { //must be without Booking - otherwise a Booking object will be created in the database
+        //BookingID: Math.floor(Math.random(10)*1000), --  Number value! 
+        firstname: props.firstname,
+        lastname: props.lastname,
+        //driverslicense: props.driverslicense, -- Number value!
+        //dob:props.dob, -- Date() value
+        //email:props.email, -- this parses fine as a string - but it belongs to customer
+        pickupoffice: props.pickupoffice,
+        pickuptime: props.pickuptime, //-- Date() value
+        returnoffice:props.returnoffice,
+        //returntime:props.returntime, -- Date() value
+        //notes:props.notes, -- this parses fine as a string - but it belongs to customer
+        cargroup:props.cargroup
+    //},
 
       //this is to be used once we have been able to split up the parsing and the form - then we should be able to parse a booking and a customer from the same form
-      customer: {
-        firstname: props.firstName,
-        lastname: props.lastName,
+      /*customer: {
+        firstname: props.firstname,
+        lastname: props.lastname,
         email: props.email,
         notes: props.notes
-      }
+      } */
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeInt = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  //this part here decides the data being parsed to the database
+  //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
-  handleChange(event, field) {
-    this.setState({[field]: event.target.value});
+  //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: JSON.stringify(event.target.value)
+    });
   }
+
+  handleChangeInt(event){
+    this.setState({
+      [event.target.name]: parseInt(event.target.value)
+    });
+  }
+
+/*   jsonParsing(event) {
+    if ([event.target.type] === "text" || "email") {
+      JSON.stringify(this.state.Booking)
+    }
+    if ([event.target.type] === "number") {
+      parseInt(this.state.Booking)
+    }
+    if ([event.target.type] === "date") {
+      
+    }
+    if ([event.target.type] === "datetime-local") {
+      
+    }
+  } */
   
   handleSubmit(event) {
-    alert('A new booking was submitted: ' + this.state.booking);
-
- /*    (async () => {
-      const myNewObject = new Parse.Object('Booking');
-      myNewObject.set('DoB', new Date());
-      myNewObject.set('PickUpTime', new Date());
-      myNewObject.set('ReturnTime', new Date());
-      myNewObject.set('BookingID', Math.floor(Math.random(10)*10));
-      myNewObject.set('FirstName', this.state.Booking.firstname);
-      myNewObject.set('DriversLicense', 1);
-      myNewObject.set('LastName', this.state.Booking.lastname);
-      myNewObject.set('ReturnOffice', 'A string');
-      myNewObject.set('PickUpOffice', 'A string');
-      myNewObject.set('ReqCarGroup', 'A string');
-      try {
-        const result = await myNewObject.save();
-        // Access the Parse Object attributes using the .GET method
-        console.log('Booking created', result);
-      } catch (error) {
-        console.error('Error while creating Booking: ', error);
-      }
-    })(); */
+    alert('A new booking was submitted: ' + this.state);
     
     try{
     fetch("https://parseapi.back4app.com/classes/Booking",{
@@ -77,12 +81,14 @@ export default class BookingForm extends React.Component {
             "X-Parse-REST-API-Key": APP_REST_KEY,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(this.state.booking.FirstName),
-        }).then(booking => {
-          console.log(booking)
-          return booking.json();
+          //body: this.state,  //-- trying to see if we can parse it as JSON with different values - stringify only works on the string values
+          body: JSON.stringify(this.state), //has to be this.state in order to parse - still need to find a solution to parse numbers and Date()
+        }).then(Booking => {
+          console.log(Booking)
+          return Booking.json();
         });
-     } finally {event.preventDefault();}
+     } 
+     finally {event.preventDefault();}
   }
 
   render() {
@@ -96,8 +102,8 @@ export default class BookingForm extends React.Component {
             <input
               className="input"
               type="text"
-              name="firstName"
-              value={this.state.booking.firstname}
+              name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this is the 'header' column
+              value={this.state.firstname}
               onChange={this.handleChange}
               required
             />
@@ -108,8 +114,8 @@ export default class BookingForm extends React.Component {
             <input
               className="input"
               type="text"
-              name="lastName"
-              value={this.state.booking.lastname}
+              name="LastName"
+              value={this.state.lastname}
               onChange={this.handleChange}
               required
             />
@@ -120,36 +126,36 @@ export default class BookingForm extends React.Component {
           <input
             className="input"
             type="email"
-            name="email"
-            value={this.state.booking.email} //change to customer later
+            name="Email"
+            value={this.state.email} //change to customer later
             onChange={this.handleChange}
-            required
+            //required
           />
           <label className="label">Drivers License No.:</label>
           <input
             className="input"
             type="number"
-            name="driverslicense"
-            value={this.state.booking.driverslicense}
-            onChange={this.handleChange}
-            required
+            name="DriversLicense"
+            value={this.state.driverslicense}
+            onChange={this.handleChangeInt}
+            //required
           />
           <label className="label">Date of Birth:</label>
           <input
             className="input"
             type="date"
-            name="dob"
-            value={this.state.booking.dob}
+            name="DoB"
+            value={this.state.dob}
             onChange={this.handleChange}
-            required
+            //required
           />
           <br />
           <label className="label">Pick Up Office:</label>
           <input
             className="input"
             type="text"
-            name="pickupoffice"
-            value={this.state.booking.pickupoffice}
+            name="PickUpOffice"
+            value={this.state.pickupoffice}
             onChange={this.handleChange}
             required
           />
@@ -157,18 +163,18 @@ export default class BookingForm extends React.Component {
           <input
             className="input"
             type="datetime-local"
-            name="pickuptime"
-            value={this.state.booking.pickuptime}
+            name="PickUpTime"
+            value={this.state.pickuptime}
             onChange={this.handleChange}
-            required
+            //required
           />
           <br />
           <label className="label">Return Office:</label>
           <input
             className="input"
             type="text"
-            name="returnoffice"
-            value={this.state.booking.returnoffice}
+            name="ReturnOffice"
+            value={this.state.returnoffice}
             onChange={this.handleChange}
             required
           />
@@ -176,28 +182,29 @@ export default class BookingForm extends React.Component {
           <input
             className="input"
             type="datetime-local"
-            name="returntime"
-            value={this.state.booking.returntime}
+            name="ReturnTime"
+            value={this.state.returntime}
             onChange={this.handleChange}
-            required
+            //required
           />
           <br />
           <label className="label">Notes:</label>
           <input
             className="input"
             type="text"
-            name="notes"
-            value={this.state.booking.notes}
+            name="Notes"
+            value={this.state.notes}
             onChange={this.handleChange}
-            required
+            //required
           />
           <label className="label">Select Car Group:</label>
           <select
             className="input"
-            name="cargroup"
-            value={this.state.booking.cargroup}
+            type="text"
+            name="CarGroup"
+            value={this.state.cargroup}
             onChange={this.handleChange}
-            required
+            //required
           >
             <option value="A">A</option>
             <option value="B">B</option>
