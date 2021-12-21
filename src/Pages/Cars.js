@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
+import getCars from "../Functions/assignRandomCarParams";
+
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend. 
 // Calls getAllCars() from "../Data/carData" to retreive the data from backend, which is mapped into the table.
@@ -10,6 +12,7 @@ import getAllCars from "../Data/carData";
 const CarTable = () => {
     
     const [carsData, setCarsData] = useState([])
+    
 
     const carsColumns = React.useMemo(
         () => [
@@ -36,7 +39,12 @@ const CarTable = () => {
     
     //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
     
-    return <Table columns={carsColumns} data={carsData}/>
+    return (
+        <div>
+        <Table columns={carsColumns} data={carsData}/>
+        <button className = "larsButton" onClick={()=>getCars() }> For testing: Generate carStates</button><br/>
+        </div>
+    )
 };
 
 export default CarTable

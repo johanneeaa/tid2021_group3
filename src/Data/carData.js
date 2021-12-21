@@ -2,6 +2,7 @@ import Parse from "parse";
 
 const Car = Parse.Object.extend("Car");
 
+
 export default async function getAllCars() {
 
     const allCarsQuery = new Parse.Query(Car);
@@ -18,6 +19,8 @@ export default async function getAllCars() {
             licensePlate: car.get("LicensePlate"),
             mileage: car.get("Mileage"),
             model: car.get("Model"),
+            carSate: car.get("CarState"),
+            currentLocation: car.get("CurrentLocation"),
             notes: car.get("Notes") ? car.get("Notes") : false,
             office: 'KST' //hardcoded, column does not currently exist in the database
         }
