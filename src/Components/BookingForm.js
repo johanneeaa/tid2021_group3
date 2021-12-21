@@ -11,28 +11,16 @@ export default class BookingForm extends React.Component {
 
     //for some reason the state values are not properly parsed to the database...
     this.state = {
-      //Booking: { //must be without Booking - otherwise a Booking object will be created in the database
         //BookingID: Math.floor(Math.random(10)*1000), --  Number value! 
         firstname: props.firstname,
         lastname: props.lastname,
         //driverslicense: props.driverslicense, -- Number value!
         //dob:props.dob, -- Date() value
-        //email:props.email, -- this parses fine as a string - but it belongs to customer
         pickupoffice: props.pickupoffice,
-        pickuptime: props.pickuptime, //-- Date() value
+        //pickuptime: props.pickuptime, //-- Date() value
         returnoffice:props.returnoffice,
         //returntime:props.returntime, -- Date() value
-        //notes:props.notes, -- this parses fine as a string - but it belongs to customer
         cargroup:props.cargroup
-    //},
-
-      //this is to be used once we have been able to split up the parsing and the form - then we should be able to parse a booking and a customer from the same form
-      /*customer: {
-        firstname: props.firstname,
-        lastname: props.lastname,
-        email: props.email,
-        notes: props.notes
-      } */
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -50,13 +38,13 @@ export default class BookingForm extends React.Component {
   }
 
   //trying to see if this would help parsing numbers, but no...
-/*   handleChangeInt(event){
+  /*   handleChangeInt(event){
     this.setState({
       [event.target.name]: parseInt(event.target.value)
     });
   } */
 
-/*   jsonParsing(event) {
+  /*   jsonParsing(event) {
     if ([event.target.type] === "text" || "email") {
       JSON.stringify(this.state.Booking)
     }
