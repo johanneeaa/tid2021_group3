@@ -5,35 +5,51 @@ import React, { useEffect, useState } from "react";
 
 export default async function getCars() {
   
-  const allCarsObject = await getAllCars()
-  const carStates = ["Ready","Rented","Returned","Transfer", "Unavailable"]
-  const allCarsIDs = []
 
-  for (let i = 0; i < allCarsObject.length; i++) {
-    allCarsIDs.push(allCarsObject[i].id)
-  }
+  const carStates = ["Ready","Ready","Rented","Returned","Transfer", "Unavailable"]
+  const locations = ["AAL","KRP","KST"]
+
 
   const decideCarState = () =>{
     function simpleWeightedRandom(min, max) { // from stackoverflow [https://bit.ly/3EhaYbu]
       return Math.floor(max / (Math.random() * max + min));
     }
-    return carStates[simpleWeightedRandom(1,5)]
+    return carStates[simpleWeightedRandom(1,6)]
   }
 
-  for (let i = 0; i < allCarsIDs.length; i++) {
-    console.log(allCarsIDs[i] + " "+ i);
+  const randomLocation = () =>{
+    return locations[Math.floor(Math.random()*locations.length)];
+  }
+
+  const Car = Parse.Object.extend("Car");
+  const query = new Parse.Query(Car);
+
+  var cars= await query.find();
+  for (var i = 0; i < cars.length; i++) {
+    cars[i].set("CarState", decideCarState());
+    cars[i].set("CurrentLocation", randomLocation());
     
+    cars[i].save();
   }
-
-
-}
-
-// Could make this function by maths and weighted distribution, but this is faster, and it's "just" for testing.
-
-
-
-
 
   
-const randomWeightedCarState = null;
-const randomLocation = null;
+/*
+  for (let i = 0; i < allCarsIDs.length; i++) {
+    query.equalTo("objectId", allCarsIDs[i]);
+    query.first({
+      success: function(object) {
+    
+        object.set("CarState", decideCarState());
+        object.save();
+
+    console.log(allCarsIDs[i] + decideCarState()); 
+  
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+    });
+
+  }*/
+
+}
