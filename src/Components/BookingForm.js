@@ -4,21 +4,23 @@ import "./BookingForm.css";
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
+const BookingID = Math.floor(Math.random(10)*1000);  //creating a random BookingID
+
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      //BookingID: Math.floor(Math.random(10)*1000), --  Number value!
-      firstname: props.firstname,
-      lastname: props.lastname,
+      BookingID,
+      //firstname: props.firstname,
+      //lastname: props.lastname,
       //driverslicense: props.driverslicense, -- Number value!
       //dob:props.dob, -- Date() value
       pickupoffice: props.pickupoffice,
       //pickuptime: props.pickuptime, //-- Date() value
       returnoffice: props.returnoffice,
       //returntime:props.returntime, -- Date() value
-      cargroup: props.cargroup,
+      cargroup: props.cargroup
     };
 
     this.handleChange = this.handleChange.bind(this);
