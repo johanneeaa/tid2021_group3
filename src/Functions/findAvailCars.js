@@ -17,7 +17,7 @@ export default async function findAvailCars(location, carGroup) {
     query.equalTo("CarState", "Ready");
 
     const carsAtLocation = await query.find()
-
+    
     for (let i = 0; i < carsAtLocation.length; i++) {
         const object = carsAtLocation[i];
         IDsOfReadyCars.push(object.id)
@@ -25,6 +25,25 @@ export default async function findAvailCars(location, carGroup) {
     }
     console.log(IDsOfReadyCars);
 
-  return carsAtLocation
+    const carsFoundMapped = query.map((car)=>{
+      return {
+        id: car.id,
+            currentState: car.get('CarState'),
+            group: car.get('Group'),
+            color: car.get("Color"),
+            numberOfDoors: car.get('NumberOfDoors'),
+            fuelLevel: car.get("FuelLevel"),
+            fuelType: car.get("FuelType"),
+            licensePlate: car.get("LicensePlate"),
+            mileage: car.get("Mileage"),
+            model: car.get("Model"),
+            carSate: car.get("CarState"),
+            currentLocation: car.get("CurrentLocation"),
+            notes: car.get("Notes") ? car.get("Notes") : false,
+      }
+    })
+
+
+  return carsFoundMapped
 
 }

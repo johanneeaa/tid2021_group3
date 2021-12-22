@@ -22,7 +22,7 @@ export default async function setRandomCarProps() {
   const Car = Parse.Object.extend("Car");
   const query = new Parse.Query(Car);
 
-  var cars= await query.find();
+  var cars= await query.findAll();
   for (var i = 0; i < cars.length; i++) {
     cars[i].set("CarState", decideCarState());
     cars[i].set("CurrentLocation", randomLocation());

@@ -5,6 +5,7 @@ import getAllCars from "../Data/carData";
 import getCars from "../Functions/assignRandomCarParams";
 import setRandomCarProps from "../Functions/assignRandomCarParams";
 import findAvailCars from "../Functions/findAvailCars";
+import TablePopUp from "../Components/TablePopUp";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend. 
@@ -47,11 +48,14 @@ const CarTable = () => {
     
     //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ
 
+    const [popUpTrigger, setPopUpTrigger] = useState(false) //for tablePopUp
     return (
         <div>
         <Table columns={carsColumns} data={carsData}/>
         <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
-        <button className = "larsButton" onClick={()=>findAvailCars("KRP", "A") }> For testing: Find Cars on loctation </button>
+        <button className = "larsButton" onClick={()=>setPopUpTrigger(true) }> For testing: Popup test </button>
+
+        <TablePopUp trigger={popUpTrigger} setTrigger={setPopUpTrigger}/>
         </div>
     )
 };
