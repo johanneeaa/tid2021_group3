@@ -4,6 +4,7 @@ import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
 import getCars from "../Functions/assignRandomCarParams";
 import setRandomCarProps from "../Functions/assignRandomCarParams";
+import findAvailCars from "../Functions/findAvailCars";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend. 
@@ -31,7 +32,7 @@ const CarTable = () => {
             { Header: "License plate", accessor: "licensePlate"},
             { Header: "Fuel level", accessor: "fuelLevel" },
             { Header: "Fuel type", accessor: "fuelType", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
-            { Header: "Notes", accessor: "notes", } 
+            { Header: "Notes", accessor: "notes", }, 
         ],
         []
     );
@@ -50,6 +51,7 @@ const CarTable = () => {
         <div>
         <Table columns={carsColumns} data={carsData}/>
         <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
+        <button className = "larsButton" onClick={()=>findAvailCars("KRP", "A") }> For testing: Find Cars on loctation </button>
         </div>
     )
 };

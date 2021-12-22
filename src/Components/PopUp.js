@@ -10,6 +10,7 @@ import './PopUp.css';
 // Popup code template reference: https://www.youtube.com/watch?v=i8fAO_zyFAM&t=697s
 // Example for making .map or for loop of JSX elements: [ https://flaviocopes.com/react-how-to-loop/ ]
 
+// takes object, rowHeaders, color, trigger & setTrigger
 function PopUp(props) { if (props.rowHeaders) {
 
     // save ID in a const for utilie later
