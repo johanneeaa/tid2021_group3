@@ -3,12 +3,10 @@ import Parse from "parse";
 import React, { useEffect, useState } from "react";
 
 
-export default async function getCars() {
-  
+export default async function setRandomCarProps() {
 
   const carStates = ["Ready","Ready","Rented","Returned","Transfer", "Unavailable"]
   const locations = ["AAL","KRP","KST"]
-
 
   const decideCarState = () =>{
     function simpleWeightedRandom(min, max) { // from stackoverflow [https://bit.ly/3EhaYbu]
@@ -32,24 +30,5 @@ export default async function getCars() {
     cars[i].save();
   }
 
-  
-/*
-  for (let i = 0; i < allCarsIDs.length; i++) {
-    query.equalTo("objectId", allCarsIDs[i]);
-    query.first({
-      success: function(object) {
-    
-        object.set("CarState", decideCarState());
-        object.save();
-
-    console.log(allCarsIDs[i] + decideCarState()); 
-  
-      },
-      error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-
-  }*/
-
+  window.location.reload(false);
 }

@@ -11,6 +11,7 @@ export default async function getAllCars() {
     const allCarsFormatted = allCars.map((car) => {
         return {
             id: car.id,
+            currentState: car.get('CarState'),
             group: car.get('Group'),
             color: car.get("Color"),
             numberOfDoors: car.get('NumberOfDoors'),
@@ -22,7 +23,6 @@ export default async function getAllCars() {
             carSate: car.get("CarState"),
             currentLocation: car.get("CurrentLocation"),
             notes: car.get("Notes") ? car.get("Notes") : false,
-            office: 'KST' //hardcoded, column does not currently exist in the database
         }
     })
 

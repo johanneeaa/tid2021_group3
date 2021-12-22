@@ -3,6 +3,7 @@ import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
 import getCars from "../Functions/assignRandomCarParams";
+import setRandomCarProps from "../Functions/assignRandomCarParams";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend. 
@@ -14,14 +15,20 @@ const CarTable = () => {
     const [carsData, setCarsData] = useState([])
     
 
+    // order is important for the user!
     const carsColumns = React.useMemo(
         () => [
             { Header: "Car Group", accessor: "group", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
-            { Header: "License plate", accessor: "licensePlate"},
+            { Header: "Location", accessor: "currentLocation",localFilter: true,  Filter: SelectColumnFilter}, 
+
+            { Header: "State", accessor: "currentState",getProps: (state,cellInfo, cell) =>{return {style:{ background: "blue"}}},
+            localFilter: true,  Filter: SelectColumnFilter}, 
+
             { Header: "Model", accessor: "model"},
             { Header: "Color", accessor: "color", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter}, 
             { Header: "No. of doors", accessor: "numberOfDoors"}, 
             { Header: "Mileage in KM", accessor: "mileage"},
+            { Header: "License plate", accessor: "licensePlate"},
             { Header: "Fuel level", accessor: "fuelLevel" },
             { Header: "Fuel type", accessor: "fuelType", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
             { Header: "Notes", accessor: "notes", } 
@@ -37,12 +44,12 @@ const CarTable = () => {
         fetchData();
     },[])
     
-    //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
-    
+    //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ
+
     return (
         <div>
         <Table columns={carsColumns} data={carsData}/>
-        <button className = "larsButton" onClick={()=>getCars() }> For testing: Generate carStates</button><br/>
+        <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
         </div>
     )
 };

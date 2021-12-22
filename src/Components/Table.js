@@ -13,12 +13,12 @@ import styled from "styled-components"
 // Code based on react-table [https://react-table.tanstack.com/] 
 // & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
-export default function Table({columns, data}) {   
+export default function Table({columns, data, style}) {   
   
   //AppContext is used to access the state of the app and to get the theme.
   const {getTheme} = useContext(AppContext)
 
-  const myHeaders =[]
+
 
   //New styled component to match theme of page
   const Row = styled.tr`
@@ -30,10 +30,12 @@ export default function Table({columns, data}) {
     transition: all .3s ease-in-out
   }`
 
+  // myHeaders is created to gain acces to "nice" headers instead of accessors
+  const myHeaders =[]
   columns.forEach(columns => {
     myHeaders.push(columns.Header)
   }); 
-// myHeaders is created to gain acces to "nice" headers instead of accessors
+
 
   const filterTypes = React.useMemo( 
     () => ({
@@ -60,7 +62,7 @@ export default function Table({columns, data}) {
 
   /* It's important that we're using React.useMemo here to ensure that our data isn't recreated on every render ( https://bit.ly/3xSqtVD )*/
 
-  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes}, useGlobalFilter,useFilters,useSortBy, PopUp);
+  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes, style}, useGlobalFilter,useFilters,useSortBy, PopUp);
   const {
     getTableProps,
     getTableBodyProps,
@@ -85,7 +87,7 @@ export default function Table({columns, data}) {
           return (
             <Row className = "tablerow"
               {...row.getRowProps()}
-              style={props.rowStyle} 
+            
               onClick={
                 () => setOnclickRowPopUp(true) +
                 + setClickedRowObject(row.values)
@@ -93,7 +95,9 @@ export default function Table({columns, data}) {
               >
               {row.cells.map((cell) => {
                 return (
-                  <td className = "tablecell" {...cell.getCellProps()} style={props.cellStyle}>
+                  <td className = "tablecell" {...cell.getCellProps()} style={
+                    {backgroundColor : cell.value ===  "Ready" ? "Green" : null } // this is not right place for the styling, figure out how/where to move!
+                  }>
                     {cell.render("Cell")}
                   </td>
                 );
@@ -103,7 +107,6 @@ export default function Table({columns, data}) {
         })}
         <PopUp 
           object={clickedRowObject}
-          //internalID={}
           rowHeaders ={myHeaders}
           color={getTheme().primary}
           trigger={onCLickRowPopUp} 
