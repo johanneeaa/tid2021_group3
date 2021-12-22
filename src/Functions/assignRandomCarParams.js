@@ -2,6 +2,7 @@ import getAllCars from "../Data/carData"
 import Parse from "parse";
 import React, { useEffect, useState } from "react";
 
+// Function to populate newly created "CarState" and "Location" column in back4app
 
 export default async function setRandomCarProps() {
 
@@ -20,14 +21,17 @@ export default async function setRandomCarProps() {
   }
 
   const Car = Parse.Object.extend("Car");
-  const query = new Parse.Query(Car);
+  const car = new Parse.Query(Car);
+  
+  var cars= await car.find();
 
-  var cars= await query.findAll();
   for (var i = 0; i < cars.length; i++) {
     cars[i].set("CarState", decideCarState());
     cars[i].set("CurrentLocation", randomLocation());
     
-    cars[i].save();
+    console.log(cars[i].get("CarState"));
+    cars[i].save()
+ 
   }
 
   window.location.reload(false);
