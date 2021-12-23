@@ -6,6 +6,8 @@ export default async function getAllCustomers() {
 
     const allCustomersQuery = new Parse.Query(Customer);
     const allCustomers = await allCustomersQuery.find();
+    //from Sara: I know your code is in sync with the lecture slides, but question to consider: 
+    //What happens if find() fails? Or if the returned array is empty? Are you handling this?
 
     const allCustomersFormatted = allCustomers.map((customer) => {
         return {
