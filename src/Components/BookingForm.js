@@ -12,21 +12,24 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
+const DriversLicense = 12495626
+
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = {  //easiest solution is to make all input to the database into 'text'
       BookingID,
       firstname: props.firstname,
       lastname: props.lastname,
+      DriversLicense,
       //driverslicense: props.driverslicense, -- Number value!
       //dob:props.dob, -- Date() value
       pickupoffice: props.pickupoffice,
       //pickuptime: props.pickuptime, //-- Date() value
       returnoffice: props.returnoffice,
       //returntime:props.returntime, -- Date() value
-      cargroup: props.cargroup,
+      reqcargroup: props.reqcargroup,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -134,7 +137,7 @@ export default class BookingForm extends React.Component {
             name="DriversLicense"
             value={this.state.driverslicense}
             onChange={this.handleChange}
-            //required
+            //required - should be required once we figure out how to parse number?
           />
           <label className="label">Date of Birth:</label>
           <input
@@ -188,8 +191,8 @@ export default class BookingForm extends React.Component {
           <select
             className="input"
             type="text"
-            name="CarGroup"
-            value={this.state.cargroup}
+            name="ReqCarGroup"
+            value={this.state.reqcargroup}
             onChange={this.handleChange}
             required
           >
