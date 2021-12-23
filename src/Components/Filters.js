@@ -1,5 +1,6 @@
 import React from "react";
 import { useAsyncDebounce } from "react-table"; 
+import './Filters.css';
 
 // Filter components for use in our tables
 // Snippets from table-filters [ https://react-table.tanstack.com/docs/examples/filtering ]
@@ -17,20 +18,16 @@ export function GlobalFilter({
   }, 200);
 
   return (
-    <span>
+    <span>  
+      <br/>
       Search:{" "}
-      <input
+      <input className = "inputfield"
         value={value || ""}
         onChange={(e) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
         placeholder={`Search through ${count} elements`} 
-        style={{
-          fontSize: "1.1rem",
-          border: "1",
-          width: 350,
-        }}
       />
     </span>
   );

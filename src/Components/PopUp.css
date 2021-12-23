@@ -7,7 +7,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,20 +14,25 @@
 
 .popup-inner {
   position: relative;
-  padding: 32px;
-  width: 55%;
-  height: 65%;
-  background-color: #F7E8A4;
+  padding: 20px;
+  background: color;
+  justify-content: center;
+  border-radius: 5px;
 }
 
 .popup-info {
   font-style: helvetica;
-  font-size: x-large;
+  font-size: medium;
   text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 40px;
+  border-radius: 5px;
 }
 
 .popup-inner .close-button {
   position: absolute;
+  border-radius: 5px;
   top: 16px;
   right: 16px;
 }

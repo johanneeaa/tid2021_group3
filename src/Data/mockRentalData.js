@@ -1,3 +1,7 @@
+// - - - - - - - - - 
+// Disabled in december 2021, kept for creating rentals later on. lacl@itu.dk
+// - - - - - - - - -
+
 import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { format } from "date-fns";
@@ -36,7 +40,7 @@ const nameSettings = {
   style: "capital",
 };
 
-const newRental = () => { 
+export const newRental = () => { 
   return {
     pickupDateTime: randomizeDate(),
     bookingID: Math.floor(Math.random() * 10000000),
@@ -67,3 +71,4 @@ export default function makeData(...lens) { //lifted from react table examples
   };
   return makeDataRow();
 }
+ 

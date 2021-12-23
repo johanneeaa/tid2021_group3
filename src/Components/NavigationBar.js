@@ -1,18 +1,25 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
+import './NavigationBar.css'
 
 export function NavigationBar() {
     return (
-        <Navbar bg="light" expand="lg">
-            <Container>
-                <Navbar.Brand href="/">ScanCar</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+     
+        <Navbar className = "navbar">
+            <Container href="container">
+              <Navbar.Brand href = "home" className = "logo">ScanCar</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="Rental">Rental</Nav.Link>
-                        <Nav.Link href="Cars">Cars</Nav.Link>
+                            <Nav.Link className="rentallink" href="Rental">Rental</Nav.Link>
+                            <Nav.Link className="carslink" href="Cars">Cars</Nav.Link>
+                            <Nav.Link className= "transferlink" href="Transfers">Transfers</Nav.Link>
+                            <Nav.Link className="customerslink" href = "Customer">Customer</Nav.Link>
+                            <Nav.Link className="statisticslink" href="Statistics">Statistics</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+    
     );
+
 }

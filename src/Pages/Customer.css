@@ -1,0 +1,9 @@
+.customercontainer {
+  display: flex;
+}
+
+.customercontainer .larsButton {
+  margin-right: 340px;
+  margin-left: 115px;
+  border-radius: 5px;
+}

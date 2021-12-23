@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
+import './Table.css';
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
@@ -10,7 +11,14 @@ import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 // Code based on react-table [https://react-table.tanstack.com/] 
 // & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
-export default function Table({ columns, data, color }) {   
+export default function Table({ columns, data, color}) {   
+  
+  const myHeaders =[]
+
+  columns.forEach(columns => {
+    myHeaders.push(columns.Header)
+  }); 
+// myHeaders is created to gain acces to "nice" headers instead of accessors
 
   const filterTypes = React.useMemo( 
     () => ({
@@ -35,6 +43,8 @@ export default function Table({ columns, data, color }) {
     []
   )
 
+  /* It's important that we're using React.useMemo here to ensure that our data isn't recreated on every render ( https://bit.ly/3xSqtVD )*/
+
   const rentalTable = useTable({ columns, data, defaultColumn, filterTypes}, useGlobalFilter,useFilters,useSortBy, PopUp);
   const {
     getTableProps,
@@ -51,15 +61,14 @@ export default function Table({ columns, data, color }) {
   function TableRow(props) { 
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
-
     const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); 
-
+  
     return ( 
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr
+            <tr className = "tablerow"
               {...row.getRowProps()}
               style={props.rowStyle} 
               onClick={
@@ -69,7 +78,7 @@ export default function Table({ columns, data, color }) {
               >
               {row.cells.map((cell) => {
                 return (
-                  <td {...cell.getCellProps()} style={props.cellStyle}>
+                  <td className = "tablecell" {...cell.getCellProps()} style={props.cellStyle}>
                     {cell.render("Cell")}
                   </td>
                 );
@@ -77,45 +86,43 @@ export default function Table({ columns, data, color }) {
             </tr>
           ); // Goal for next sprint: generic and more "effective" PopUp component - but this works for now. 
         })}
-        <PopUp object={clickedRowObject} trigger={onCLickRowPopUp} setTrigger={setOnclickRowPopUp}></PopUp>
+        <PopUp 
+          object={clickedRowObject}
+          rowHeaders ={myHeaders}
+          color={color}
+          trigger={onCLickRowPopUp} 
+          setTrigger={setOnclickRowPopUp}
+        />    
       </tbody>
     );
-  }
-
-  return ( // ##
-    <div>
-      <table
+  } 
+  return ( 
+    <div className = "container">
+      <table className = "table"
         {...getTableProps()}
-        style={{
-          border: `solid 10px ${color}`,
-        }}
       >
         <thead>
-          <th
+          <th className = "th"
             colSpan={visibleColumns.length}
             style={{
-              textAlign: "left",
-              backgroundColor: color
+              background: color,
             }}
           >
             <GlobalFilter
               preGlobalFilteredRows={preGlobalFilteredRows}
               globalFilter={state.globalFilter}
               setGlobalFilter={setGlobalFilter}
+             
             />
           </th>
 
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th
+                <th className = "th2"
                   {...column.getHeaderProps( column.localFilter ? console.log ("Local filter on " + column.id) : column.getSortByToggleProps()) }
                   style={{
-                    borderBottom: "solid 5px black",
                     background: color,
-                    color: "black",
-                    fontWeight: "bold",
-                    textAlign: "center",
                   }} 
                 >
                   
@@ -127,18 +134,7 @@ export default function Table({ columns, data, color }) {
             </tr>
           ))}
         </thead>
-
-        <TableRow
-          subject="TableRow"
-          cellStyle={{
-            padding: "5px",
-            border: "solid 1px gray",
-            textAlign: "center"
-          }}
-          rowStyle={{
-            background: "white",
-          }} 
-        />
+        <TableRow/>
       </table>
     </div>
   );
