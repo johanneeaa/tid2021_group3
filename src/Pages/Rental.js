@@ -48,17 +48,20 @@ const RentalTable = () => {
   return (
     <div>
       <div className="bookingcontainer">
-        <br />
-      <div> 
-        <button
-          className="createNewBookingButton"
-          //onClick={/* (window.location.href = "/newbooking") */} //this is making problems - maybe we can make a button component instead
-        >
-          {" "}
-          Create new Booking
-        </button>
-        <br />
-      </div></div> 
+        <br />{" "}
+        <div>
+          <button
+            className="createNewBookingButton"
+            onClick={() =>{
+              (window.location.href = "/newbooking")
+            }} //this is making problems - maybe we can make a button component instead
+          >
+            {" "}
+            Create new Booking
+          </button>
+          <br />
+        </div>
+      </div>
       <br />
       <Table columns={rentalColumns} data={rentalData} />
     </div>
