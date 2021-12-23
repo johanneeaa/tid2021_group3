@@ -31,8 +31,8 @@ const CustomerTable = () => {
 
   return (
     <div>
-    <div className = "customercontainer">
-      <br/> <button className = "larsButton" onClick={()=>{window.location.href = '/newbooking'}}> Add a new Customer</button>
+    <div className = "topLinecontainer">
+      <br/> <button className = "newButton" onClick={()=>{window.location.href = '/newbooking'}}> Add a new Customer</button>
       {/* <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new Customer</button> */}<br/><InputBox/>
       <br/>
       </div>

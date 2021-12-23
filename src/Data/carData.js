@@ -6,6 +6,8 @@ export default async function getAllCars() {
 
     const allCarsQuery = new Parse.Query(Car);
     const allCars = await allCarsQuery.find();
+    //from Sara: I know your code is in sync with the lecture slides, but question to consider: 
+    //What happens if find() fails? Or if the returned array is empty? Are you handling this?
 
     const allCarsFormatted = allCars.map((car) => {
         return {
