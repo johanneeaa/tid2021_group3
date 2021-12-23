@@ -1,6 +1,8 @@
 // Deleting a Customer based off an input in the form of an ID
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 
+//renamed to newCustomer.js - Sara feedback
+
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
 const APP_JS_KEY = process.env.REACT_APP_JS_KEY
 

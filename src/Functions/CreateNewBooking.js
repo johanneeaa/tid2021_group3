@@ -1,5 +1,7 @@
 //this is not currently implemented, delete before hand-in if it is still the case
 
+//renamed to newCustomer.js - Sara feedback
+
 /* import {newBooking} from "../Data/newBookingData"
 
 const input1 = newBooking().object[0]; //this is not yet working

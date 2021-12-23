@@ -1,6 +1,8 @@
 // funciton for adding a new Customer with "hardcoded" values. Used for testing purposes.
 // Next step: generic input
 
+//renamed to newCustomer.js - Sara feedback
+
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 import {newCustomer} from "../Data/makeCustomerData"
 
