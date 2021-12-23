@@ -69,7 +69,7 @@ export default class CustomerForm extends React.Component {
             <input
               className="input"
               type="text"
-              name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this is the 'header' column
+              name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this references the the 'Header' column
               value={this.state.firstname}
               onChange={this.handleChange}
               required

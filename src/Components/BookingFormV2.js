@@ -12,27 +12,26 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-export default class BookingForm extends React.Component {
-  constructor(props) {
-    super(props);
+//I think if we can 
+const NewBookingForm = () => {
 
-    this.state = {
-      BookingID,
-      firstname: props.firstname,
-      lastname: props.lastname,
-      //driverslicense: props.driverslicense, -- Number value!
-      //dob:props.dob, -- Date() value
-      pickupoffice: props.pickupoffice,
-      //pickuptime: props.pickuptime, //-- Date() value
-      returnoffice: props.returnoffice,
-      //returntime:props.returntime, -- Date() value
-      cargroup: props.cargroup,
+const [input, setInput] = useState({
+    BookingID,
+    firstname: props.firstname,
+    lastname: props.lastname,
+    driverslicense: props.driverslicense,
+    dob:props.dob,
+    pickupoffice: props.pickupoffice,
+    pickuptime: props.pickuptime,
+    returnoffice: props.returnoffice,
+    returntime:props.returntime,
+    cargroup: props.cargroup
+})    
+      
     };
 
     this.handleChange = this.handleChange.bind(this);
-    //this.handleChangeInt = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
@@ -42,28 +41,6 @@ export default class BookingForm extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
-
-  //trying to see if this would help parsing numbers, but no...
-  /*   handleChangeInt(event){
-    this.setState({
-      [event.target.name]: parseInt(event.target.value)
-    });
-  } */
-
-  /*   jsonParsing(event) {
-    if ([event.target.type] === "text" || "email") {
-      JSON.stringify(this.state.Booking)
-    }
-    if ([event.target.type] === "number") {
-      parseInt(this.state.Booking)
-    }
-    if ([event.target.type] === "date") {
-      
-    }
-    if ([event.target.type] === "datetime-local") {
-      
-    }
-  } */
 
   handleSubmit(event) {
     alert("A new booking was submitted: " + this.state);
