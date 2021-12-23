@@ -11,9 +11,9 @@ function TablePopUp(props) {
         [
             { Header: "Model", accessor: "model"},
             { Header: "No. of doors", accessor: "numberOfDoors"}, 
-            { Header: "Mileage in KM", accessor: "mileage"},
             { Header: "License plate", accessor: "licensePlate"},
-            { Header: "Fuel level", accessor: "fuelLevel" },
+            { Header: "Mileage in KM", accessor: "mileage"},
+            { Header: "Fuel", accessor: "fuelLevel" },
             { Header: "Notes", accessor: "notes", }, 
         ]
 

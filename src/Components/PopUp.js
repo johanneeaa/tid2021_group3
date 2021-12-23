@@ -1,7 +1,8 @@
 import Textbox4Info from './TextBox4Info';
-import React from 'react';
+import React, { useState } from 'react';
 import deleteCustomerByID from '../Functions/DeleteCustomer';
 import './PopUp.css';
+import TablePopUp from './TablePopUp';
 
 // Popup made with a trigger to show/hide. 
 // This way caused problems, as we wanted the popup to inherit from the clicked row. 
@@ -11,7 +12,9 @@ import './PopUp.css';
 // Example for making .map or for loop of JSX elements: [ https://flaviocopes.com/react-how-to-loop/ ]
 
 // takes object, rowHeaders, color, trigger & setTrigger
-function PopUp(props) { if (props.rowHeaders) {
+function PopUp(props) {
+    const [checkoutTrigger, setCheckoutTrigger] = useState(false)
+    if (props.rowHeaders) {
     console.log("popup rendered");
     // save ID in a const for utilize later
     const ID = props.object.id; 
@@ -41,6 +44,15 @@ function PopUp(props) { if (props.rowHeaders) {
                 </div>
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>
                 <button onClick={() => deleteCustomerByID(ID)}>DELETE</button>
+                {props.isRental ? 
+                    <button onClick={() => setCheckoutTrigger(true)}>Checkout</button> :null 
+                }
+                {checkoutTrigger ? 
+                    <TablePopUp 
+                        object={props.object}
+                        trigger={props.trigger} 
+                        setTrigger={props.setTrigger}
+                    /> : null}            
             </div>
         </div>
     ) 

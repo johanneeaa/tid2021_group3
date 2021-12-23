@@ -80,7 +80,6 @@ export default function Table({columns, data, style, rental}) {
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
     const [popUpTrigger, setPopUpTrigger] = useState(false); 
-    const [rentalPopUpTrigger, setRentalPopUpTrigger] = useState(false) //for tablePopUp
   
     return ( 
       <tbody {...getTableBodyProps()}>
@@ -91,7 +90,7 @@ export default function Table({columns, data, style, rental}) {
               {...row.getRowProps()}
             
               onClick={
-                () => (rental ? setRentalPopUpTrigger(true) : setPopUpTrigger(true)) +
+                () => ( setPopUpTrigger(true)) +
                 + setClickedRowObject(row.values)
               }
               >
@@ -113,15 +112,9 @@ export default function Table({columns, data, style, rental}) {
             rowHeaders ={myHeaders}
             color={getTheme().primary}
             trigger={popUpTrigger} 
+            isRental={rental}
             setTrigger={setPopUpTrigger}
           /> : null
-        }
-        {rentalPopUpTrigger ?
-          <TablePopUp 
-            object={clickedRowObject}
-            trigger={rentalPopUpTrigger} 
-            setTrigger={setRentalPopUpTrigger}
-        /> : null
         }
       </tbody>
     );
