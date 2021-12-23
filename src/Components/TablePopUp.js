@@ -2,10 +2,13 @@ import Table from "./Table";
 import React, { useState, useEffect } from "react";
 import findAvailCars from "../Functions/findAvailCars";
 
+// Component to show a table of cars. Has functionality to show available cars. 
+// Should be refactored to seperate data from the component.
+// Takes a car object and a setTrigger function as props.
+
 // Popup architecture lifted from [ https://bit.ly/3ss2nAz & https://bit.ly/3H4HMX4 ]
 
-// we want 
-function TablePopUp(props) {
+function TablePopUp(props) { 
 
     const columns = 
         [
@@ -22,9 +25,6 @@ function TablePopUp(props) {
     
     const location = props.object.pickUpOffice
     const reqCarGroup = props.object.reqCarGroup
-    //const data = [{notes: "yes", model: "model"},{tester:"tester",notes: "no"}]
-    //const data = findAvailCars("KRP", "A")
-    console.log(location + reqCarGroup);
 
     useEffect(() => {
         async function fetchData() {
@@ -37,7 +37,7 @@ function TablePopUp(props) {
     },[])
     
 
-    return  (      //if the trigger is 'true' then the popUp will show, if false it will not
+    return  (      
         <div className="popup" >
             <div className="popup-inner" style={{background: "White"}}>
                 <div className="popup-info"> 

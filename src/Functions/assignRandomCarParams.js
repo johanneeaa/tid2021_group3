@@ -1,8 +1,7 @@
-import getAllCars from "../Data/carData"
 import Parse from "parse";
-import React, { useEffect, useState } from "react";
 
-// Function to populate newly created "CarState" and "Location" column in back4app
+// Function to populate newly created "CarState" and "Location" column in back4app instead of hardcoding it.
+// Not used after first use
 
 export default async function setRandomCarProps() {
 

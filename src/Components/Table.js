@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
-import TablePopUp from "./TablePopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 import './Table.css';
@@ -9,17 +8,15 @@ import styled from "styled-components"
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
-// Most styling still in here, need to create a functioning stylesheet.
+// The component has started to clutter, see if we can refactor further
 
 // Code based on react-table [https://react-table.tanstack.com/] 
 // & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
-export default function Table({columns, data, style, rental}) {   
+export default function Table({columns, data, style, page}) {   
   
   //AppContext is used to access the state of the app and to get the theme.
   const {getTheme} = useContext(AppContext)
-
-
 
   //New styled component to match theme of page
   const Row = styled.tr`
@@ -31,12 +28,11 @@ export default function Table({columns, data, style, rental}) {
     transition: all .3s ease-in-out
   }`
 
-  // myHeaders is created to gain acces to "nice" headers instead of accessors
+  // myHeaders is created to allow functions/components acces to "nice" headers instead of accessors
   const myHeaders =[]
   columns.forEach(columns => {
     myHeaders.push(columns.Header)
   }); 
-
 
   const filterTypes = React.useMemo( 
     () => ({
@@ -54,14 +50,13 @@ export default function Table({columns, data, style, rental}) {
     []
   )
 
+// It's important that we're using React.useMemo here to ensure that our data isn't recreated on every render [ https://bit.ly/3xSqtVD ]
   const defaultColumn = React.useMemo( 
     () => ({
       Filter: DefaultColumnFilter,
     }),
     []
   )
-
-  /* It's important that we're using React.useMemo here to ensure that our data isn't recreated on every render ( https://bit.ly/3xSqtVD )*/
 
   const rentalTable = useTable({ columns, data, defaultColumn, filterTypes, style}, useGlobalFilter,useFilters,useSortBy, PopUp);
   const {
@@ -97,14 +92,15 @@ export default function Table({columns, data, style, rental}) {
               {row.cells.map((cell) => {
                 return (
                   <td className = "tablecell" {...cell.getCellProps()} style={
-                    {backgroundColor : cell.value ===  "Ready" ? "Green" : null } // this is not right place for the styling, figure out how/where to move!
+                    {backgroundColor : cell.value ===  "Ready" ? "Green" : null }
+                    // this is not right place for the styling, figure out how/where to move!
                   }>
                     {cell.render("Cell")}
                   </td>
                 );
               })}
             </Row>
-          ); // Goal for next sprint: generic and more "effective" PopUp component - but this works for now. 
+          ); 
         })}
         {popUpTrigger ? 
           <PopUp 
@@ -112,10 +108,13 @@ export default function Table({columns, data, style, rental}) {
             rowHeaders ={myHeaders}
             color={getTheme().primary}
             trigger={popUpTrigger} 
-            isRental={rental}
+            page={page}
             setTrigger={setPopUpTrigger}
           /> : null
-        }
+        // Popup starting to get messy by diffrentiating between Rental and other tabs.
+        // The popup was designed to be same for all tables, but shouldn't be. 
+        // We should think about another architecture for this, refactor to more bits?
+        } 
       </tbody>
     );
   } 

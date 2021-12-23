@@ -1,9 +1,10 @@
 import {newCustomer} from "../Data/makeCustomerData"
 
 // Funciton for adding a new Customer with random, plausible, values imported from ../Data/makeCustomerData
-// Used for testing, next step; utlizing user input
+// Made with REST calls, instead of parse, as required by client (course manager)
+// Used for testing, to avoid hard coding them in the DB. next step; utlizing user input
 
-// built on example from TID course and [ https://dashboard.back4app.com/apidocs/ ]
+// built on example from [ TID course Fall 2021 @ IT University of Copenhagen ] and [ https://dashboard.back4app.com/apidocs/ ]
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
 const REACT_APP_REST_KEY = process.env.REACT_APP_REST_KEY
