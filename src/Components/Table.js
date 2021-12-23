@@ -92,7 +92,7 @@ export default function Table({columns, data, style, page}) {
               {row.cells.map((cell) => {
                 return (
                   <td className = "tablecell" {...cell.getCellProps()} style={
-                    {backgroundColor : cell.value ===  "Ready" ? "Green" : null }
+                    {backgroundColor : cell.value ===  "Ready" ? "#25CF6D" : null }
                     // this is not right place for the styling, figure out how/where to move!
                   }>
                     {cell.render("Cell")}
