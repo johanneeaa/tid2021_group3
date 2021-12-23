@@ -48,14 +48,11 @@ const CarTable = () => {
     
     //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ
 
-    const [popUpTrigger, setPopUpTrigger] = useState(false) //for tablePopUp
     return (
         <div>
         <Table columns={carsColumns} data={carsData}/>
         <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
-        <button className = "larsButton" onClick={()=>setPopUpTrigger(true) }> For testing: Popup test </button>
 
-        <TablePopUp trigger={popUpTrigger} setTrigger={setPopUpTrigger}/>
         </div>
     )
 };

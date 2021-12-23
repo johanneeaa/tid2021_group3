@@ -31,7 +31,7 @@ const RentalTable = () => {
     fetchData();
   },[])
 
-  return <Table columns={rentalColumns} data={rentalData}/>;
+  return <Table columns={rentalColumns} data={rentalData} rental={true}/>;
 };
 
 export default RentalTable;

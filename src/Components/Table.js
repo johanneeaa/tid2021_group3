@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
+import TablePopUp from "./TablePopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 import './Table.css';
@@ -13,7 +14,7 @@ import styled from "styled-components"
 // Code based on react-table [https://react-table.tanstack.com/] 
 // & table-filters [https://react-table.tanstack.com/docs/examples/filtering]
 
-export default function Table({columns, data, style}) {   
+export default function Table({columns, data, style, rental}) {   
   
   //AppContext is used to access the state of the app and to get the theme.
   const {getTheme} = useContext(AppContext)
@@ -78,7 +79,8 @@ export default function Table({columns, data, style}) {
   function TableRow(props) { 
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
-    const [onCLickRowPopUp, setOnclickRowPopUp] = useState(false); 
+    const [popUpTrigger, setPopUpTrigger] = useState(false); 
+    const [rentalPopUpTrigger, setRentalPopUpTrigger] = useState(false) //for tablePopUp
   
     return ( 
       <tbody {...getTableBodyProps()}>
@@ -89,7 +91,7 @@ export default function Table({columns, data, style}) {
               {...row.getRowProps()}
             
               onClick={
-                () => setOnclickRowPopUp(true) +
+                () => (rental ? setRentalPopUpTrigger(true) : setPopUpTrigger(true)) +
                 + setClickedRowObject(row.values)
               }
               >
@@ -105,13 +107,22 @@ export default function Table({columns, data, style}) {
             </Row>
           ); // Goal for next sprint: generic and more "effective" PopUp component - but this works for now. 
         })}
-        <PopUp 
-          object={clickedRowObject}
-          rowHeaders ={myHeaders}
-          color={getTheme().primary}
-          trigger={onCLickRowPopUp} 
-          setTrigger={setOnclickRowPopUp}
-        />    
+        {popUpTrigger ? 
+          <PopUp 
+            object={clickedRowObject}
+            rowHeaders ={myHeaders}
+            color={getTheme().primary}
+            trigger={popUpTrigger} 
+            setTrigger={setPopUpTrigger}
+          /> : null
+        }
+        {rentalPopUpTrigger ?
+          <TablePopUp 
+            object={clickedRowObject}
+            trigger={rentalPopUpTrigger} 
+            setTrigger={setRentalPopUpTrigger}
+        /> : null
+        }
       </tbody>
     );
   } 

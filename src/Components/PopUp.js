@@ -12,8 +12,8 @@ import './PopUp.css';
 
 // takes object, rowHeaders, color, trigger & setTrigger
 function PopUp(props) { if (props.rowHeaders) {
-
-    // save ID in a const for utilie later
+    console.log("popup rendered");
+    // save ID in a const for utilize later
     const ID = props.object.id; 
 
     // we need array to access the object by index instead of key
@@ -33,7 +33,7 @@ function PopUp(props) { if (props.rowHeaders) {
         i++
     }
 
-    return (props.trigger) ? (      //if the trigger is 'true' then the popUp will show, if false it will not
+    return (      //if the trigger is 'true' then the popUp will show, if false it will not
         <div className="popup" >
             <div className="popup-inner" style={{background: props.color}}>
                 <div className="popup-info"> 
@@ -43,7 +43,7 @@ function PopUp(props) { if (props.rowHeaders) {
                 <button onClick={() => deleteCustomerByID(ID)}>DELETE</button>
             </div>
         </div>
-    ) : null;
+    ) 
 
 }}
 
