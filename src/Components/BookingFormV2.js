@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import "./BookingForm.css";
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
@@ -196,4 +196,4 @@ const [input, setInput] = useState({
       </form>
     );
   }
-}
+} */

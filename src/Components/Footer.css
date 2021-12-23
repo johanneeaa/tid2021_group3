@@ -1,0 +1,12 @@
+.footerdiv {
+  height: 150px;
+  position: sticky;
+  position: -webkit-sticky; /*This is needed for Safari browser*/
+}
+.footer {
+  position: sticky;
+}
+.footerbody {
+  position: sticky;
+  height: 30px;
+}
