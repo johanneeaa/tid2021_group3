@@ -12,6 +12,7 @@ const carGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 const domains = ["@geMail.com", "@hutmail.com", "@ito.dk", "yahooo.com", "gogle.com" ];
 
+//this function is never used - could be interesting to use if we want to autogenerate some bookings
 /* function randomizeDate() { 
   const randomDate = DateGenerator.getRandomDateInRange(
     new Date(),
@@ -31,14 +32,17 @@ const nameSettings = {
   style: "capital",
 };
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const newCustomer = () => {
   return {
     // lastBookingDate: randomizeDate(), // we do not use yet
     lastCarGroup: randomFromArray(carGroups),
-    email:
-      namor.generate({ words: 1, saltLength: 0 }) + randomFromArray(domains),
+    email: namor.generate({ words: 1, saltLength: 0 }) + randomFromArray(domains),
     firstName: uniqueNamesGenerator(nameSettings),
-    lastName: namor.generate({ words: 1, saltLength: 0 }),
+    lastName: capitalizeFirstLetter(namor.generate({ words: 1, saltLength: 0 })),
     totalBookings: Math.floor(Math.random(10)*10 + 1)  //added +1 to avoid it from creating a totalbooking of 0 
   };
 };
