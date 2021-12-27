@@ -59,12 +59,5 @@ const CarTable = () => {
 
   //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
 
-  return (
-    <div>
-      <Table columns={carsColumns} data={carsData} />
-      <Footer />
-    </div>
-  );
-};
 
 export default CarTable;
