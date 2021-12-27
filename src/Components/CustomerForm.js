@@ -6,8 +6,8 @@ import "./CustomerForm.css";
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
-const LatestCarGroup = "N/A";  //this needs functionality to change once a customer has been connected to a booking
-const TotalBookings = 0;      //this needs functionality to increment everytime a customer is registered on a new booking
+const LatestCarGroup = "N/A"; //this needs functionality to change once a customer has been connected to a booking
+const TotalBookings = 0; //this needs functionality to increment everytime a customer is registered on a new booking
 
 export default class CustomerForm extends React.Component {
   constructor(props) {
@@ -19,14 +19,12 @@ export default class CustomerForm extends React.Component {
       email: props.email,
       notes: props.notes,
       LatestCarGroup,
-      TotalBookings
+      TotalBookings,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react

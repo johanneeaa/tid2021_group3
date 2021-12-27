@@ -27,10 +27,10 @@ const TransferTable = () => {
 
   return (
     <div>
-    <Table columns={transferColumns} data={transferData} color={"#F790CE"} />
-    <Footer/>
+      <Table columns={transferColumns} data={transferData} color={"#F790CE"} />
+      <Footer />
     </div>
-  )
+  );
 };
 
 export default TransferTable;

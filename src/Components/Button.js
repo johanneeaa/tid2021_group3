@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
-import { AppContext} from "./AppProvider";
-import './Button.css';
+import { AppContext } from "./AppProvider";
+import "./Button.css";
 
 const DefaultButton = (props) => {
+  const { onClick } = props;
 
-  const {onClick} = props;
-
-  const {getTheme} = useContext (AppContext)
+  const { getTheme } = useContext(AppContext);
 
   return (
-    <button className = "dflt-btn" style = {{background:getTheme().primary}}
-    onClick = {onClick}>
+    <button
+      className="dflt-btn"
+      style={{ background: getTheme().primary }}
+      onClick={onClick}
+    >
       <div>Create New Booking</div>
     </button>
   );
-}
-export default DefaultButton
-
+};
+export default DefaultButton;

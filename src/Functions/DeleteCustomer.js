@@ -3,8 +3,8 @@
 
 //renamed to newCustomer.js - Sara feedback
 
-const APP_ID_KEY = process.env.REACT_APP_APP_KEY
-const APP_JS_KEY = process.env.REACT_APP_JS_KEY
+const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
+const APP_JS_KEY = process.env.REACT_APP_JS_KEY;
 
 export default async function deleteCustomerByID(ID) {
   try {

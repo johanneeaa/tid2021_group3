@@ -4,19 +4,18 @@
 //renamed to newCustomer.js - Sara feedback
 
 // built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
-import {newCustomer} from "../Data/makeCustomerData"
+import { newCustomer } from "../Data/makeCustomerData";
 
-const randomCustomer = newCustomer()
+const randomCustomer = newCustomer();
 
 //console.log(randomCustomer.email);
 
-const APP_ID_KEY = process.env.REACT_APP_APP_KEY
-const APP_REST_KEY = process.env.REACT_APP_REST_KEY
+const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
+const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
 export default async function addRandomCustomer() {
-
-  console.log(APP_ID_KEY)
-  console.log(APP_REST_KEY)
+  console.log(APP_ID_KEY);
+  console.log(APP_REST_KEY);
 
   const postData = {
     LastName: randomCustomer.lastName,

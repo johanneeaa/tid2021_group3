@@ -1,13 +1,13 @@
 .rentalcontainer {
-    display: flex;
-    justify-content: center;
-    width: 80%;
+  display: flex;
+  justify-content: center;
+  width: 80%;
 }
-  
+
 .createNewBookingButton {
-    background-color: #F7E8A4;
-    align-items: center;
-    border-radius: 5px;
-    justify-content:center;
-    margin-left: 82%;
+  background-color: #f7e8a4;
+  align-items: center;
+  border-radius: 5px;
+  justify-content: center;
+  margin-left: 82%;
 }

@@ -8,8 +8,6 @@ import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
 
 const RentalTable = () => {
-  
-
   const [rentalData, setRentalData] = useState([]);
 
   const rentalColumns = React.useMemo(
@@ -53,8 +51,13 @@ const RentalTable = () => {
     <div>
       <Table columns={rentalColumns} data={rentalData} />
       <Footer/>
-      <DefaultButton  onClick={() => {
-        window.location.href = "/newbooking"}}>Create New Booking</DefaultButton>
+        <DefaultButton
+          onClick={() => {
+            window.location.href = "/newbooking";
+          }}
+        >
+          Create New Booking
+        </DefaultButton>
     </div>
   );
 };

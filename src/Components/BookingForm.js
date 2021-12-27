@@ -4,7 +4,7 @@ import "./BookingForm.css";
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
-const BookingID = generateRandomBookingID(1520000, 1999999) //creating a random BookingID, ideally it should be unique and increment everytime a new booking is created
+const BookingID = generateRandomBookingID(1520000, 1999999); //creating a random BookingID, ideally it should be unique and increment everytime a new booking is created
 
 function generateRandomBookingID(min, max) {
   min = Math.ceil(min);
@@ -12,13 +12,14 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-const DriversLicense = 12495626
+const DriversLicense = 12495626;
 
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {  //easiest solution is to make all input to the database into 'text'
+    this.state = {
+      //easiest solution is to make all input to the database into 'text'
       BookingID,
       firstname: props.firstname,
       lastname: props.lastname,

@@ -49,7 +49,7 @@ const CustomerTable = () => {
       </div>
       <br />
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} />
-      <Footer/>
+      <Footer />
     </div>
   );
 };
