@@ -12,24 +12,24 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-const DriversLicense = 12495626;
+//const DriversLicense = 12495626; used for testing parsing of numbers - static numbers works, however numbers 'input' does not work since state is stringified!
 
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      //easiest solution is to make all input to the database into 'text'
       BookingID,
       firstname: props.firstname,
       lastname: props.lastname,
-      DriversLicense,
-      //driverslicense: props.driverslicense, -- Number value!
-      //dob:props.dob, -- Date() value
+      driverslicense: props.driverslicense,
+      dob:props.dob,
       pickupoffice: props.pickupoffice,
-      //pickuptime: props.pickuptime, //-- Date() value
+      pickupdate: props.pickupdate,
+      pickuptime: props.pickuptime,
       returnoffice: props.returnoffice,
-      //returntime:props.returntime, -- Date() value
+      returndate: props.returndate,
+      returntime:props.returntime,
       reqcargroup: props.reqcargroup,
     };
 
@@ -46,28 +46,6 @@ export default class BookingForm extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
-
-  //trying to see if this would help parsing numbers, but no...
-  /*   handleChangeInt(event){
-    this.setState({
-      [event.target.name]: parseInt(event.target.value)
-    });
-  } */
-
-  /*   jsonParsing(event) {
-    if ([event.target.type] === "text" || "email") {
-      JSON.stringify(this.state.Booking)
-    }
-    if ([event.target.type] === "number") {
-      parseInt(this.state.Booking)
-    }
-    if ([event.target.type] === "date") {
-      
-    }
-    if ([event.target.type] === "datetime-local") {
-      
-    }
-  } */
 
   handleSubmit(event) {
     alert("A new booking was submitted: " + this.state);
@@ -134,23 +112,23 @@ export default class BookingForm extends React.Component {
           <label className="label">Drivers License No.:</label>
           <input
             className="input"
-            type="number" //need to find a way to parse this value to DB
-            name="DriversLicense"
+            type="number"  //input is numbers, but when parsed it is converted to a string
+            name="DLicense"
             value={this.state.driverslicense}
             onChange={this.handleChange}
-            //required - should be required once we figure out how to parse number?
+            required
           />
           <label className="label">Date of Birth:</label>
           <input
             className="input"
             type="date"
-            name="DoB" //need to find a way to parse this value to DB - consider making it into a string or number?
+            name="DoB2"
             value={this.state.dob}
             onChange={this.handleChange}
-            //required
+            required
           />
-          <br />
-          <label className="label">Pick Up Office:</label>
+          <br /><h4>Pick Up</h4>
+          <label className="label">Office:</label>
           <input
             className="input"
             type="text"
@@ -158,18 +136,36 @@ export default class BookingForm extends React.Component {
             value={this.state.pickupoffice}
             onChange={this.handleChange}
             required
-          />
-          <label className="label">Pick Up Time:</label>
+          /><br />
+          <label className="label">Date:</label>
           <input
             className="input"
-            type="datetime-local" //need to find a way to parse this value to DB
-            name="PickUpTime"
+            type="date"
+            name="PickUpDate"
+            value={this.state.pickupdate}
+            onChange={this.handleChange}
+            required
+          />
+          <label className="label">Time:</label>
+          <select
+            className="input"
+            type="text"
+            name="PickUpTime2"
             value={this.state.pickuptime}
             onChange={this.handleChange}
-            //required
-          />
-          <br />
-          <label className="label">Return Office:</label>
+            required
+          >
+            <option value="A">08:00</option>
+            <option value="B">10:00</option>
+            <option value="C">12:00</option>
+            <option value="D">14:00</option>
+            <option value="E">16:00</option>
+            <option value="F">18:00</option>
+            <option value="G">20:00</option>
+          </select>{" "}
+          <span></span>
+          <br /><h4>Return</h4>
+          <label className="label">Office:</label>
           <input
             className="input"
             type="text"
@@ -177,16 +173,34 @@ export default class BookingForm extends React.Component {
             value={this.state.returnoffice}
             onChange={this.handleChange}
             required
-          />
-          <label className="label">Return Time:</label>
+          /><br />
+          <label className="label">Date:</label>
           <input
             className="input"
-            type="datetime-local" //need to find a way to parse this value to DB
-            name="ReturnTime"
+            type="date" //need to find a way to parse this value to DB
+            name="ReturnDate"
+            value={this.state.returndate}
+            onChange={this.handleChange}
+            required
+          />
+                    <label className="label">Time:</label>
+          <select
+            className="input"
+            type="text"
+            name="ReturnTime2"
             value={this.state.returntime}
             onChange={this.handleChange}
-            //required
-          />
+            required
+          >
+            <option value="A">08:00</option>
+            <option value="B">10:00</option>
+            <option value="C">12:00</option>
+            <option value="D">14:00</option>
+            <option value="E">16:00</option>
+            <option value="F">18:00</option>
+            <option value="G">20:00</option>
+          </select>{" "}
+          <span></span>
           <br />
           <label className="label">Select Car Group:</label>
           <select
