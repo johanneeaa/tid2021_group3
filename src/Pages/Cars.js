@@ -8,9 +8,9 @@ import findAvailCars from "../Functions/findAvailCars";
 import TablePopUp from "../Components/TablePopUp";
 
 
-// Our page for overview of cars. Returns a table with columns matching the ones from backend. 
+// Our page for overview of cars. Returns a table with columns matching the ones from backend.
 // Calls getAllCars() from "../Data/carData" to retreive the data from backend, which is mapped into the table.
-// no "fake" data (hurray!) 
+// no "fake" data (hurray!)
 
 const CarTable = () => {
     
@@ -57,5 +57,14 @@ const CarTable = () => {
     )
 };
 
-export default CarTable
+  //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
 
+  return (
+    <div>
+      <Table columns={carsColumns} data={carsData} />
+      <Footer />
+    </div>
+  );
+};
+
+export default CarTable;

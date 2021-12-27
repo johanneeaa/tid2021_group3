@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import getAllCars from "../Data/carData";
 import Table from "../Components/Table";
+import Footer from "../Components/Footer";
 //import SelectColumnFilter from "../Components/Filters";
 
 const TransferTable = () => {
@@ -27,7 +28,10 @@ const TransferTable = () => {
   }, []);
 
   return (
-    <Table columns={transferColumns} data={transferData} color={"#F790CE"} />
+    <div>
+      <Table columns={transferColumns} data={transferData} color={"#F790CE"} />
+      <Footer />
+    </div>
   );
 };
 

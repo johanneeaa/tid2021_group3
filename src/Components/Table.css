@@ -4,7 +4,7 @@
 }
 
 .table {
-  border: solid 10px color;
+  /* border: solid 10px color; -- this was giving a problem for internet explorer*/
   width: 100%;
   padding: 10px;
   border-bottom-right-radius: 10px;
