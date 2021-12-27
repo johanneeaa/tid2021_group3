@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
-import addRandomCustomer from "../Functions/newCustomer"
+import addRandomCustomer from "../Functions/createRandomCustomer"
 import "./Customer.css";
 import Footer from "../Components/Footer";
 
