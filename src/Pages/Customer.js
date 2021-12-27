@@ -4,6 +4,7 @@ import Table from "../Components/Table";
 import InputBox from "../Components/InputBox";
 //import addRandomCustomer from "../Functions/NewCustomer";  //removed this, as we now have an inputform for customer
 import "./Customer.css";
+import Footer from "../Components/Footer";
 
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);
@@ -48,6 +49,7 @@ const CustomerTable = () => {
       </div>
       <br />
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} />
+      <Footer/>
     </div>
   );
 };

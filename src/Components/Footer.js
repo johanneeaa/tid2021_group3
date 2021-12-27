@@ -11,7 +11,6 @@ return(
 <div className="footerdiv">
 <footer className="footer">
 <p style = {{background:getTheme().primary}} className="footerbody"></p>
-Here goes the button
 </footer>
 </div>
 )

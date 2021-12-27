@@ -4,8 +4,12 @@ import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 //import createNewBooking from "../Functions/NewBooking";
 import "./Rental.css";
+import Footer from "../Components/Footer";
+import DefaultButton from "../Components/Button";
 
 const RentalTable = () => {
+  
+
   const [rentalData, setRentalData] = useState([]);
 
   const rentalColumns = React.useMemo(
@@ -47,23 +51,10 @@ const RentalTable = () => {
 
   return (
     <div>
-      <div className="bookingcontainer">
-        <br />{" "}
-        <div>
-          <button
-            className="createNewBookingButton"
-            onClick={() =>{
-              (window.location.href = "/newbooking")
-            }} //this is making problems - maybe we can make a button component instead
-          >
-            {" "}
-            Create new Booking
-          </button>
-          <br />
-        </div>
-      </div>
-      <br />
       <Table columns={rentalColumns} data={rentalData} />
+      <Footer/>
+      <DefaultButton  onClick={() => {
+        window.location.href = "/newbooking"}}>Create New Booking</DefaultButton>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import Customer from "./Pages/Customer";
 import Statistics from "./Pages/Statistics";
 import NewBooking from "./Pages/NewBooking";
 import { AppProvider } from "./Components/AppProvider";
-import Footer from "./Components/Footer";
 
 // our App(), should containt our navigation with paths to pages
 // Tab navigation needs styling, we can't see what are pressed
@@ -36,7 +35,6 @@ function App() {
           <Route path="/newbooking" element={<NewBooking />} />
         </Routes>
       </BrowserRouter>
-      <Footer/>
     </AppProvider>
   );
 }
