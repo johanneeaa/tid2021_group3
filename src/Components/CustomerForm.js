@@ -105,14 +105,20 @@ export default class CustomerForm extends React.Component {
             value={this.state.notes}
             onChange={this.handleChange}
             //required  -- removing this as notes should not be a required field
-          />
-
-          <br />
-
+          /><br />
           <input
             className="button_newB"
             type="submit"
             value="Save new customer"
+          ></input>
+          <span>{" "}</span>
+          <input
+            className="button_newB"
+            type="button"
+            value=" Cancel "
+            onClick={() => {
+              window.location.href = "/customer";
+            }}
           ></input>
         </div>
       </form>
