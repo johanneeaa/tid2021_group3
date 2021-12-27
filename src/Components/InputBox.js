@@ -7,7 +7,7 @@ export default function InputBox(props) {
 
   return (
     <div>
-      <input className= "inputdelete" placeholder = {"Enter objectID to delete"} value={input} onInput={(e) => setInput(e.target.value)} />
+      <input className= "inputDelete" placeholder = {"Enter objectID to delete"} value={input} onInput={(e) => setInput(e.target.value)} />
       <button className = "removeButton" onClick={() => deleteCustomerByID(input)}> Remove Customer</button>
     </div>
   );

@@ -1,12 +1,12 @@
-// funciton for adding a new Customer with "hardcoded" values. Used for testing purposes.
-// Next step: generic input
-
-// built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
 import {newCustomer} from "../Data/makeCustomerData"
 
-const randomCustomer = newCustomer()
+// Funciton for adding a new Customer with random, plausible, values imported from ../Data/makeCustomerData
+// Made with REST calls, instead of parse, as required by client (course manager)
+// Used for testing, to avoid hard coding them in the DB. next step; utlizing user input
 
-console.log(randomCustomer.email);
+// built on example from [ TID course Fall 2021 @ IT University of Copenhagen ] and [ https://dashboard.back4app.com/apidocs/ ]
+
+const randomCustomer = newCustomer() //grab a random customer
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY //note - this is the REST API key - and not the JavaScriptKey!
