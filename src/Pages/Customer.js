@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
-import InputBox from "../Components/InputBox";
+import addRandomCustomer from "../Functions/newCustomer"
 import "./Customer.css";
 import Footer from "../Components/Footer";
 
@@ -33,7 +33,6 @@ const CustomerTable = () => {
       <div className="topLinecontainer">
         <br />{" "}
       </div>
-      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
       <button
         className="newButton"
         onClick={() => {
@@ -43,6 +42,8 @@ const CustomerTable = () => {
         {" "}
         Add a new Customer
       </button>
+      <button className = "generateNewCustomer" onClick={()=>addRandomCustomer() }> Auto-generate a new Customer</button><br/>
+      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
       <Footer />
     </div>
   );
