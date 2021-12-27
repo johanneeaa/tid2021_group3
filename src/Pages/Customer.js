@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
 import InputBox from "../Components/InputBox";
-//import addRandomCustomer from "../Functions/NewCustomer";  //removed this, as we now have an inputform for customer
 import "./Customer.css";
 import Footer from "../Components/Footer";
 
@@ -33,7 +32,9 @@ const CustomerTable = () => {
     <div>
       <div className="topLinecontainer">
         <br />{" "}
-        <button
+      </div>
+      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
+      <button
           className="newButton"
           onClick={() => {
             window.location.href = "/newbooking";
@@ -42,13 +43,6 @@ const CustomerTable = () => {
           {" "}
           Add a new Customer
         </button>
-        {/* <button className = "larsButton" onClick={()=>addRandomCustomer() }> Add a new Customer</button> */}
-        <br />
-        <InputBox />
-        <br />
-      </div>
-      <br />
-      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} />
       <Footer />
     </div>
   );

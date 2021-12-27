@@ -49,15 +49,16 @@ const RentalTable = () => {
 
   return (
     <div>
-      <Table columns={rentalColumns} data={rentalData} />
+      <DefaultButton
+        onClick={() => {
+          window.location.href = "/newbooking";
+        }}
+      >
+        Create New Booking
+      </DefaultButton>
+      <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
       <Footer/>
-        <DefaultButton
-          onClick={() => {
-            window.location.href = "/newbooking";
-          }}
-        >
-          Create New Booking
-        </DefaultButton>
+        
     </div>
   );
 };
