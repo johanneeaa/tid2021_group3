@@ -32,9 +32,9 @@ const RentalTable = () => {
       { Header: "Return Date", accessor: "returnDate" },
       { Header: "Return Time", accessor: "returnTime" },
       { Header: "Customer Name", accessor: "fullName" },
-      { Header: "Date of Birth", accessor: "dateOfBirth" },
+      { Header: "Birth Year", accessor: "dateOfBirth"},
       { Header: "Drivers License", accessor: "driversLicense" },
-      { Header: "Requested Car Group", accessor: "reqCarGroup" },
+      { Header: "Req. Car Group", accessor: "reqCarGroup" },
     ],
     []
   );
