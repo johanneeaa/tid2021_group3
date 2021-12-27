@@ -23,7 +23,7 @@ export default async function deleteCustomerByID(ID) {
     }
     const data = await response.json();
     console.log("Removed object! " + data);
-    alert(data + " has been succesfully deleted!")
+    alert("Customer has been succesfully deleted!")
   } catch (error) {
     console.log(error);
   }
