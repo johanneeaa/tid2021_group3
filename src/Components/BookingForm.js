@@ -1,5 +1,6 @@
 import React from "react";
 import "./BookingForm.css";
+//import { FormControl } from '@mui/material';
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
@@ -12,6 +13,9 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
+const DefaultTime = "08:00";
+const DefaultCarGroup = "A";
+
 //const DriversLicense = 12495626; used for testing parsing of numbers - static numbers works, however numbers 'input' does not work since state is stringified!
 
 export default class BookingForm extends React.Component {
@@ -23,19 +27,27 @@ export default class BookingForm extends React.Component {
       firstname: props.firstname,
       lastname: props.lastname,
       driverslicense: props.driverslicense,
-      dob:props.dob,
+      dob: props.dob,
       pickupoffice: props.pickupoffice,
       pickupdate: props.pickupdate,
       pickuptime: props.pickuptime,
       returnoffice: props.returnoffice,
       returndate: props.returndate,
-      returntime:props.returntime,
+      returntime: props.pickuptime,
       reqcargroup: props.reqcargroup,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    //this.handleChangeInt = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  //trying to create a method to set data to first value if nothing is selected in dropdown menus
+  handleDefaultSelect(event) {
+    if (this.pickuptime == null) {
+    this.setState.pickuptime = DefaultTime;}
+    if (this.reqcargroup == null) {
+    this.setState.reqcargroup = DefaultCarGroup; 
+    }
   }
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
@@ -48,25 +60,27 @@ export default class BookingForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A new booking was submitted: " + this.state);
+      alert(
+        "A new booking was submitted with BookingID: " +
+          this.state.BookingID
+      );
 
-    try {
-      fetch("https://parseapi.back4app.com/classes/Booking", {
-        method: "POST",
-        headers: {
-          "X-Parse-Application-Id": APP_ID_KEY,
-          "X-Parse-REST-API-Key": APP_REST_KEY,
-          "Content-Type": "application/json",
-        },
-        //body: this.state,  //--this doesn't work - trying to see if we can parse it as JSON with different values - stringify only works on the string values
-        body: JSON.stringify(this.state), //has to be this.state in order to parse - still need to find a solution to parse numbers and Date()
-      }).then((Booking) => {
-        console.log(Booking);
-        return Booking.json();
-      });
-    } finally {
-      event.preventDefault();
-    }
+      try {
+        fetch("https://parseapi.back4app.com/classes/Booking", {
+          method: "POST",
+          headers: {
+            "X-Parse-Application-Id": APP_ID_KEY,
+            "X-Parse-REST-API-Key": APP_REST_KEY,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.state),
+        }).then((Booking) => {
+          console.log(Booking);
+          return Booking.json();
+        });
+      } finally {
+        event.preventDefault(); 
+      } 
   }
 
   render() {
@@ -75,13 +89,13 @@ export default class BookingForm extends React.Component {
         <div className="inputcontainer">
           <h1>Create new booking</h1>
           <input
-            className="button_addCustomer"
+            className="button_addCustomer" //this buttons do not have any functionality yet
             type="button"
             value=" Add Existing Customer "
           ></input>{" "}
           <span></span>
           <input
-            className="button_addCustomer"
+            className="button_addCustomer" //this buttons do not have any functionality yet
             type="button"
             value=" Create a new Customer "
           ></input>
@@ -112,7 +126,7 @@ export default class BookingForm extends React.Component {
           <label className="label">Drivers License No.:</label>
           <input
             className="input"
-            type="number"  //input is numbers, but when parsed it is converted to a string
+            type="number" //input is numbers, but when parsed it is converted to a string
             name="DLicense"
             value={this.state.driverslicense}
             onChange={this.handleChange}
@@ -127,7 +141,8 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <br /><h4>Pick Up</h4>
+          <br />
+          <h4>Pick Up</h4>
           <label className="label">Office:</label>
           <input
             className="input"
@@ -136,7 +151,8 @@ export default class BookingForm extends React.Component {
             value={this.state.pickupoffice}
             onChange={this.handleChange}
             required
-          /><br />
+          />
+          <br />
           <label className="label">Date:</label>
           <input
             className="input"
@@ -153,18 +169,20 @@ export default class BookingForm extends React.Component {
             name="PickUpTime2"
             value={this.state.pickuptime}
             onChange={this.handleChange}
-            required
-          >
-            <option value="A">08:00</option>
-            <option value="B">10:00</option>
-            <option value="C">12:00</option>
-            <option value="D">14:00</option>
-            <option value="E">16:00</option>
-            <option value="F">18:00</option>
-            <option value="G">20:00</option>
+            data="08:00"
+          > 
+            <option value="Select">Select</option>
+            <option value="8:00">08:00</option>
+            <option value="10:00">10:00</option>
+            <option value="12:00">12:00</option>
+            <option value="14:00">14:00</option>
+            <option value="16:00">16:00</option>
+            <option value="18:00">18:00</option>
+            <option value="20:00">20:00</option>
           </select>{" "}
           <span></span>
-          <br /><h4>Return</h4>
+          <br />
+          <h4>Return</h4>
           <label className="label">Office:</label>
           <input
             className="input"
@@ -173,7 +191,8 @@ export default class BookingForm extends React.Component {
             value={this.state.returnoffice}
             onChange={this.handleChange}
             required
-          /><br />
+          />
+          <br />
           <label className="label">Date:</label>
           <input
             className="input"
@@ -183,7 +202,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           />
-                    <label className="label">Time:</label>
+          <label className="label">Time:</label>
           <select
             className="input"
             type="text"
@@ -192,13 +211,14 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           >
-            <option value="A">08:00</option>
-            <option value="B">10:00</option>
-            <option value="C">12:00</option>
-            <option value="D">14:00</option>
-            <option value="E">16:00</option>
-            <option value="F">18:00</option>
-            <option value="G">20:00</option>
+            <option value="Select">Select</option>
+            <option value="8:00">08:00</option>
+            <option value="10:00">10:00</option>
+            <option value="12:00">12:00</option>
+            <option value="14:00">14:00</option>
+            <option value="16:00">16:00</option>
+            <option value="18:00">18:00</option>
+            <option value="20:00">20:00</option>
           </select>{" "}
           <span></span>
           <br />
@@ -209,8 +229,8 @@ export default class BookingForm extends React.Component {
             name="ReqCarGroup"
             value={this.state.reqcargroup}
             onChange={this.handleChange}
-            required
           >
+            <option value="Select">Select</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
@@ -232,6 +252,7 @@ export default class BookingForm extends React.Component {
             className="button_newB"
             type="button"
             value=" Cancel booking "
+            onClick={() => { window.location.href = '/rental'}}
           ></input>
         </div>
       </form>
