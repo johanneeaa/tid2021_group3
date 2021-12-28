@@ -7,7 +7,7 @@ import "./BookingForm.css";
  * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a Booking in the database.
  *
  * In order to simulate a real order creating, we have implemented a auto-generated bookingID, using random numbers
- * within a given interval to visualize the booking being created - see alert in handleSubmit.
+ * within a given interval to visualize a new booking being created - see alert in handleSubmit.
  *
  * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to
  * the database stringify the state of the object and then POST it to the database.
@@ -15,12 +15,6 @@ import "./BookingForm.css";
  * Known bugs & defect:
  * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method
  *    adding +1 to the latest bookingID added to the database.
- *    Challenges for implementation: potential concurrency issues; might need to implement an atomic integer which could slow down app responsiveness.
- *
- * 2. If ANY the dropdown menues: pickuptime, returntime and reqcargroup is not selected, then there will be a data breakage with the table rendering
- *    on the pages receiving data from the database as there will be empty data fields blocking the rendering.
- *
- * Status: trying to fix defect no. 2, as it can break the table rendering entirely for all components reading from the Booking database.
  */
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
