@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import findAvailCars from "../Functions/findAvailCars";
 
 // Component to show a table of cars. Has functionality to show available cars. 
-// Should be refactored to seperate data from the component.
+// Could/should be refactored to seperate data from the component.
 // Takes a car object and a setTrigger function as props.
 
 // Popup architecture lifted from [ https://bit.ly/3ss2nAz & https://bit.ly/3H4HMX4 ]

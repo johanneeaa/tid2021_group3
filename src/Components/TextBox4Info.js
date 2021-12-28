@@ -10,7 +10,7 @@ export default function Textbox4Info(props){
                 <input 
                     placeholder = "..."        
                     value = {props.info} 
-                    // Value will overwrite placeholder if props.info == true
+                    // Value will overwrite placeholder if props.info
                 /> 
             </div>
             </div>

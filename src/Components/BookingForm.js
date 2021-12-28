@@ -12,9 +12,8 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-
-// Avail timeslots here, then into "op"
-const timeSlots = ["08:00", "10:00", "12:00"]
+// Avail timeslots here, instead of hardcode in JSX
+const timeSlots = ["08:00", "10:00", "12:00", "14:00", "16:00"]
 const timeOptionBoxes = [] 
 timeSlots.forEach(element => {
   timeOptionBoxes.push(<option> {element} </option>)

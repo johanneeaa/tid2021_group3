@@ -34,6 +34,7 @@ export default function Table({columns, data, style, page}) {
     myHeaders.push(columns.Header)
   }); 
 
+  // filterTypes part of react UseTable & table-filters.
   const filterTypes = React.useMemo( 
     () => ({
       text: (rows, id, filterValue) => {
@@ -113,7 +114,8 @@ export default function Table({columns, data, style, page}) {
           /> : null
         // Popup starting to get messy by diffrentiating between Rental and other tabs.
         // The popup was designed to be same for all tables, but shouldn't be. 
-        // We should think about another architecture for this, refactor to more bits?
+        // 
+        // Workoaround: give it page prop to behave differently depending on what page it inherits from
         } 
       </tbody>
     );
