@@ -45,8 +45,8 @@ export default class BookingForm extends React.Component {
       reqcargroup: props.reqcargroup,
     };
 
-    //this.handleChange = this.handleChange.bind(this);  //after making these functions into arrow functions, we no longer need to bind function
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
@@ -171,7 +171,7 @@ export default class BookingForm extends React.Component {
             value={this.state.pickuptime}
             onChange={this.handleChange}
           >
-            <option value="Not Selected">Select</option>
+            <option value="">Select</option> {/* leaving the value empty here, gives us the desired 'required' functionality */}
             <option value="8:00">08:00</option>
             <option value="10:00">10:00</option>
             <option value="12:00">12:00</option>
@@ -210,10 +210,9 @@ export default class BookingForm extends React.Component {
             type="text"
             name="ReturnTime2"
             value={this.state.returntime}
-            initialState={this.handleDefaultSelect}
             onChange={this.handleChange}
           >
-            <option value="Not Selected">Select</option>
+            <option value="">Select</option>
             <option value="8:00">08:00</option>
             <option value="10:00">10:00</option>
             <option value="12:00">12:00</option>
@@ -226,13 +225,14 @@ export default class BookingForm extends React.Component {
           <br />
           <label className="label">Select Car Group:</label>
           <select
+          required
             className="input"
             type="text"
             name="ReqCarGroup"
             value={this.state.reqcargroup}
             onChange={this.handleChange}
           >
-            <option value="Not Selected">Select</option>
+            <option value="">Select</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>

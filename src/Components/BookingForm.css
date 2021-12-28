@@ -27,7 +27,7 @@
     margin: 12px 0;
 }
 
-.input {
+.input:required {
     border-radius: 5px;
     margin: 2px 0;
     display: inline-block;

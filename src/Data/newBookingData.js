@@ -10,6 +10,6 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-const defaultTime = "08:00";  //not currently being used, delete if never used
-const defaultCarGroup = "A";  //not currently being used, delete if never used
+//const defaultTime = "08:00";  //not currently being used, delete if never used
+//const defaultCarGroup = "A";  //not currently being used, delete if never used
 
