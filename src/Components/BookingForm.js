@@ -1,6 +1,6 @@
 import React from "react";
 import "./BookingForm.css";
-//import { FormControl } from '@mui/material';
+import Select from 'react-select';
 
 /**
  * Reference: https://reactjs.org/docs/forms.html 
@@ -34,6 +34,31 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
+//trying re-factor out the values for the dropdown menu, inspiration: https://www.geeksforgeeks.org/how-to-set-default-value-in-select-using-reactjs/
+
+//but it was not working
+/* const timeOptions = [
+  {option: '08:00', pickuptime: '08:00'},
+  {option: '10:00', pickuptime: '10:00'},
+  {option: '12:00', pickuptime: '12:00'},
+  {option: '14:00', pickuptime: '14:00'},
+  {option: '16:00', pickuptime: '16:00'},
+  {option: '18:00', pickuptime: '18:00'},
+  {option: '20:00', pickuptime: '20:00'},
+]
+
+const carGroups = [
+  {value: 'A', label: 'A'},
+  {value: 'B', label: 'B'},
+  {value: 'C', label: 'C'},
+  {value: 'D', label: 'D'},
+  {value: 'E', label: 'E'},
+  {value: 'F', label: 'F'},
+  {value: 'G', label: 'G'},
+  {value: 'H', label: 'H'},
+  {value: 'I', label: 'I'},
+] */
+
 const DefaultTime = "08:00";
 const DefaultCarGroup = "A";
 
@@ -56,17 +81,16 @@ export default class BookingForm extends React.Component {
       reqcargroup: props.reqcargroup,
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleChange = this.handleChange.bind(this);  //after making these functions into arrow functions, we no longer need to bind function
+    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDefaultValues = this.handleDefaultValues.bind(this);
   }
 
   //trying to create a method to set data to first value if nothing is selected in dropdown menus
-  handleDefaultSelect = async event => {
-    if (this.pickuptime == null) {
-    this.setState.pickuptime = DefaultTime;}
-    if (this.reqcargroup == null) {
-    this.setState.reqcargroup = DefaultCarGroup; 
-    }
+  handleDefaultValues= () => {
+    this.setState.pickuptime = DefaultTime;
+    this.setState.returntime = DefaultTime;
+    this.setState.reqcargroup = DefaultCarGroup;
   }
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
@@ -98,8 +122,8 @@ export default class BookingForm extends React.Component {
           return Booking.json();
         });
       } finally {
-        event.preventDefault(); 
-      } 
+        event.target.reset(); //clears the input fields upon submission
+      }
   }
 
   render() {
@@ -145,6 +169,7 @@ export default class BookingForm extends React.Component {
           <label className="label">Drivers License No.:</label>
           <input
             className="input"
+            placeholder="e.g. 12345678"
             type="number" //input is numbers, but when parsed it is converted to a string
             name="DLicense"
             value={this.state.driverslicense}
@@ -165,6 +190,7 @@ export default class BookingForm extends React.Component {
           <label className="label">Office:</label>
           <input
             className="input"
+            placeholder= "e.g. KRP"
             type="text"
             name="PickUpOffice"
             value={this.state.pickupoffice}
@@ -188,9 +214,9 @@ export default class BookingForm extends React.Component {
             name="PickUpTime2"
             value={this.state.pickuptime}
             onChange={this.handleChange}
-            data="08:00"
-          > 
-            <option value="Not Selected">Select</option>
+            defaultValue={"08:00"}
+          >
+            <option value="Not Selected">Select</option> 
             <option value="8:00">08:00</option>
             <option value="10:00">10:00</option>
             <option value="12:00">12:00</option>
@@ -198,13 +224,14 @@ export default class BookingForm extends React.Component {
             <option value="16:00">16:00</option>
             <option value="18:00">18:00</option>
             <option value="20:00">20:00</option>
-          </select>{" "}
+           </select>{" "}
           <span></span>
           <br />
           <h4>Return</h4>
           <label className="label">Office:</label>
           <input
             className="input"
+            placeholder= "e.g. AAL"
             type="text"
             name="ReturnOffice"
             value={this.state.returnoffice}
@@ -227,6 +254,8 @@ export default class BookingForm extends React.Component {
             type="text"
             name="ReturnTime2"
             value={this.state.returntime}
+            initialState= {this.handleDefaultSelect}
+            data={this.handleDefaultSelect}
             onChange={this.handleChange}
             required
           >
