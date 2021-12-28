@@ -4,7 +4,7 @@ import "./BookingForm.css";
 
 /**
  * Reference: https://reactjs.org/docs/forms.html 
- * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a booking in the database.
+ * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a Booking in the database.
  * 
  * In order to simulate a real order creating, we have implemented a auto-generated bookingID, using random numbers 
  * within a given interval to visualize the booking being created - see alert in handleSubmit.

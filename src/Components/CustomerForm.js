@@ -3,11 +3,28 @@
 import React from "react";
 import "./CustomerForm.css";
 
+/**
+ * Reference: https://reactjs.org/docs/forms.html 
+ * The CustomerForm is used to create a new customer in the system, it takes all the inputs given by user and adds it as a Customer in the database.
+ * 
+ * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to 
+ * the database stringify the state of the object and then POST it to the database.
+ * 
+ * Missing functionalities: 
+ * 1. const TotalBookings is static, it needs functionality to increment when customer makes new booking
+ * 2. const LatestCarGroup is static, it needs functionality to update upon rental pick-up
+ * TotalBookings cannot be implemented before we can add an existing customer to a new booking, 
+ * and LatestCarGroup needs a pick-up window in order to update value
+ *    
+ * Status: Works as intended, 
+ * However, consider re-factoring into a pop-up which can then be called with 'onClick' on the two buttons we have for 'create new customer'
+ */
+
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
-const LatestCarGroup = "N/A"; //this needs functionality to change once a customer has been connected to a booking
-const TotalBookings = 0; //this needs functionality to increment everytime a customer is registered on a new booking
+const LatestCarGroup = " "; //this needs functionality to update car group value once a customer has rented a car
+const TotalBookings = 0; //starts on zero on purpose, as a new customer will not have any bookings yet
 
 export default class CustomerForm extends React.Component {
   constructor(props) {
@@ -36,7 +53,7 @@ export default class CustomerForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A new customer has been created: " + this.state);
+    alert("A new customer has been created: " + this.state.email);
 
     try {
       fetch("https://parseapi.back4app.com/classes/Customer", {
