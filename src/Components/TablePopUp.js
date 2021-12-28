@@ -34,7 +34,7 @@ function TablePopUp(props) {
             //console.log("finished parse query on cars");
         }
         fetchData();
-    },[])
+    },)  // orignally was: " },[]) " but this was throwing an error, so I deleted the square brackets [] - it still seems to work fine, but please check that it should stay this way or not
     
 
     return  (      
