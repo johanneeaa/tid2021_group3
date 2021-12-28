@@ -2,10 +2,23 @@ import React from "react";
 import "./BookingForm.css";
 //import { FormControl } from '@mui/material';
 
+/**
+ * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a booking in the database.
+ * In order to simulate a real order creating, we have implemented a auto-generated bookingID, we have used random numbers within a given interval.
+ * 
+ * Known bugs & defect: 
+ * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method adding +1 to the latest bookingID added to the database.
+ *    Challenges: concurrency issues, might need to be an atomic integer which would slow down app responsiveness
+ * 2. if ANY the dropdown menues: pickuptime, returntime and reqcargroup is not selected, then there will be a data breakage with the table rendering on the pages receiving data from the database as there will be empty data fields
+ * blocking the rendering.
+ * 
+ * Current status: trying to fix the dropdown menu defect, as it is the most vital
+ */
+
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 
-const BookingID = generateRandomBookingID(1520000, 1999999); //creating a random BookingID, ideally it should be unique and increment everytime a new booking is created
+const BookingID = generateRandomBookingID(1520000, 1999999); //generating a random BookingID, ideally it should be unique and increment everytime a new booking is created
 
 function generateRandomBookingID(min, max) {
   min = Math.ceil(min);
@@ -42,7 +55,7 @@ export default class BookingForm extends React.Component {
   }
 
   //trying to create a method to set data to first value if nothing is selected in dropdown menus
-  handleDefaultSelect(event) {
+  handleDefaultSelect = async event => {
     if (this.pickuptime == null) {
     this.setState.pickuptime = DefaultTime;}
     if (this.reqcargroup == null) {
@@ -53,13 +66,13 @@ export default class BookingForm extends React.Component {
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
   //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
-  handleChange(event) {
+  handleChange = async event => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = async event => {
       alert(
         "A new booking was submitted with BookingID: " +
           this.state.BookingID
@@ -171,7 +184,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             data="08:00"
           > 
-            <option value="Select">Select</option>
+            <option value="Not Selected">Select</option>
             <option value="8:00">08:00</option>
             <option value="10:00">10:00</option>
             <option value="12:00">12:00</option>
@@ -211,7 +224,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           >
-            <option value="Select">Select</option>
+            <option value="Not Selected">Select</option>
             <option value="8:00">08:00</option>
             <option value="10:00">10:00</option>
             <option value="12:00">12:00</option>
@@ -230,7 +243,7 @@ export default class BookingForm extends React.Component {
             value={this.state.reqcargroup}
             onChange={this.handleChange}
           >
-            <option value="Select">Select</option>
+            <option value="Not Selected">Select</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
