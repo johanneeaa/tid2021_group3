@@ -1,66 +1,30 @@
 import React from "react";
+import {BookingID} from "../Data/newBookingData"
 import "./BookingForm.css";
-import Select from 'react-select';
 
 /**
- * Reference: https://reactjs.org/docs/forms.html 
+ * Reference: https://reactjs.org/docs/forms.html
  * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a Booking in the database.
- * 
- * In order to simulate a real order creating, we have implemented a auto-generated bookingID, using random numbers 
+ *
+ * In order to simulate a real order creating, we have implemented a auto-generated bookingID, using random numbers
  * within a given interval to visualize the booking being created - see alert in handleSubmit.
- * 
- * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to 
+ *
+ * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to
  * the database stringify the state of the object and then POST it to the database.
- * 
- * Known bugs & defect: 
- * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method 
+ *
+ * Known bugs & defect:
+ * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method
  *    adding +1 to the latest bookingID added to the database.
  *    Challenges for implementation: potential concurrency issues; might need to implement an atomic integer which could slow down app responsiveness.
- * 
- * 2. If ANY the dropdown menues: pickuptime, returntime and reqcargroup is not selected, then there will be a data breakage with the table rendering 
+ *
+ * 2. If ANY the dropdown menues: pickuptime, returntime and reqcargroup is not selected, then there will be a data breakage with the table rendering
  *    on the pages receiving data from the database as there will be empty data fields blocking the rendering.
- *    
+ *
  * Status: trying to fix defect no. 2, as it can break the table rendering entirely for all components reading from the Booking database.
  */
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
 const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
-
-const BookingID = generateRandomBookingID(1520000, 1999999); //generating a random BookingID, ideally it should be unique and increment everytime a new booking is created
-
-function generateRandomBookingID(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-}
-
-//trying re-factor out the values for the dropdown menu, inspiration: https://www.geeksforgeeks.org/how-to-set-default-value-in-select-using-reactjs/
-
-//but it was not working
-/* const timeOptions = [
-  {option: '08:00', pickuptime: '08:00'},
-  {option: '10:00', pickuptime: '10:00'},
-  {option: '12:00', pickuptime: '12:00'},
-  {option: '14:00', pickuptime: '14:00'},
-  {option: '16:00', pickuptime: '16:00'},
-  {option: '18:00', pickuptime: '18:00'},
-  {option: '20:00', pickuptime: '20:00'},
-]
-
-const carGroups = [
-  {value: 'A', label: 'A'},
-  {value: 'B', label: 'B'},
-  {value: 'C', label: 'C'},
-  {value: 'D', label: 'D'},
-  {value: 'E', label: 'E'},
-  {value: 'F', label: 'F'},
-  {value: 'G', label: 'G'},
-  {value: 'H', label: 'H'},
-  {value: 'I', label: 'I'},
-] */
-
-const DefaultTime = "08:00";
-const DefaultCarGroup = "A";
 
 export default class BookingForm extends React.Component {
   constructor(props) {
@@ -83,48 +47,39 @@ export default class BookingForm extends React.Component {
 
     //this.handleChange = this.handleChange.bind(this);  //after making these functions into arrow functions, we no longer need to bind function
     //this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDefaultValues = this.handleDefaultValues.bind(this);
-  }
-
-  //trying to create a method to set data to first value if nothing is selected in dropdown menus
-  handleDefaultValues= () => {
-    this.setState.pickuptime = DefaultTime;
-    this.setState.returntime = DefaultTime;
-    this.setState.reqcargroup = DefaultCarGroup;
   }
 
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
   //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
-  handleChange = async event => {
+  handleChange = async (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
-  handleSubmit = async event => {
-      alert(
-        "A new booking was submitted with BookingID: " +
-          this.state.BookingID
-      );
+  handleSubmit = async (event) => {
+    alert(
+      "A new booking was submitted with BookingID: " + this.state.BookingID
+    );
 
-      try {
-        fetch("https://parseapi.back4app.com/classes/Booking", {
-          method: "POST",
-          headers: {
-            "X-Parse-Application-Id": APP_ID_KEY,
-            "X-Parse-REST-API-Key": APP_REST_KEY,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(this.state),
-        }).then((Booking) => {
-          console.log(Booking);
-          return Booking.json();
-        });
-      } finally {
-        event.target.reset(); //clears the input fields upon submission
-      }
-  }
+    try {
+      fetch("https://parseapi.back4app.com/classes/Booking", {
+        method: "POST",
+        headers: {
+          "X-Parse-Application-Id": APP_ID_KEY,
+          "X-Parse-REST-API-Key": APP_REST_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.state),
+      }).then((Booking) => {
+        console.log(Booking);
+        return Booking.json();
+      });
+    } finally {
+      event.target.reset(); //clears the input fields upon submission
+    }
+  };
 
   render() {
     return (
@@ -190,7 +145,7 @@ export default class BookingForm extends React.Component {
           <label className="label">Office:</label>
           <input
             className="input"
-            placeholder= "e.g. KRP"
+            placeholder="e.g. KRP"
             type="text"
             name="PickUpOffice"
             value={this.state.pickupoffice}
@@ -209,14 +164,14 @@ export default class BookingForm extends React.Component {
           />
           <label className="label">Time:</label>
           <select
+            required
             className="input"
             type="text"
             name="PickUpTime2"
             value={this.state.pickuptime}
             onChange={this.handleChange}
-            defaultValue={"08:00"}
           >
-            <option value="Not Selected">Select</option> 
+            <option value="Not Selected">Select</option>
             <option value="8:00">08:00</option>
             <option value="10:00">10:00</option>
             <option value="12:00">12:00</option>
@@ -224,14 +179,14 @@ export default class BookingForm extends React.Component {
             <option value="16:00">16:00</option>
             <option value="18:00">18:00</option>
             <option value="20:00">20:00</option>
-           </select>{" "}
+          </select>{" "}
           <span></span>
           <br />
           <h4>Return</h4>
           <label className="label">Office:</label>
           <input
             className="input"
-            placeholder= "e.g. AAL"
+            placeholder="e.g. AAL"
             type="text"
             name="ReturnOffice"
             value={this.state.returnoffice}
@@ -250,14 +205,13 @@ export default class BookingForm extends React.Component {
           />
           <label className="label">Time:</label>
           <select
+            required
             className="input"
             type="text"
             name="ReturnTime2"
             value={this.state.returntime}
-            initialState= {this.handleDefaultSelect}
-            data={this.handleDefaultSelect}
+            initialState={this.handleDefaultSelect}
             onChange={this.handleChange}
-            required
           >
             <option value="Not Selected">Select</option>
             <option value="8:00">08:00</option>
@@ -300,7 +254,9 @@ export default class BookingForm extends React.Component {
             className="button_newB"
             type="button"
             value=" Cancel booking "
-            onClick={() => { window.location.href = '/rental'}}
+            onClick={() => {
+              window.location.href = "/rental";
+            }}
           ></input>
         </div>
       </form>
