@@ -10,7 +10,7 @@ function randomFromArray(array) {
 
 const carGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
-const domains = ["@geMail.com", "@hutmail.com", "@ito.dk", "yahooo.com", "gogle.com" ];
+const domains = ["@geMail.com", "@hutmail.com", "@ito.dk", "@yahooo.com", "@gogle.com" ];
 
 //this function is never used - could be interesting to use if we want to autogenerate some bookings
 /* function randomizeDate() { 

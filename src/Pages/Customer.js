@@ -12,10 +12,10 @@ const CustomerTable = () => {
     () => [
       { Header: "Name", accessor: "fullName" },
       { Header: "E-Mail", accessor: "email" },
-      { Header: "Car Group", accessor: "lastCarGroup" },
-      // { Header: "Last Booking", accessor: "lastBooking"},
+      { Header: "Latest Car Group", accessor: "lastCarGroup" },
+      // { Header: "Last Booking", accessor: "lastBooking"},  //functionality that would be nice to implement at a later stage
       { Header: "Total Bookings", accessor: "totalBookings" },
-      { Header: "Internal ID", accessor: "id" },
+      { Header: "Internal ID", accessor: "id",  }, //we need to have this visible in order to DELETE customer
     ],
     []
   );
