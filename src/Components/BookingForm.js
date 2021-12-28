@@ -3,16 +3,24 @@ import "./BookingForm.css";
 //import { FormControl } from '@mui/material';
 
 /**
+ * Reference: https://reactjs.org/docs/forms.html 
  * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a booking in the database.
- * In order to simulate a real order creating, we have implemented a auto-generated bookingID, we have used random numbers within a given interval.
+ * 
+ * In order to simulate a real order creating, we have implemented a auto-generated bookingID, using random numbers 
+ * within a given interval to visualize the booking being created - see alert in handleSubmit.
+ * 
+ * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to 
+ * the database stringify the state of the object and then POST it to the database.
  * 
  * Known bugs & defect: 
- * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method adding +1 to the latest bookingID added to the database.
- *    Challenges: concurrency issues, might need to be an atomic integer which would slow down app responsiveness
- * 2. if ANY the dropdown menues: pickuptime, returntime and reqcargroup is not selected, then there will be a data breakage with the table rendering on the pages receiving data from the database as there will be empty data fields
- * blocking the rendering.
+ * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method 
+ *    adding +1 to the latest bookingID added to the database.
+ *    Challenges for implementation: potential concurrency issues; might need to implement an atomic integer which could slow down app responsiveness.
  * 
- * Current status: trying to fix the dropdown menu defect, as it is the most vital
+ * 2. If ANY the dropdown menues: pickuptime, returntime and reqcargroup is not selected, then there will be a data breakage with the table rendering 
+ *    on the pages receiving data from the database as there will be empty data fields blocking the rendering.
+ *    
+ * Status: trying to fix defect no. 2, as it can break the table rendering entirely for all components reading from the Booking database.
  */
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
@@ -28,8 +36,6 @@ function generateRandomBookingID(min, max) {
 
 const DefaultTime = "08:00";
 const DefaultCarGroup = "A";
-
-//const DriversLicense = 12495626; used for testing parsing of numbers - static numbers works, however numbers 'input' does not work since state is stringified!
 
 export default class BookingForm extends React.Component {
   constructor(props) {
@@ -209,7 +215,7 @@ export default class BookingForm extends React.Component {
           <label className="label">Date:</label>
           <input
             className="input"
-            type="date" //need to find a way to parse this value to DB
+            type="date"
             name="ReturnDate"
             value={this.state.returndate}
             onChange={this.handleChange}
