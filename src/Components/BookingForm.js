@@ -12,6 +12,14 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
+
+// Avail timeslots here, then into "op"
+const timeSlots = ["08:00", "10:00", "12:00"]
+const timeOptionBoxes = [] 
+timeSlots.forEach(element => {
+  timeOptionBoxes.push(<option> {element} </option>)
+});
+            
 //const DriversLicense = 12495626; used for testing parsing of numbers - static numbers works, however numbers 'input' does not work since state is stringified!
 
 export default class BookingForm extends React.Component {
@@ -155,13 +163,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           >
-            <option value="A">08:00</option>
-            <option value="B">10:00</option>
-            <option value="C">12:00</option>
-            <option value="D">14:00</option>
-            <option value="E">16:00</option>
-            <option value="F">18:00</option>
-            <option value="G">20:00</option>
+            {timeOptionBoxes}
           </select>{" "}
           <span></span>
           <br /><h4>Return</h4>
