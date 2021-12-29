@@ -58,7 +58,6 @@ const RentalTable = () => {
       </DefaultButton>
       <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
       <Footer/>
-        
     </div>
   );
 };

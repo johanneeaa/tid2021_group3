@@ -1,8 +1,7 @@
 .footerdiv {
-  height: 75px;  /*changed the height here, as it was very dominating on the pages*/
+  height: 40px; /*Changed the height again as it was still big*/
   position: sticky;
   position: -webkit-sticky; /*This is needed for Safari & IE browser*/
-  position: sticky;
 }
 .footer {
   position: -webkit-sticky; /*This is needed for Safari & IE browser*/
@@ -11,5 +10,5 @@
 .footerbody {
   position: -webkit-sticky; /*This is needed for Safari & IE browser*/
   position: sticky;
-  height: 30px;
+  height: 20px;
 }
