@@ -44,7 +44,7 @@ function TablePopUp(props) {
         <div className="popup" >
            
             <div className="popup-inner" style={{background: "White"}}> 
-            <h1>AVAILABLE CARS: </h1>
+            Available Cars: 
             
                 <div className="popup-info"> 
                 {isLoaded ? data[0] ? <Table columns={columns} data={data} page={"carCheckout"}/> : "no avail cars, request transfer (Button) or upgrade (Button)" : "Loading..."}
