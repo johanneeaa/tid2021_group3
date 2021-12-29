@@ -33,19 +33,26 @@ function TablePopUp(props) {
             setData(carsDataTemp)
             setIsLoaded(true)
             //console.log("finished parse query on cars");
-        }
+        }   
         fetchData();
     },[])
 
+    console.log(data);
+    
+
     return  (      
         <div className="popup" >
-            <div className="popup-inner" style={{background: "White"}}>
+           
+            <div className="popup-inner" style={{background: "White"}}> 
+            <h1>AVAILABLE CARS: </h1>
+            
                 <div className="popup-info"> 
-                {isLoaded ? <Table columns={columns} data={data} page={"carCheckout"}/> : "Loading"}
+                {isLoaded ? data[0] ? <Table columns={columns} data={data} page={"carCheckout"}/> : "no avail cars, request transfer (Button) or upgrade (Button)" : "Loading..."}
                 </div>
                 
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>
             </div>
+            
         </div>
     ) 
 
