@@ -18,6 +18,7 @@ function TablePopUp(props) {
             { Header: "Mileage in KM", accessor: "mileage"},
             { Header: "Fuel", accessor: "fuelLevel" },
             { Header: "Notes", accessor: "notes", }, 
+            { Header: "Internal ID", accessor: "id", }, 
         ]
 
     const [data, setData] = useState([])
@@ -35,15 +36,14 @@ function TablePopUp(props) {
         }
         fetchData();
     },[])
-    
 
     return  (      
         <div className="popup" >
             <div className="popup-inner" style={{background: "White"}}>
                 <div className="popup-info"> 
-                {isLoaded ? <Table columns={columns} data={data}/> : "Loading"
-                }
+                {isLoaded ? <Table columns={columns} data={data} page={"carCheckout"}/> : "Loading"}
                 </div>
+                
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>
             </div>
         </div>

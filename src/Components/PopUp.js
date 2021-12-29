@@ -4,6 +4,7 @@ import deleteCustomerByID from '../Functions/deleteCustomerById';
 import './PopUp.css';
 import TablePopUp from './TablePopUp';
 
+
 // Popup component, to show info of a pressed object. 
 // takes props [ object, rowHeaders, color, trigger & setTrigger ]
 // built upon [ https://bit.ly/3sqflPn ] & [ https://bit.ly/3eiOZq9 ]
@@ -15,6 +16,7 @@ function PopUp(props) {
     if (props.rowHeaders){
 
         const ID = props.object.id; 
+        console.log("inPopup " + ID);
 
         // array to access the object by index instead of key
         var rowInfoArray = [] 
@@ -50,7 +52,8 @@ function PopUp(props) {
                         /> : null}    
                     {props.page === "customer" ? 
                         <button onClick={() => deleteCustomerByID(ID)}>DELETE</button> : null
-                    }           
+                    }
+                              
                 </div>
             </div>
         ) 

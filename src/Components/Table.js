@@ -5,6 +5,7 @@ import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
 import './Table.css';
 import { AppContext } from "./AppProvider";
 import styled from "styled-components"
+import changeCarState from '../Functions/changeCarState';
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
@@ -84,11 +85,10 @@ export default function Table({columns, data, style, page}) {
           return (
             <Row className = "tablerow"
               {...row.getRowProps()}
-            
               onClick={
-                () => ( setPopUpTrigger(true)) +
-                + setClickedRowObject(row.values)
-              }
+                () => ( page === "carCheckout" ? changeCarState("Rented",row.values.id) : setPopUpTrigger(true)) +
+                + setClickedRowObject(row.values) 
+                }
               >
               {row.cells.map((cell) => {
                 return (

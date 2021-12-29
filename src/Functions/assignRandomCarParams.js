@@ -29,8 +29,7 @@ export default async function setRandomCarProps() {
     cars[i].set("CurrentLocation", randomLocation());
     
     console.log(cars[i].get("CarState"));
-    cars[i].save()
- 
+    await cars[i].save()
   }
 
   window.location.reload(false);
