@@ -1,10 +1,10 @@
 import Parse from "parse";
 
-// Function to update a cars state. Check
+// Function to update a cars state, based on a desried toState and the ID of the car
 
 export default async function changeCarState(toState ,idOfCar) {
 
-  const carStates = ["Ready","Rented","Returned","Transfer", "Unavailable"]
+  const carStates = ["Ready","Rented","Returned","Transfer", "Unavailable"] // should be a global stored  array of acceptable states, not locally.
   if (carStates.indexOf(toState) === -1){
       //if not valid
       console.log("invalid state for DB");
