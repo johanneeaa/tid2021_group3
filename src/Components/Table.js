@@ -29,7 +29,7 @@ export default function Table({columns, data, style, page}) {
     transition: all .3s ease-in-out
   }`
 
-  // myHeaders is created to allow functions/components acces to "nice" headers instead of accessors
+  // myHeaders is created to allow functions/components acces to "nice" headers instead of accessors, without hardcoding them 
   const myHeaders =[]
   columns.forEach(columns => {
     myHeaders.push(columns.Header)
@@ -85,11 +85,11 @@ export default function Table({columns, data, style, page}) {
           return (
             <Row className = "tablerow"
               {...row.getRowProps()}
-              onClick={
-                () => ( page === "carCheckout" ? changeCarState("Rented",row.values.id) : setPopUpTrigger(true)) +
+              onClick={() => 
+                (page === "carCheckout" ? changeCarState("Rented",row.values.id) : setPopUpTrigger(true))
                 + setClickedRowObject(row.values) 
-                }
-              >
+              }
+            >
               {row.cells.map((cell) => {
                 return (
                   <td className = "tablecell" {...cell.getCellProps()} style={
@@ -120,6 +120,7 @@ export default function Table({columns, data, style, page}) {
       </tbody>
     );
   } 
+
   return ( 
     <div className = "container">
       <table className = "table"
