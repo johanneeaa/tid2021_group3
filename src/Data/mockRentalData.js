@@ -6,7 +6,7 @@ import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { format } from "date-fns";
 
-// Creating mock data for our table.
+// Creating mock data for our table, so we dont need to hardcode in DB, we can scale up easy.
 // The newRental const will contain an object with randomized, but realistic, rental information
 // based on react table examples [ https://react-table.tanstack.com/docs/examples/filtering ]
 
@@ -16,7 +16,7 @@ function randomFromArray(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-const carGroups = ["A", "B", "C", "D", "E"];
+const carGroups = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 const minuteIntervals = ["00", "15", "30", "45"];
 

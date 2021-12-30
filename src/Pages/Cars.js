@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
-import getCars from "../Functions/assignRandomCarParams";
 import setRandomCarProps from "../Functions/assignRandomCarParams";
-import findAvailCars from "../Functions/findAvailCars";
-import TablePopUp from "../Components/TablePopUp";
+import makeMockCars from "../Data/mockCarData";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend.
@@ -52,7 +50,7 @@ const CarTable = () => {
         <div>
         <Table columns={carsColumns} data={carsData}/>
         <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
-
+        <button className = "larsButton" onClick={()=>makeMockCars(1) }> For testing: Make mock cars to DB </button>
         </div>
     )
 };
