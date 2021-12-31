@@ -13,18 +13,20 @@ export default async function findAvailCars(location, carGroup) {
     const query = new Parse.Query(Car);
 
     query.equalTo("CurrentLocation", location);
-    query.equalTo("Group", carGroup);
-
     query.equalTo("CarState", "Ready");
+    
+    if (carGroup !== ""){
+      query.equalTo("Group", carGroup);
+    }
+   
 
     const carsAtLocation = await query.find()
     
     for (let i = 0; i < carsAtLocation.length; i++) {
         const object = carsAtLocation[i];
         IDsOfReadyCars.push(object.id)
-        console.log(object.get('LicensePlate') +' '+ object.get('CarState'));
+        //console.log(object.get('LicensePlate') +' '+ object.get('CarState'));
     }
-    //console.log(IDsOfReadyCars);
 
     const carsFoundMapped = query.map((car)=>{
       return {

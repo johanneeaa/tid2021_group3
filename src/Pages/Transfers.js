@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import getAllCars from "../Data/carData";
 import Table from "../Components/Table";
 import Footer from "../Components/Footer";
+import carsOnLocation from "../Functions/autoRequestTransfer";
 //import SelectColumnFilter from "../Components/Filters";
 
 const TransferTable = () => {
@@ -29,6 +30,7 @@ const TransferTable = () => {
 
   return (
     <div>
+      <button onClick={()=> carsOnLocation() }> Button</button>
       <Table columns={transferColumns} data={transferData} color={"#F790CE"} />
       <Footer />
     </div>
