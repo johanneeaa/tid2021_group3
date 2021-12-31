@@ -7,9 +7,9 @@ const carGroups = ["A","B", "C", "D", "E", "F", "G", "H", "I"];
 
 // objects of our locations and threshholds. Start simple with only lower threshholds.
 const locations = [
-    {name: "AAL", lowerThresh: 2},
+    {name: "AAL", lowerThresh: 3},
     {name: "KST", lowerThresh: 2},
-    {name: "KRP", lowerThresh: 2}
+    {name: "KRP", lowerThresh: 1}
 ]
 
 async function requestTransfer(toLocation, carGroup) {
@@ -35,7 +35,7 @@ export default async function carsOnLocation(params) {
 
             // check if avail cars < lower threshold
             if (carsAtLocation.length < locations[i].lowerThresh){
-                
+
                 // if check is true, then something
                 requestTransfer(locations[i].name, carGroups[j])
             }
