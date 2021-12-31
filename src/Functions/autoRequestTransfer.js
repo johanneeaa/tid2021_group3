@@ -12,6 +12,10 @@ const locations = [
     {name: "KRP", lowerThresh: 2}
 ]
 
+async function requestTransfer(toLocation, carGroup) {
+    console.log(toLocation + " requests car from car group " + carGroup);
+}
+
 export default async function carsOnLocation(params) {
     console.log("Started searching for autotransfers");
 
@@ -22,15 +26,18 @@ export default async function carsOnLocation(params) {
 
 
         query.equalTo("CarState", "Ready");
-        query.equalTo("CurrentLocation", locations[i].name);        
-        // find avail cars for a location
+        query.equalTo("CurrentLocation", locations[i].name);
 
+        // find avail cars for a location
         for (let j = 0; j < carGroups.length; j++) {
             query.equalTo("Group", carGroups[j]);
             const carsAtLocation = await query.find()
+
             // check if avail cars < lower threshold
             if (carsAtLocation.length < locations[i].lowerThresh){
-                console.log("At " + locations[i].name + " there are " + carsAtLocation.length + " in group " + carGroups[j]);
+                
+                // if check is true, then something
+                requestTransfer(locations[i].name, carGroups[j])
             }
         }
         console.log(
@@ -41,5 +48,3 @@ export default async function carsOnLocation(params) {
 }
 
 
-
-// if check is true, then something
