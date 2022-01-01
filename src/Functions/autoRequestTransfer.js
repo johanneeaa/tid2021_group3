@@ -8,23 +8,20 @@ const carGroups = ["A","B", "C", "D", "E", "F", "G", "H", "I"];
 // objects of our locations and threshholds. Start simple with only lower threshholds.
 const locations = [
     {name: "AAL", lowerThresh: 1},
-    {name: "KST", lowerThresh: 3},
+    {name: "KST", lowerThresh: 2},
     {name: "KRP", lowerThresh: 3}
 ]
 
-// function to make the final request, for now; string output.
-async function requestTransfer(toLocation, carGroup) {
-    console.log(toLocation + " requests car from car group " + carGroup);
-}
+// the array that should contain our data at the end
+const autoTransfers = []
 
-export default async function carsOnLocation(params) {
+export default async function getNeededTransfers(params) {
     console.log("Started searching for autotransfers");
 
     const Car = Parse.Object.extend("Car");
     const query = new Parse.Query(Car);
 
     for (let i = 0; i < locations.length; i++) {
-
 
         query.equalTo("CarState", "Ready");
         query.equalTo("CurrentLocation", locations[i].name);
@@ -37,15 +34,25 @@ export default async function carsOnLocation(params) {
             // check if avail cars < lower threshold
             if (carsAtLocation.length < locations[i].lowerThresh){
 
-                // if check is true, then something
-                requestTransfer(locations[i].name, carGroups[j])
+                // if check is true, then create an object to our request array
+                autoTransfers.push({
+                    group: carGroups[j],
+                    fromLocation: "N/A",
+                    toLocation: locations[i].name, 
+                    type: "Automatic", 
+                    status: "Awaits...",
+                    eta: "N/A",
+                    time: new Date().toLocaleTimeString("en-GB") + " " 
+                        + new Date().toLocaleDateString("en-GB"),
+                })
             }
         }
         console.log(
-            
+        // for break
         );
     }
     console.log("Exited searching for autotransfers");
+    return autoTransfers
 }
 
 
