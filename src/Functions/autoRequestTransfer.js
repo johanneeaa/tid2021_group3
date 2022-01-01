@@ -7,11 +7,12 @@ const carGroups = ["A","B", "C", "D", "E", "F", "G", "H", "I"];
 
 // objects of our locations and threshholds. Start simple with only lower threshholds.
 const locations = [
-    {name: "AAL", lowerThresh: 3},
-    {name: "KST", lowerThresh: 2},
-    {name: "KRP", lowerThresh: 1}
+    {name: "AAL", lowerThresh: 1},
+    {name: "KST", lowerThresh: 3},
+    {name: "KRP", lowerThresh: 3}
 ]
 
+// function to make the final request, for now; string output.
 async function requestTransfer(toLocation, carGroup) {
     console.log(toLocation + " requests car from car group " + carGroup);
 }
