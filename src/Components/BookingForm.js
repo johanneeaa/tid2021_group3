@@ -243,7 +243,7 @@ export default class BookingForm extends React.Component {
           </select>{" "}
           <span></span>
           <input
-            className="confirmButtom"
+            className="confirmButton"
             type="submit"
             value=" Confirm booking "
           ></input>{" "}

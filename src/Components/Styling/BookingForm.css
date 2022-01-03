@@ -121,18 +121,20 @@ h1 {
   width: 200px;
 }
 
-/*.confirmButton {
-  grid-row-start: row4-end;
+.confirmButton {
+  /*grid-row-start: row4-end;
   grid-row-end: last-line;
   grid-column-start: first;
-  grid-column-end: line2;
+  grid-column-end: line2;*/
+  border-radius: 5px;
   width: 200px;
 }
 
 .cancelButton {
-  grid-row-start: row4-end;
+  /* grid-row-start: row4-end;
   grid-row-end: last-line;
   grid-column-start: line2;
-  grid-column-end: end;
+  grid-column-end: end; */
   width: 200px;
-}*/
+  border-radius: 5px;
+}
