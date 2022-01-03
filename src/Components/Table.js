@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
-import './Table.css';
+import './Styling/Table.css';
 import { AppContext } from "./AppProvider";
-import styled from "styled-components"
+import styled from "styled-components";
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.

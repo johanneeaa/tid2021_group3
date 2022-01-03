@@ -4,6 +4,7 @@ import Table from "../Components/Table";
 import addRandomCustomer from "../Functions/createRandomCustomer"
 import "./Customer.css";
 import Footer from "../Components/Footer";
+import DefaultButton from "../Components/Button";
 
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);
@@ -33,7 +34,7 @@ const CustomerTable = () => {
       <div className="topLinecontainer">
         <br />{" "}
       </div>
-      <button
+      <DefaultButton
         className="newButton"
         onClick={() => {
           window.location.href = "/newbooking";
@@ -41,8 +42,8 @@ const CustomerTable = () => {
       >
         {" "}
         Add a new Customer
-      </button>
-      <button className = "generateNewCustomer" onClick={()=>addRandomCustomer() }> Auto-generate a new Customer</button><br/>
+      </DefaultButton>
+      <DefaultButton className = "generateNewCustomer" onClick={()=>addRandomCustomer() }> Auto-generate a new Customer</DefaultButton><br/>
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
       <Footer />
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import {BookingID} from "../Data/newBookingData"
-import "./BookingForm.css";
+import './Styling/BookingForm.css';
 
 /**
  * Reference: https://reactjs.org/docs/forms.html
@@ -79,7 +79,7 @@ export default class BookingForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="inputcontainer">
-          <h1>Create new booking</h1>
+          <h1>  Create new booking</h1>
           <input
             className="button_addCustomer" //this buttons do not have any functionality yet
             type="button"
@@ -92,7 +92,7 @@ export default class BookingForm extends React.Component {
             value=" Create a new Customer "
           ></input>
           <br />
-          <label className="label">
+          <label className="driversLabel">
             First Name:
             <input
               className="input"
@@ -103,7 +103,7 @@ export default class BookingForm extends React.Component {
               required
             />
           </label>
-          <label className="label">
+          <label className="driversLabel">
             Last Name:
             <input
               className="input"
@@ -115,7 +115,7 @@ export default class BookingForm extends React.Component {
             />
           </label>
           <br />
-          <label className="label">Drivers License No.:</label>
+          <label className="driversLabel">Drivers License No.:</label>
           <input
             className="input"
             placeholder="e.g. 12345678"
@@ -125,7 +125,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label className="label">Date of Birth:</label>
+          <label className="driversLabel">Date of Birth:</label>
           <input
             className="input"
             type="date"
@@ -135,10 +135,11 @@ export default class BookingForm extends React.Component {
             required
           />
           <br />
-          <h4>Pick Up</h4>
-          <label className="label">Office:</label>
+          <div className="pickUpContainer">
+            <h4 className="pickuph4">Pick Up</h4>
+          <label className="pickupLabel">Office:</label>
           <input
-            className="input"
+            className="pickUpInput"
             placeholder="e.g. KRP"
             type="text"
             name="PickUpOffice"
@@ -147,19 +148,19 @@ export default class BookingForm extends React.Component {
             required
           />
           <br />
-          <label className="label">Date:</label>
+          <label className="pickupLabel">Date:</label>
           <input
-            className="input"
+            className="pickUpInput"
             type="date"
             name="PickUpDate"
             value={this.state.pickupdate}
             onChange={this.handleChange}
             required
           />
-          <label className="label">Time:</label>
+          <label className="pickupLabel">Time:</label>
           <select
             required
-            className="input"
+            className="pickUpInput"
             type="text"
             name="PickUpTime2"
             value={this.state.pickuptime}
@@ -175,11 +176,13 @@ export default class BookingForm extends React.Component {
             <option value="20:00">20:00</option>
           </select>{" "}
           <span></span>
+          </div>
           <br />
-          <h4>Return</h4>
-          <label className="label">Office:</label>
+          <div className="returnContainer">
+            <h4 className="rentalh4">Return</h4>
+          <label className="returnLabel">Office:</label>
           <input
-            className="input"
+            className="returnInput"
             placeholder="e.g. AAL"
             type="text"
             name="ReturnOffice"
@@ -188,19 +191,19 @@ export default class BookingForm extends React.Component {
             required
           />
           <br />
-          <label className="label">Date:</label>
+          <label className="returnLabel">Date:</label>
           <input
-            className="input"
+            className="returnInput"
             type="date"
             name="ReturnDate"
             value={this.state.returndate}
             onChange={this.handleChange}
             required
           />
-          <label className="label">Time:</label>
+          <label className="returnLabel">Time:</label>
           <select
             required
-            className="input"
+            className="returnInput"
             type="text"
             name="ReturnTime2"
             value={this.state.returntime}
@@ -216,6 +219,7 @@ export default class BookingForm extends React.Component {
             <option value="20:00">20:00</option>
           </select>{" "}
           <span></span>
+          </div>
           <br />
           <label className="label">Select Car Group:</label>
           <select
@@ -239,13 +243,13 @@ export default class BookingForm extends React.Component {
           </select>{" "}
           <span></span>
           <input
-            className="button_newB"
+            className="confirmButtom"
             type="submit"
             value=" Confirm booking "
           ></input>{" "}
           <span></span>
           <input
-            className="button_newB"
+            className="cancelButton"
             type="button"
             value=" Cancel booking "
             onClick={() => {

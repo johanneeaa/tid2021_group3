@@ -1,7 +1,7 @@
 //this form should render if button 'create new customer' is clicked in BookingForm OR it
 
 import React from "react";
-import "./CustomerForm.css";
+import "./Styling/CustomerForm.css";
 
 /**
  * Reference: https://reactjs.org/docs/forms.html 

@@ -1,7 +1,7 @@
 import Textbox4Info from './TextBox4Info';
 import React, { useState } from 'react';
 import deleteCustomerByID from '../Functions/deleteCustomerById';
-import './PopUp.css';
+import './Styling/PopUp.css';
 import TablePopUp from './TablePopUp';
 
 // Popup component, to show info of a pressed object. 

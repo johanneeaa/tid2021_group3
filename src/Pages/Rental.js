@@ -10,6 +10,7 @@ import DefaultButton from "../Components/Button";
 const RentalTable = () => {
   const [rentalData, setRentalData] = useState([]);
 
+
   const rentalColumns = React.useMemo(
     () => [
       { Header: "Booking Number", accessor: "bookingNumber" },
@@ -46,15 +47,17 @@ const RentalTable = () => {
     }
     fetchData();
   }, []);
+  const buttonText = 'New Booking';
 
   return (
     <div>
       <DefaultButton
         onClick={() => {
           window.location.href = "/newbooking";
-        }}
+        }
+      }
       >
-        Create New Booking
+        {buttonText}
       </DefaultButton>
       <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
       <Footer/>

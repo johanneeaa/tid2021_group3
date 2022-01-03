@@ -1,0 +1,138 @@
+.inputcontainer {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  background-color: #f7e8a4;
+  row-gap: 5px;
+  column-gap: 5px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+h1 {
+  grid-column-start: first span end;
+  justify-self: center;
+}
+
+/*
+.pickuph4 {
+  align-items: center;
+  grid-column-start: first;
+  grid-column-end: line2;
+  grid-row-start: row2-end;
+  grid-row-end: row3-end;
+}
+
+.pickUpContainer {
+  grid-column-start: first;
+  grid-column-end: line2;
+  grid-row-start: row3-end;
+  grid-row-end: row4-end;
+}
+
+/*.pickupLabel {
+  text-align: start;
+}
+
+.pickUpInput {
+  grid-column-start: first;
+  grid-column-end: line2;
+  grid-row-start: row2-end;
+  grid-row-end: last-line;
+  text-align: start;
+  border-radius: 5px;
+  margin: 2px 0;
+  display: inline-block;
+  text-align: left;
+  width: 200px;
+}
+
+.returnh4 {
+  grid-column-start: line2;
+  grid-column-end: end;
+  grid-row-start: row2-end;
+  grid-row-end: row3-end;
+}
+.returnContainer {
+  grid-column-start: line2;
+  grid-column-end: end;
+  grid-row-start: row3-end;
+  grid-row-end: row4-end;
+}
+
+/*.returnLabel {
+  grid-column-start: line2;
+  grid-column-end: end;
+  grid-row-start: row2-end;
+  grid-row-end: last-line;
+}
+
+.returnInput {
+  grid-column-start: line2;
+  grid-column-end: end;
+  grid-row-start: row2-end;
+  grid-row-end: last-line;
+}*/
+
+.driversLabel {
+  display: block;
+  text-align: start;
+  width: 200px;
+}
+/*
+.label {
+  text-align: start;
+  position: relative;
+  padding: 4px 4px;
+  margin: 4px 0;
+  border: 2px solid #f7e8a4;
+  border-radius: 25px;
+}
+
+.text {
+  padding: 12px 20px;
+  margin: 12px 0;
+}
+
+/*.input:required {
+  border-radius: 5px;
+  margin: 2px 0;
+  display: inline-block;
+  text-align: left;
+  width: 200px;
+}*/
+
+.button_newB {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  width: 200px;
+}
+
+.button_addCustomer {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  width: 200px;
+}
+
+/*.confirmButton {
+  grid-row-start: row4-end;
+  grid-row-end: last-line;
+  grid-column-start: first;
+  grid-column-end: line2;
+  width: 200px;
+}
+
+.cancelButton {
+  grid-row-start: row4-end;
+  grid-row-end: last-line;
+  grid-column-start: line2;
+  grid-column-end: end;
+  width: 200px;
+}*/

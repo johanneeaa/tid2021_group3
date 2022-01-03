@@ -1,6 +1,6 @@
 import { useState } from "react";
 import deleteCustomerByID from "../Functions/deleteCustomerById";
-import './InputBox.css';
+import './Styling/InputBox.css';
 
 export default function InputBox(props) {
   const [input, setInput] = useState("");
