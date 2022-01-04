@@ -79,7 +79,7 @@ export default class BookingForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="inputcontainer">
-          <h1>  Create new booking</h1>
+          <h1 className="header">  Create new booking</h1>
           <input
             className="button_addCustomer" //this buttons do not have any functionality yet
             type="button"
@@ -87,11 +87,12 @@ export default class BookingForm extends React.Component {
           ></input>{" "}
           <span></span>
           <input
-            className="button_addCustomer" //this buttons do not have any functionality yet
+            className="newCustomerButton" //this buttons do not have any functionality yet
             type="button"
             value=" Create a new Customer "
           ></input>
           <br />
+          <div className="driverContainer">
           <label className="driversLabel">
             First Name:
             <input
@@ -134,6 +135,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           />
+          </div>
           <br />
           <div className="pickUpContainer">
             <h4 className="pickuph4">Pick Up</h4>
@@ -221,6 +223,7 @@ export default class BookingForm extends React.Component {
           <span></span>
           </div>
           <br />
+          <div className="carGroupSelect">
           <label className="label">Select Car Group:</label>
           <select
           required
@@ -241,6 +244,7 @@ export default class BookingForm extends React.Component {
             <option value="H">H</option>
             <option value="I">I</option>
           </select>{" "}
+          </div>
           <span></span>
           <input
             className="confirmButton"
