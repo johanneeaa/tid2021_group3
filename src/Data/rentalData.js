@@ -12,16 +12,16 @@ export default async function getAllBookings() {
     const pickUp = booking.get("PickUpDate");
 
     //trying to format date input - perhaps make it its own function for reuseabaility, once it is working that is
-    function DateFormatting(string){
+/*     function DateFormatting(string){
       if(string.slice(6,7) === "01") {
         return string.slice(8,10) + " Jan";
       }
-    };
+    }; */  //this is not working!
 
     return {
       id: booking.id,
       pickUpOffice: booking.get("PickUpOffice"),
-      pickUpDate: DateFormatting(pickUp),//booking.get("PickUpDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet
+      pickUpDate: booking.get("PickUpDate").slice(5,10), // DateFormatting(pickUp),//booking.get("PickUpDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet
       pickUpTime: booking.get("PickUpTime2"),
       returnOffice: booking.get("ReturnOffice"),
       returnDate: booking.get("ReturnDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet

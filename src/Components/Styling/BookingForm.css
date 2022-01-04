@@ -7,13 +7,13 @@
   margin: 8px 0;
   background: #f7e8a4;
   grid-template-columns: [first] 50% [line2] 50% [line3];
-  grid-template-rows: [row1-start] 100px[row1-end] 30px[third-line] 200px[fourth-line] 100px [fifth-line] 70px [last-line];
+  grid-template-rows: [row1-start] 100px[row1-end] 30px[third-line] 200px[fourth-line] 100px [fifth-line] 150px [last-line];
   grid-template-areas:
     "header header"
     "row2col2 row2col1"
     "driverInfo driverInfo2"
+    ". carGroupSelect"
     "pickup return"
-    "carGroupSelect carGroupSelect"
     "footer2 footer";
 }
 
@@ -56,35 +56,13 @@ form {
 h4 {
   margin-bottom: 20px;
 }
-/*
-.label {
-  text-align: start;
-  position: relative;
-  padding: 4px 4px;
-  margin: 4px 0;
-  border: 2px solid #f7e8a4;
-  border-radius: 25px;
-}
-
-.text {
-  padding: 12px 20px;
-  margin: 12px 0;
-}
-
-/*.input:required {
-  border-radius: 5px;
-  margin: 2px 0;
-  display: inline-block;
-  text-align: left;
-  width: 200px;
-}*/
 
 .button_addCustomer {
   border-radius: 5px;
   padding: 4px 4px;
   margin: 2px 0;
   width: 200px;
-  background-color: #f7e8a4;
+  background-color: #fce062;
   grid-area: row2col1;
 }
 
@@ -93,32 +71,26 @@ h4 {
   padding: 4px 4px;
   margin: 2px 0;
   width: 200px;
-  background-color: #f7e8a4;
+  background-color: #fce062;
   grid-area: row2col2;
 }
 
 .confirmButton {
-  /*grid-row-start: row4-end;
-  grid-row-end: last-line;
-  grid-column-start: first;
-  grid-column-end: line2;*/
   border-radius: 5px;
   padding: 4px 4px;
   margin: 2px 0;
   width: 200px;
-  background-color: #f7e8a4;
+  height: 40px;
+  background-color: #badec9;
   grid-area: footer;
 }
 
 .cancelButton {
-  /* grid-row-start: row4-end;
-  grid-row-end: last-line;
-  grid-column-start: line2;
-  grid-column-end: end; */
   border-radius: 5px;
   padding: 4px 4px;
   margin: 2px 0;
+  height: 40px;
   width: 200px;
-  background-color: #f7e8a4;
+  background-color: #f9a59f;
   grid-area: footer2;
 }

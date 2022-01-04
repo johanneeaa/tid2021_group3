@@ -1,25 +1,28 @@
 import React from "react";
-import { BookingID, timeOptionBoxes, rentalOfficeBoxes, carGroupBoxes} from "../Data/newBookingData";
+import {BookingID, todaysDate, timeOptionBoxes, rentalOfficeBoxes, carGroupBoxes} from "../Data/newBookingData";
 import "./Styling/BookingForm.css";
 
+const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
+const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
 /**
  * Reference: https://reactjs.org/docs/forms.html
- * The BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a Booking in the database.
+ * 
+ * This BookingForm is used to create a new booking in the system, it takes all the inputs given by user and adds it as a Booking in the database.
  *
  * In order to simulate a real order creating, we have implemented a auto-generated bookingID, using random numbers
  * within a given interval to visualize a new booking being created - see alert in handleSubmit.
  *
  * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to
  * the database stringify the state of the object and then POST it to the database.
+ * 
+ * All data imports can be found in newBookingData.
  *
  * Known bugs & defect:
  * 1. The BookingID does not prevent duplicate numbers from being created, ideally this needs to be an increment method
  *    adding +1 to the latest bookingID added to the database.
+ * 2. It is possible to select a return date earlier than pick-up date, which is not ideal,
+ *    however it is not possible to select a date before today's date.
  */
-
-const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
-const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
-
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);
@@ -43,20 +46,16 @@ export default class BookingForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  //this part here decides the data being parsed to the database - matches the named input fields with the actual input
-  //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
-  //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
-  handleChange = async (event) => {
+  /** The handleChange decides the data being parsed to the database - it matches the named input fields with the actual input
+  https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
+  https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change */
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
-  handleSubmit = async (event) => {
-    alert(
-      "A new booking was submitted with BookingID: " + this.state.BookingID
-    );
-
+  handleSubmit(event) {
     try {
       fetch("https://parseapi.back4app.com/classes/Booking", {
         method: "POST",
@@ -71,6 +70,9 @@ export default class BookingForm extends React.Component {
         return Booking.json();
       });
     } finally {
+      alert(
+        "A new booking was submitted with BookingID: " + this.state.BookingID
+      );
       event.target.preventDefault();
     }
   };
@@ -163,7 +165,7 @@ export default class BookingForm extends React.Component {
               value={this.state.pickupdate}
               onChange={this.handleChange}
               required
-              min="1920-01-01" max="2018-12-31"></input>
+              min={todaysDate}></input>
             <br></br>
             <label className="label">Time:</label>
             <select
@@ -201,7 +203,8 @@ export default class BookingForm extends React.Component {
               value={this.state.returndate}
               onChange={this.handleChange}
               required
-            /><br></br>
+              min= {todaysDate}></input> {/*Still possible to select return date before pick-up date*/}
+            <br></br>
             <label className="label">Time:</label>
             <select
               required
@@ -210,6 +213,7 @@ export default class BookingForm extends React.Component {
               name="ReturnTime2"
               value={this.state.returntime}
               onChange={this.handleChange}
+              
             >
               {timeOptionBoxes}
             </select>{" "}
