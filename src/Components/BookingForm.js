@@ -1,6 +1,6 @@
 import React from "react";
-import {BookingID} from "../Data/newBookingData"
-import './Styling/BookingForm.css';
+import { BookingID, timeOptionBoxes, rentalOfficeBoxes, carGroupBoxes} from "../Data/newBookingData";
+import "./Styling/BookingForm.css";
 
 /**
  * Reference: https://reactjs.org/docs/forms.html
@@ -71,7 +71,7 @@ export default class BookingForm extends React.Component {
         return Booking.json();
       });
     } finally {
-      event.target.reset(); //clears the input fields upon submission
+      event.target.preventDefault();
     }
   };
 
@@ -79,7 +79,7 @@ export default class BookingForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="inputcontainer">
-          <h1 className="header">  Create new booking</h1>
+          <h1 className="header"> Create new booking</h1>
           <input
             className="button_addCustomer" //this buttons do not have any functionality yet
             type="button"
@@ -94,159 +94,140 @@ export default class BookingForm extends React.Component {
           <br />
           <div className="driverContainer">
             <h4>Driver Information</h4>
-          <label className="label">
-            First Name:
-            <input
-              className="input"
-              type="text"
-              name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this is the 'header' column
-              value={this.state.firstname}
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-          <label className="label">
-            Last Name:
-            <input
-              className="input"
-              type="text"
-              name="LastName"
-              value={this.state.lastname}
-              onChange={this.handleChange}
-              required
-            />
-          </label>
+            <label className="label">
+              First Name:
+              <input
+                className="input"
+                type="text"
+                name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this is the 'header' column
+                value={this.state.firstname}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+            <label className="label">
+              Last Name:
+              <input
+                className="input"
+                type="text"
+                name="LastName"
+                value={this.state.lastname}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
           </div>
           <br />
           <div className="driverContainer2">
-          <label className="label">Drivers License No.:</label>
-          <input
-            className="input"
-            placeholder="e.g. 12345678"
-            type="number" //input is numbers, but when parsed it is converted to a string
-            name="DLicense"
-            value={this.state.driverslicense}
-            onChange={this.handleChange}
-            required
-          />
-          <label className="label">Date of Birth:</label>
-          <input
-            className="input"
-            type="date"
-            name="DoB2"
-            value={this.state.dob}
-            onChange={this.handleChange}
-            required
-          />
+            <label className="label">Drivers License No.:</label>
+            <input
+              className="input"
+              placeholder="e.g. 12345678"
+              type="number" //input is numbers, but when parsed it is converted to a string
+              name="DLicense"
+              value={this.state.driverslicense}
+              onChange={this.handleChange}
+              required
+            /><br></br>
+            <label className="label">Date of Birth:</label>
+            <input
+              className="input"
+              type="date"
+              name="DoB2"
+              value={this.state.dob}
+              onChange={this.handleChange}
+              required
+            />
           </div>
           <br />
           <div className="pickUpContainer">
             <h4 className="pickuph4">Pick Up</h4>
-          <label className="label">Office:</label>
-          <input
-            className="input"
-            placeholder="e.g. KRP"
-            type="text"
-            name="PickUpOffice"
-            value={this.state.pickupoffice}
-            onChange={this.handleChange}
-            required
-          />
-          <br />
-          <label className="label">Date:</label>
-          <input
-            className="input"
-            type="date"
-            name="PickUpDate"
-            value={this.state.pickupdate}
-            onChange={this.handleChange}
-            required
-          />
-          <label className="label">Time:</label>
-          <select
-            required
-            className="input"
-            type="text"
-            name="PickUpTime2"
-            value={this.state.pickuptime}
-            onChange={this.handleChange}
-          >
-            <option value="">Select</option> {/* leaving the value empty here, gives us the desired 'required' functionality */}
-            <option value="8:00">08:00</option>
-            <option value="10:00">10:00</option>
-            <option value="12:00">12:00</option>
-            <option value="14:00">14:00</option>
-            <option value="16:00">16:00</option>
-            <option value="18:00">18:00</option>
-            <option value="20:00">20:00</option>
-          </select>{" "}
-          <span></span>
+            <label className="label">Office:</label>
+            <select
+              required
+              className="input"
+              placeholder="e.g. KRP"
+              type="text"
+              name="PickUpOffice"
+              value={this.state.pickupoffice}
+              onChange={this.handleChange}
+            >
+              {rentalOfficeBoxes}
+            </select>
+            <br />
+            <label className="label">Date:</label>
+            <input
+              className="input"
+              type="date"
+              name="PickUpDate"
+              value={this.state.pickupdate}
+              onChange={this.handleChange}
+              required
+              min="1920-01-01" max="2018-12-31"></input>
+            <br></br>
+            <label className="label">Time:</label>
+            <select
+              required
+              className="input"
+              type="text"
+              name="PickUpTime2"
+              value={this.state.pickuptime}
+              onChange={this.handleChange}
+            >
+              {timeOptionBoxes}
+            </select>{" "}
+            <span></span>
           </div>
           <br />
           <div className="returnContainer">
             <h4 className="rentalh4">Return</h4>
-          <label className="label">Office:</label>
-          <input
-            className="input"
-            placeholder="e.g. AAL"
-            type="text"
-            name="ReturnOffice"
-            value={this.state.returnoffice}
-            onChange={this.handleChange}
-            required
-          />
-          <br />
-          <label className="label">Date:</label>
-          <input
-            className="input"
-            type="date"
-            name="ReturnDate"
-            value={this.state.returndate}
-            onChange={this.handleChange}
-            required
-          />
-          <label className="label">Time:</label>
-          <select
-            required
-            className="input"
-            type="text"
-            name="ReturnTime2"
-            value={this.state.returntime}
-            onChange={this.handleChange}
-          >
-            <option value="">Select</option>
-            <option value="8:00">08:00</option>
-            <option value="10:00">10:00</option>
-            <option value="12:00">12:00</option>
-            <option value="14:00">14:00</option>
-            <option value="16:00">16:00</option>
-            <option value="18:00">18:00</option>
-            <option value="20:00">20:00</option>
-          </select>{" "}
-          <span></span>
+            <label className="label">Office:</label>
+            <select
+              required
+              className="input"
+              type="text"
+              name="ReturnOffice"
+              value={this.state.returnoffice}
+              onChange={this.handleChange}
+            >
+              {rentalOfficeBoxes}
+            </select>
+            <br />
+            <label className="label">Date:</label>
+            <input
+              className="input"
+              type="date"
+              name="ReturnDate"
+              value={this.state.returndate}
+              onChange={this.handleChange}
+              required
+            /><br></br>
+            <label className="label">Time:</label>
+            <select
+              required
+              className="input"
+              type="text"
+              name="ReturnTime2"
+              value={this.state.returntime}
+              onChange={this.handleChange}
+            >
+              {timeOptionBoxes}
+            </select>{" "}
+            <span></span>
           </div>
           <br />
           <div className="carGroupSelect">
-          <label className="label">Select Car Group:</label>
-          <select
-          required
-            className="input"
-            type="text"
-            name="ReqCarGroup"
-            value={this.state.reqcargroup}
-            onChange={this.handleChange}
-          >
-            <option value="">Select</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="G">G</option>
-            <option value="H">H</option>
-            <option value="I">I</option>
-          </select>{" "}
+            <label className="label">Select Car Group:</label>
+            <select
+              required
+              className="input"
+              type="text"
+              name="ReqCarGroup"
+              value={this.state.reqcargroup}
+              onChange={this.handleChange}
+            >
+              {carGroupBoxes}
+            </select>{" "}
           </div>
           <span></span>
           <input
