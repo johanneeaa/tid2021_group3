@@ -115,7 +115,9 @@ export default class BookingForm extends React.Component {
               required
             />
           </label>
+          </div>
           <br />
+          <div className="driverContainer2">
           <label className="driversLabel">Drivers License No.:</label>
           <input
             className="input"
