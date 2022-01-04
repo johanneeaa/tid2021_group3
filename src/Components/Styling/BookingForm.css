@@ -5,9 +5,9 @@
   height: 100%;
   padding: 12px 20px;
   margin: 8px 0;
-  background-color: #f7e8a4;
+  background: #f7e8a4;
   grid-template-columns: [first] 50% [line2] 50% [line3];
-  grid-template-rows: [row1-start] 100px[row1-end] 50px[third-line] 300px[fourth-line] 100px [fifth-line] 70px [last-line];
+  grid-template-rows: [row1-start] 100px[row1-end] 30px[third-line] 200px[fourth-line] 100px [fifth-line] 70px [last-line];
   grid-template-areas:
     "header header"
     "row2col2 row2col1"
@@ -51,6 +51,10 @@ form {
 
 .carGroupSelect {
   grid-area: carGroupSelect;
+}
+
+h4 {
+  margin-bottom: 20px;
 }
 /*
 .label {

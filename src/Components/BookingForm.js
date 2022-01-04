@@ -93,7 +93,8 @@ export default class BookingForm extends React.Component {
           ></input>
           <br />
           <div className="driverContainer">
-          <label className="driversLabel">
+            <h4>Driver Information</h4>
+          <label className="label">
             First Name:
             <input
               className="input"
@@ -104,7 +105,7 @@ export default class BookingForm extends React.Component {
               required
             />
           </label>
-          <label className="driversLabel">
+          <label className="label">
             Last Name:
             <input
               className="input"
@@ -118,7 +119,7 @@ export default class BookingForm extends React.Component {
           </div>
           <br />
           <div className="driverContainer2">
-          <label className="driversLabel">Drivers License No.:</label>
+          <label className="label">Drivers License No.:</label>
           <input
             className="input"
             placeholder="e.g. 12345678"
@@ -128,7 +129,7 @@ export default class BookingForm extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label className="driversLabel">Date of Birth:</label>
+          <label className="label">Date of Birth:</label>
           <input
             className="input"
             type="date"
@@ -141,9 +142,9 @@ export default class BookingForm extends React.Component {
           <br />
           <div className="pickUpContainer">
             <h4 className="pickuph4">Pick Up</h4>
-          <label className="pickupLabel">Office:</label>
+          <label className="label">Office:</label>
           <input
-            className="pickUpInput"
+            className="input"
             placeholder="e.g. KRP"
             type="text"
             name="PickUpOffice"
@@ -152,19 +153,19 @@ export default class BookingForm extends React.Component {
             required
           />
           <br />
-          <label className="pickupLabel">Date:</label>
+          <label className="label">Date:</label>
           <input
-            className="pickUpInput"
+            className="input"
             type="date"
             name="PickUpDate"
             value={this.state.pickupdate}
             onChange={this.handleChange}
             required
           />
-          <label className="pickupLabel">Time:</label>
+          <label className="label">Time:</label>
           <select
             required
-            className="pickUpInput"
+            className="input"
             type="text"
             name="PickUpTime2"
             value={this.state.pickuptime}
@@ -184,9 +185,9 @@ export default class BookingForm extends React.Component {
           <br />
           <div className="returnContainer">
             <h4 className="rentalh4">Return</h4>
-          <label className="returnLabel">Office:</label>
+          <label className="label">Office:</label>
           <input
-            className="returnInput"
+            className="input"
             placeholder="e.g. AAL"
             type="text"
             name="ReturnOffice"
@@ -195,19 +196,19 @@ export default class BookingForm extends React.Component {
             required
           />
           <br />
-          <label className="returnLabel">Date:</label>
+          <label className="label">Date:</label>
           <input
-            className="returnInput"
+            className="input"
             type="date"
             name="ReturnDate"
             value={this.state.returndate}
             onChange={this.handleChange}
             required
           />
-          <label className="returnLabel">Time:</label>
+          <label className="label">Time:</label>
           <select
             required
-            className="returnInput"
+            className="input"
             type="text"
             name="ReturnTime2"
             value={this.state.returntime}
