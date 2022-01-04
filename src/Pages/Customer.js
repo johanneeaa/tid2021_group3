@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
 import addRandomCustomer from "../Functions/createRandomCustomer"
-import "./Customer.css";
+import "./Styling/Customer.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
 
@@ -21,6 +21,9 @@ const CustomerTable = () => {
     []
   );
 
+  const newCustText = "New Customer";
+  const autNewCust = "Auto Generate Customer";
+
   useEffect(() => {
     async function fetchData() {
       const customerDataTemp = await getAllCustomers();
@@ -32,20 +35,23 @@ const CustomerTable = () => {
   return (
     <div>
       <div className="topLinecontainer">
-        <br />{" "}
       </div>
+      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
+      <Footer />
       <DefaultButton
         className="newButton"
         onClick={() => {
           window.location.href = "/newbooking";
         }}
+        buttonText = {newCustText}
       >
         {" "}
         Add a new Customer
       </DefaultButton>
-      <DefaultButton className = "generateNewCustomer" onClick={()=>addRandomCustomer() }> Auto-generate a new Customer</DefaultButton><br/>
-      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
-      <Footer />
+      <DefaultButton className = "generateNewCustomer" onClick={()=>addRandomCustomer() } 
+      buttonText = {autNewCust}
+      > 
+      </DefaultButton>
     </div>
   );
 };

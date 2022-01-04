@@ -3,7 +3,7 @@ import getAllBookings from "../Data/rentalData";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 //import createNewBooking from "../Functions/NewBooking";
-import "./Rental.css";
+import "./Styling/Rental.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
 
@@ -47,7 +47,7 @@ const RentalTable = () => {
     }
     fetchData();
   }, []);
-  const buttonText = 'New Booking';
+  const btnText = "New Booking";
 
   return (
     <div>
@@ -59,8 +59,9 @@ const RentalTable = () => {
           window.location.href = "/newbooking";
         }
       }
+      buttonText = {btnText}
       >
-        {buttonText}
+        
       </DefaultButton>
     </div>
   );

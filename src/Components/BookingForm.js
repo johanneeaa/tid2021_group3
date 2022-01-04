@@ -1,5 +1,5 @@
 import React from "react";
-import {BookingID, todaysDate, timeOptionBoxes, rentalOfficeBoxes, carGroupBoxes} from "../Data/newBookingData";
+import {BookingID, todaysDate, maxBirthDate, timeOptionBoxes, rentalOfficeBoxes, carGroupBoxes} from "../Data/newBookingData";
 import "./Styling/BookingForm.css";
 
 const APP_ID_KEY = process.env.REACT_APP_APP_KEY;
@@ -139,6 +139,7 @@ export default class BookingForm extends React.Component {
               value={this.state.dob}
               onChange={this.handleChange}
               required
+              max={maxBirthDate}
             />
           </div>
           <br />

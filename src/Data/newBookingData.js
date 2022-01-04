@@ -12,13 +12,6 @@ function generateRandomBookingID(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-
-/**
- * The const todaysDate have been created to prevent any bookings being created with a pick-up or return date back in time.
- * - see BookingForm.js
- * 
- * reference: https://www.codegrepper.com/code-examples/javascript/html+max+date+minus+1+day
- */
 let today = new Date();
 let day = today.getDate();
 let month = today.getMonth() + 1;
@@ -30,7 +23,17 @@ if (month < 10) { //adding a zero to the numbers 1-9, to ensure the correct mont
   month = '0' + month
 }
 
+/**
+ * The const todaysDate have been created to prevent any bookings being created with a pick-up or return date back in time.
+ * reference: https://www.codegrepper.com/code-examples/javascript/html+max+date+minus+1+day
+ */
 export const todaysDate = year + '-'+ month + '-' + day;
+
+/**
+ * The const maxBirthDate have been created to prevent anyone below 18 years from booking a car.
+ * reference: https://www.codegrepper.com/code-examples/javascript/html+max+date+minus+1+day
+ */
+export const maxBirthDate = (year-18) + '-'+ month + '-' + day;
 
   const timeSlots = [
     "", //the empty slot is needed for the required functionality
