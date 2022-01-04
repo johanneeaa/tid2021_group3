@@ -9,7 +9,7 @@ export default async function getAllBookings() {
   const allBookingsFormatted = allBookings.map((booking) => {
 
 
-    const pickUp = booking.get("PickUpDate");
+    //const pickUp = booking.get("PickUpDate");
 
     //trying to format date input - perhaps make it its own function for reuseabaility, once it is working that is
 /*     function DateFormatting(string){

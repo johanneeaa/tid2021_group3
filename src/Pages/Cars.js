@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
-import getCars from "../Functions/assignRandomCarParams";
+//import getCars from "../Functions/assignRandomCarParams";
 import setRandomCarProps from "../Functions/assignRandomCarParams";
-import findAvailCars from "../Functions/findAvailCars";
-import TablePopUp from "../Components/TablePopUp";
+//import findAvailCars from "../Functions/findAvailCars";
+//import TablePopUp from "../Components/TablePopUp";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend.
