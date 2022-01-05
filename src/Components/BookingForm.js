@@ -82,17 +82,6 @@ export default class BookingForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <div className="inputcontainer">
           <h1 className="header"> Create new booking</h1>
-          <input
-            className="button_addCustomer" //this buttons do not have any functionality yet
-            type="button"
-            value=" Add Existing Customer "
-          ></input>{" "}
-          <span></span>
-          <input
-            className="newCustomerButton" //this buttons do not have any functionality yet
-            type="button"
-            value=" Create a new Customer "
-          ></input>
           <br />
           <div className="driverContainer">
             <h4>Driver Information</h4>
@@ -118,6 +107,14 @@ export default class BookingForm extends React.Component {
                 required
               />
             </label>
+            <input
+            className="button_addCustomer" //this buttons do not have any functionality yet
+            type="button"
+            value=" Add Existing Customer "
+            onClick={() => { alert("Functionality not yet implemented")}
+            }
+          ></input>{" "}
+          <span></span>
           </div>
           <br />
           <div className="driverContainer2">
@@ -141,6 +138,19 @@ export default class BookingForm extends React.Component {
               required
               max={maxBirthDate}
             />
+             <div className="carGroupSelect">
+            <label className="label">Select Car Group:</label>
+            <select
+              required
+              className="input"
+              type="text"
+              name="ReqCarGroup"
+              value={this.state.reqcargroup}
+              onChange={this.handleChange}
+            >
+              {carGroupBoxes}
+            </select>{" "}
+          </div>
           </div>
           <br />
           <div className="pickUpContainer">
@@ -221,19 +231,6 @@ export default class BookingForm extends React.Component {
             <span></span>
           </div>
           <br />
-          <div className="carGroupSelect">
-            <label className="label">Select Car Group:</label>
-            <select
-              required
-              className="input"
-              type="text"
-              name="ReqCarGroup"
-              value={this.state.reqcargroup}
-              onChange={this.handleChange}
-            >
-              {carGroupBoxes}
-            </select>{" "}
-          </div>
           <span></span>
           <input
             className="confirmButton"

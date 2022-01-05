@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AppContext } from "./AppProvider";
-import "./Button.css";
 
 const Loadscreen = (props) => {
 
