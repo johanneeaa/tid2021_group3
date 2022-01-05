@@ -37,7 +37,6 @@ const CustomerTable = () => {
       <div className="topLinecontainer">
       </div>
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
-      <Footer />
       <DefaultButton
         className="newButton"
         onClick={() => {
