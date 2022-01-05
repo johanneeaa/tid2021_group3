@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { AppContext } from "./AppProvider";
-import './NavigationBar.css'
+import './Styling/NavigationBar.css';
 
 export function NavigationBar() {
 

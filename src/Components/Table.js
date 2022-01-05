@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
 import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
-import './Table.css';
+import './Styling/Table.css';
 import { AppContext } from "./AppProvider";
 import styled from "styled-components"
 import changeCarState from '../Functions/changeCarState';

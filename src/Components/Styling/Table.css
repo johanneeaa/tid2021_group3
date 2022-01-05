@@ -1,6 +1,8 @@
 .container {
   display: flex;
   flex-direction: row;
+  max-height: 550px;
+  overflow: auto; /*reference: https://www.w3schools.com/cssref/pr_pos_overflow.asp*/
 }
 
 .table {

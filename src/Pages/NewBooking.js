@@ -6,9 +6,9 @@ import CustomerForm from "../Components/CustomerForm";
 
 function CreateBooking() {
   return (
-    <div>
-      <BookingForm>Create New Booking</BookingForm>
-      <CustomerForm>Create New Customer</CustomerForm>
+    <div className="newBooking">
+      <BookingForm>New Booking</BookingForm>
+      <CustomerForm>New Customer</CustomerForm>
     </div>
   );
 }

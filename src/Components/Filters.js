@@ -1,6 +1,6 @@
 import React from "react";
 import { useAsyncDebounce } from "react-table"; 
-import './Filters.css';
+import './Styling/Filters.css';
 
 // Filter components for use in our tables
 // Snippets from table-filters [ https://react-table.tanstack.com/docs/examples/filtering ]

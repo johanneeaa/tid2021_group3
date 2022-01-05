@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { AppContext } from "./AppProvider";
-import "./Button.css";
+import './Styling/Button.css';
+
+/* A general Button for consistency throughout layout. Takes an onClick & buttonText props.*/ 
 
 const DefaultButton = (props) => {
-  const { onClick } = props;
+  const { onClick, buttonText } = props;
 
   const { getTheme } = useContext(AppContext);
 
@@ -13,7 +15,7 @@ const DefaultButton = (props) => {
       style={{ background: getTheme().primary }}
       onClick={onClick}
     >
-      <div>Create New Booking</div>
+      <div>{buttonText}</div>
     </button>
   );
 };

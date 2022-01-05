@@ -27,7 +27,7 @@
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: inherit;
-  grid-template-columns: auto auto auto;  /* this here is throwing a problem:'grid-template-columns' is not supported by Internet Explorer. Add '-ms-grid-columns' to support Internet Explorer 10+*/
+  grid-template-columns: auto auto auto; /* this here is throwing a problem:'grid-template-columns' is not supported by Internet Explorer. Add '-ms-grid-columns' to support Internet Explorer 10+*/
   padding: 40px;
   border-radius: 5px;
 }

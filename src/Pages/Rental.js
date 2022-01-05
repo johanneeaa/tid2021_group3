@@ -3,12 +3,13 @@ import getAllBookings from "../Data/rentalData";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 //import createNewBooking from "../Functions/NewBooking";
-import "./Rental.css";
+import "./Styling/Rental.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
 
 const RentalTable = () => {
   const [rentalData, setRentalData] = useState([]);
+
 
   const rentalColumns = React.useMemo(
     () => [
@@ -46,19 +47,22 @@ const RentalTable = () => {
     }
     fetchData();
   }, []);
+  const btnText = "New Booking";
 
   return (
     <div>
+     
+      <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
+      <Footer/>
       <DefaultButton
         onClick={() => {
           window.location.href = "/newbooking";
-        }}
+        }
+      }
+      buttonText = {btnText}
       >
-        Create New Booking
-      </DefaultButton>
-      <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
-      <Footer/>
         
+      </DefaultButton>
     </div>
   );
 };

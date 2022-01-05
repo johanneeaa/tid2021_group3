@@ -1,0 +1,14 @@
+.footerdiv {
+  height: 40px; /*Changed the height again as it was still big*/
+  position: sticky;
+  position: -webkit-sticky; /*This is needed for Safari & IE browser*/
+}
+.footer {
+  position: -webkit-sticky; /*This is needed for Safari & IE browser*/
+  position: sticky;
+}
+.footerbody {
+  position: -webkit-sticky; /*This is needed for Safari & IE browser*/
+  position: sticky;
+  height: 20px;
+}

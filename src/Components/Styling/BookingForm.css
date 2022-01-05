@@ -1,0 +1,96 @@
+.inputcontainer {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  background: #f7e8a4;
+  grid-template-columns: [first] 50% [line2] 50% [line3];
+  grid-template-rows: [row1-start] 100px[row1-end] 30px[third-line] 200px[fourth-line] 100px [fifth-line] 150px [last-line];
+  grid-template-areas:
+    "header header"
+    "row2col2 row2col1"
+    "driverInfo driverInfo2"
+    ". carGroupSelect"
+    "pickup return"
+    "footer2 footer";
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.header {
+  justify-self: center;
+  grid-area: header;
+}
+
+.pickUpContainer {
+  grid-area: pickup;
+}
+
+.returnContainer {
+  grid-area: return;
+}
+
+.driverContainer {
+  grid-area: driverInfo;
+}
+
+.driverContainer2 {
+  grid-area: driverInfo2;
+}
+
+.driversLabel {
+  display: block;
+  text-align: start;
+  width: 200px;
+}
+
+.carGroupSelect {
+  grid-area: carGroupSelect;
+}
+
+h4 {
+  margin-bottom: 20px;
+}
+
+.button_addCustomer {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  width: 200px;
+  background-color: #fce062;
+  grid-area: row2col1;
+}
+
+.newCustomerButton {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  width: 200px;
+  background-color: #fce062;
+  grid-area: row2col2;
+}
+
+.confirmButton {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  width: 200px;
+  height: 40px;
+  background-color: #badec9;
+  grid-area: footer;
+}
+
+.cancelButton {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  height: 40px;
+  width: 200px;
+  background-color: #f9a59f;
+  grid-area: footer2;
+}
