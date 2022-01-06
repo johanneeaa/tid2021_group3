@@ -38,4 +38,16 @@
   border-radius: 5px;
   padding: 4px 4px;
   margin: 2px 0;
+  width: 200px;
+  height: 40px;
+  background-color: #badec9;
+}
+
+.button_cancel {
+  border-radius: 5px;
+  padding: 4px 4px;
+  margin: 2px 0;
+  width: 200px;
+  height: 40px;
+  background-color: #f9a59f;
 }

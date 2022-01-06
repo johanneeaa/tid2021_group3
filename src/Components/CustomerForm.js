@@ -124,18 +124,18 @@ export default class CustomerForm extends React.Component {
             //required  -- removing this as notes should not be a required field
           /><br />
           <input
-            className="button_newB"
-            type="submit"
-            value="Save new customer"
+            className="button_cancel"
+            type="button"
+            value=" Cancel"
+            onClick={() => {
+              window.location.href = "/customer";
+            }}
           ></input>
           <span>{" "}</span>
           <input
             className="button_newB"
-            type="button"
-            value=" Cancel "
-            onClick={() => {
-              window.location.href = "/customer";
-            }}
+            type="submit"
+            value="Save new customer"
           ></input>
         </div>
       </form>
