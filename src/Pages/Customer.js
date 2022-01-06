@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import getAllCustomers from "../Data/customerData";
 import Table from "../Components/Table";
-import addRandomCustomer from "../Functions/createRandomCustomer"
 import "./Styling/Customer.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
@@ -22,7 +21,6 @@ const CustomerTable = () => {
   );
 
   const newCustText = "New Customer";
-  const autNewCust = "Auto Generate Customer";
 
   useEffect(() => {
     async function fetchData() {
@@ -34,23 +32,14 @@ const CustomerTable = () => {
 
   return (
     <div>
-      <div className="topLinecontainer">
-      </div>
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
-      <DefaultButton
-        className="newButton"
-        onClick={() => {
+      <Footer/>
+      <DefaultButton onClick={() => {
           window.location.href = "/newbooking";
         }}
         buttonText = {newCustText}
-      >
-        {" "}
-        Add a new Customer
-      </DefaultButton>
-      <DefaultButton className = "generateNewCustomer" onClick={()=>addRandomCustomer() } 
-      buttonText = {autNewCust}
-      > 
-      </DefaultButton>
+      />
+    
     </div>
   );
 };

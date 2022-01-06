@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import getAllBookings from "../Data/rentalData";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
-//import createNewBooking from "../Functions/NewBooking";
 import "./Styling/Rental.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
@@ -50,10 +49,9 @@ const RentalTable = () => {
   const btnText = "New Booking";
 
   return (
-    <div>
-     
+    <div>   
       <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
-
+      <Footer/>
       <DefaultButton
         onClick={() => {
           window.location.href = "/newbooking";
@@ -61,10 +59,6 @@ const RentalTable = () => {
       }
       buttonText = {btnText}
       />
-
-        
-
-
     </div>
   );
 };

@@ -51,13 +51,12 @@ const CarTable = () => {
         <div>
         <Table columns={carsColumns} data={carsData}/>
         <Footer/>
+        {/* Buttons for testing purposes, disabled for final delivery
         <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
         <button className = "larsButton" onClick={()=>makeMockCars(1) }> For testing: Make mock cars to DB </button>
+        */}
         </div>
     )
 };
-
-  //look into adding "loading" on while waiting for data, see this stackoverflow for how-to: [ https://bit.ly/3xt3IaZ ]
-
 
 export default CarTable;
