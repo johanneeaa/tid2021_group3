@@ -1,4 +1,4 @@
-import {newCustomer} from "../Data/makeCustomerData"
+import {newCustomer} from "../Data/mockCustomerData"
 
 // Funciton for adding a new Customer with random, plausible, values imported from ../Data/makeCustomerData
 // Made with REST calls, instead of parse, as required by client (course manager)

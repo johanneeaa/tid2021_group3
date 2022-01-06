@@ -125,43 +125,42 @@ export default function Table({columns, data, style, page}) {
 
   return ( 
     <div className = "container">
-      <table className = "table"
-        {...getTableProps()}
-      >
-        <thead><tr>
-          <th className = "th"
-            colSpan={visibleColumns.length}
-            style={{background: getTheme().primary}}
-          >
-            <GlobalTableSearch
-              preGlobalFilteredRows={preGlobalFilteredRows}
-              globalFilter={state.globalFilter}
-              setGlobalFilter={setGlobalFilter}
-             
-            />
-          </th>
+      <table className = "table" {...getTableProps()}>
+        <thead>
+          <tr>
+            <th 
+              className = "th"
+              colSpan={visibleColumns.length}
+              style={{background: getTheme().primary}}
+            >
+              <GlobalTableSearch
+                preGlobalFilteredRows={preGlobalFilteredRows}
+                globalFilter={state.globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
+            </th>
           </tr>
 
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th className = "th2"
-                  {...column.getHeaderProps(column.localFilter ? console.log ("Local filter on: " + column.id) : column.getSortByToggleProps()) }
-                  style={{background: getTheme().primary,}} 
-                >
-                  
-                  <SortOnClick column={column}/>
-                  {column.render("Header")}
-                  <div>{column.localFilter ? column.render('Filter') : null}</div> 
-                </th>
-              ))}
-            </tr>
+          
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th className = "th2"
+                {...column.getHeaderProps(
+                  column.localFilter ? console.log ("Local filter on: " + column.id) : column.getSortByToggleProps()) 
+                }
+                style={{background: getTheme().primary}} 
+              >
+                <SortOnClick column={column}/>
+                {column.render("Header")}
+                <div>{column.localFilter ? column.render('Filter') : null}</div> 
+              </th>
+            ))}
+          </tr>
           ))}
         </thead>
         <TableRow/>
-        
       </table>
-
     </div>
   );
 }

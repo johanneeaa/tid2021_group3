@@ -98,7 +98,6 @@ const rentalOffices = [
   "UBB",
   "YNL",
 ];
-
 export const rentalOfficeBoxes = [];
 rentalOffices.forEach((element) => {
   rentalOfficeBoxes.push(<option> {element} </option>);
