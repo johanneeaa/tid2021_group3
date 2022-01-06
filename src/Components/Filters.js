@@ -12,7 +12,9 @@ import './Styling/Filters.css';
 // table-filters [ https://bit.ly/3qVZTYD ] 
 // useSortBy [ https://bit.ly/3F1zE8v ]
 
-/** Full table search bar component, default setting: on, coloumns can disable. Documentation: [ https://bit.ly/3JOdH0c ]  */
+/** 
+Full table search bar component, default setting: on, coloumns can disable. 
+Documentation: [ https://bit.ly/3JOdH0c ]*/
 export function GlobalTableSearch({ 
   preGlobalFilteredRows,
   globalFilter,
@@ -40,9 +42,9 @@ export function GlobalTableSearch({
   );
 }
 
-/** Returns a span based on sorting of the clicked column. Takes {column} prop 
- * The logic of toggle sorting is useSortBy from useTable [ https://bit.ly/3F1zE8v ]
-*/
+/** 
+Returns a span based on sorting of the clicked column. Takes {column} prop 
+The logic of toggle sorting is useSortBy from useTable [ https://bit.ly/3F1zE8v ]*/
 export function SortOnClick(props){ 
 return(                 
   <span>
@@ -51,7 +53,8 @@ return(
 }
 
 
-/** Returns a multi-select box in the column header, containing all available values */
+/** 
+Returns a multi-select box in the column header, containing all available values */
 export default function SelectColumnFilter({ 
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {

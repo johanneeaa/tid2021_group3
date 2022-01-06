@@ -1,10 +1,10 @@
 import Parse from "parse";
 
-// fucntion design to find the available cars based on a location and a desired car group
-// returns array of car objects with desired location and cargroup
+// function design to find the available cars based on a location and a desired car group
 
-// based on Parse documentation [ https://bit.ly/3piE9GO ]
-
+/** 
+returns array of car objects with desired location and cargroup
+based on Parse documentation [ https://bit.ly/3piE9GO ] */
 export default async function findAvailCars(location, carGroup) {
 
     const IDsOfReadyCars=[]
@@ -18,14 +18,14 @@ export default async function findAvailCars(location, carGroup) {
     if (carGroup !== ""){
       query.equalTo("Group", carGroup);
     }
-   
 
-    const carsAtLocation = await query.find()
+    const carsAtLocation = await query.find().catch(error => {
+      console.log("error: "+ error +" ccoured in finding cars at location");
+    });
     
     for (let i = 0; i < carsAtLocation.length; i++) {
         const object = carsAtLocation[i];
         IDsOfReadyCars.push(object.id)
-        //console.log(object.get('LicensePlate') +' '+ object.get('CarState'));
     }
 
     const carsFoundMapped = query.map((car)=>{

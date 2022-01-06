@@ -23,6 +23,7 @@ const APP_REST_KEY = process.env.REACT_APP_REST_KEY;
  * 2. It is possible to select a return date earlier than pick-up date, which is not ideal,
  *    however it is not possible to select a date before today's date.
  */
+
 export default class BookingForm extends React.Component {
   constructor(props) {
     super(props);

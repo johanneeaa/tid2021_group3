@@ -4,7 +4,9 @@ const Booking = Parse.Object.extend("Booking");
 
 export default async function getAllBookings() {
   const allBookingsQuery = new Parse.Query(Booking);
-  const allBookings = await allBookingsQuery.find();
+  const allBookings = await allBookingsQuery.find().catch(error => {
+    console.log(error);
+  });;
 
   const allBookingsFormatted = allBookings.map((booking) => {
 

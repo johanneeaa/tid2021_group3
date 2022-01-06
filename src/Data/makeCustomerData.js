@@ -1,8 +1,5 @@
 import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
-//import { format } from "date-fns";
-
-//let DateGenerator = require("random-date-generator");
 
 function randomFromArray(array) {
   return array[Math.floor(Math.random() * array.length)];
@@ -12,21 +9,7 @@ const carGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
 const domains = ["@geMail.com", "@hutmail.com", "@ito.dk", "@yahooo.com", "@gogle.com" ];
 
-//this function is never used - could be interesting to use if we want to autogenerate some bookings
-/* function randomizeDate() { 
-  const randomDate = DateGenerator.getRandomDateInRange(
-    new Date(),
-    new Date(2021, 12, 0)
-  );
-  const formattedDate = format(
-    randomDate,
-    "MMM do "
-  );
-  return formattedDate;
-} */
-
-// config for generated names,
-// documentation and additional settings:  [ https://bit.ly/3mseVnY ]
+// config for generated names, documentation and additional settings: [ https://bit.ly/3mseVnY ]
 const nameSettings = {
   dictionaries: [names],
   style: "capital",
@@ -36,9 +19,9 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/** returns object of a randomly generated customer */
 export const newCustomer = () => {
   return {
-    // lastBookingDate: randomizeDate(), // we do not use yet
     lastCarGroup: randomFromArray(carGroups),
     email: namor.generate({ words: 1, saltLength: 0 }) + randomFromArray(domains),
     firstName: uniqueNamesGenerator(nameSettings),

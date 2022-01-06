@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
-import { GlobalTableSearch, DefaultColumnFilter, SortOnClick } from "./Filters";
+import { GlobalTableSearch, SortOnClick } from "./Filters";
 import './Styling/Table.css';
 import { AppContext } from "./AppProvider";
 import styled from "styled-components"
@@ -19,7 +19,7 @@ export default function Table({columns, data, style, page}) {
   //AppContext is used to access the state of the app and to get the theme.
   const {getTheme} = useContext(AppContext)
 
-  //New styled component to match theme of page
+  //Style rows to theme of page
   const Row = styled.tr`
   &:nth-child(odd) {
     background-color: ${getTheme().disabled};
@@ -29,13 +29,13 @@ export default function Table({columns, data, style, page}) {
     transition: all .3s ease-in-out
   }`
 
-  // myHeaders is created to allow functions/components acces to "nice" headers instead of accessors, without hardcoding them 
+  // myHeaders array is created to allow functions/components acces to "nice" headers instead of the accessors in the data, without hardcoding them.
   const myHeaders =[]
   columns.forEach(columns => {
     myHeaders.push(columns.Header)
   }); 
 
-  // filterTypes part of react UseTable & table-filters.
+  // filterTypes not touched by us, part of react UseTable & table-filters.
   const filterTypes = React.useMemo( 
     () => ({
       text: (rows, id, filterValue) => {
@@ -52,8 +52,10 @@ export default function Table({columns, data, style, page}) {
     []
   )
 
-
-  const rentalTable = useTable({ columns, data, filterTypes, style}, useGlobalFilter,useFilters,useSortBy, PopUp);
+  // create a generic table, myTable with useTable
+  const myTable = useTable({ columns, data, filterTypes, style}, useGlobalFilter,useFilters,useSortBy, PopUp);
+  
+  // using myTable, create the table object
   const {
     getTableProps,
     getTableBodyProps,
@@ -64,8 +66,9 @@ export default function Table({columns, data, style, page}) {
     preGlobalFilteredRows,
     state,
     setGlobalFilter,
-  } = rentalTable 
+  } = myTable 
 
+  // table row seperated from table for easier access
   function TableRow(props) { 
     
     const [clickedRowObject, setClickedRowObject] = useState(0);
@@ -105,10 +108,12 @@ export default function Table({columns, data, style, page}) {
             page={page}
             setTrigger={setPopUpTrigger}
           /> : null
+
         // Popup starting to get messy by diffrentiating between Rental and other tabs.
         // The popup was designed to be same for all tables, but shouldn't be. 
         // 
         // Workoaround: give it page prop to behave differently depending on what page it inherits from
+        
         } 
       </tbody>
     );

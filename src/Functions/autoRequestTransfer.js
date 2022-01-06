@@ -15,6 +15,7 @@ const locations = [
 // the array that should contain our data at the end
 const autoTransfers = []
 
+/** Returns an array of transfers, based on thresholds and avail cars. OBS: might have high loadtime( ~5 sec) !*/
 export default async function getNeededTransfers(params) {
     console.log("Started searching for autotransfers");
 
@@ -47,9 +48,6 @@ export default async function getNeededTransfers(params) {
                 })
             }
         }
-        console.log(
-        // for break
-        );
     }
     console.log("Exited searching for autotransfers");
     return autoTransfers

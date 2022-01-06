@@ -2,12 +2,14 @@ import Table from "./Table";
 import React, { useState, useEffect } from "react";
 import findAvailCars from "../Functions/findAvailCars";
 
-// Component to show a table of cars. Has functionality to show available cars. 
+
 // Could/should be refactored to seperate data from the component.
 // Takes a car object and a setTrigger function as props.
+// Popup architecture documentation [ https://bit.ly/3H4HMX4 ]
 
-// Popup architecture lifted from [ https://bit.ly/3ss2nAz & https://bit.ly/3H4HMX4 ]
-
+/** 
+ * Component to show a table of cars. Has functionality to show available cars.  
+ * takes [object.pickUpOffice , object.reqCarGroup , setTrigger] */
 function TablePopUp(props) { 
 
     const columns = 
@@ -32,10 +34,9 @@ function TablePopUp(props) {
             const carsDataTemp = await findAvailCars(location, reqCarGroup)
             setData(carsDataTemp)
             setIsLoaded(true)
-            //console.log("finished parse query on cars");
         }   
         fetchData();
-    },)  // orignally was: " },[]) " but this was throwing an error, so I deleted the square brackets [] - it still seems to work fine, but please check that it should stay this way or not
+    },)
     
 
     return  (      
@@ -45,7 +46,11 @@ function TablePopUp(props) {
             Available Cars: 
             
                 <div className="popup-info"> 
-                {isLoaded ? data[0] ? <Table columns={columns} data={data} page={"carCheckout"}/> : "No avail cars on your location [Button to req transfer] [Button to upgrade]" : "Loading..."}
+                    {isLoaded ? 
+                        data[0] ? 
+                            <Table columns={columns} data={data} page={"carCheckout"}/> 
+                        : "No avail cars on your location [Button to req transfer] [Button to upgrade]" 
+                    : "Loading..."}
                 </div>
                 
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>

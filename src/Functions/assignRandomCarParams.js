@@ -1,8 +1,9 @@
 import Parse from "parse";
 
-// Function to populate newly created "CarState" and "Location" column in back4app instead of hardcoding it.
-// Not used after first use
+// DISABLED DECEMBER 2021 by LACL/LPJC
+// Function to populate newly created "CarState" and "Location" column in back4app instead of hardcoding values.
 
+/** Function that assigns random states and loacitons to cars in the DB, favours "ready" car state */
 export default async function setRandomCarProps() {
 
   const carStates = ["Ready","Ready","Rented","Returned","Transfer", "Unavailable"]
