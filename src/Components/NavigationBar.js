@@ -12,7 +12,7 @@ export function NavigationBar() {
      
         <Navbar style = {{background:getTheme().primary}} className = "navbar">
             <Container href="container">
-              <Navbar.Brand href = "home" className = "logo">ScanCar</Navbar.Brand>
+              <Navbar.Brand href = "Rental" className = "logo">ScanCar</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

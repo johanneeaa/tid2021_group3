@@ -1,7 +1,13 @@
 .dflt-btn {
   text-align: center;
+  font-size: 16px;
+  font-size: 1.5vw;
   border-radius: 10px;
   color: black;
-  height: 40px;
-  width: 200px;
+  height: 10%;
+  width: 15%;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 1%;
 }

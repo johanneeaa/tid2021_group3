@@ -6,6 +6,7 @@ import './Styling/Table.css';
 import { AppContext } from "./AppProvider";
 import styled from "styled-components"
 import changeCarState from '../Functions/changeCarState';
+import Footer from "./Footer";
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
@@ -160,7 +161,9 @@ export default function Table({columns, data, style, page}) {
           ))}
         </thead>
         <TableRow/>
+        
       </table>
+
     </div>
   );
 }

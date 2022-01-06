@@ -4,6 +4,7 @@ import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
 import setRandomCarProps from "../Functions/assignRandomCarParams";
 import makeMockCars from "../Data/mockCarData";
+import Footer from "../Components/Footer";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend.
@@ -49,6 +50,7 @@ const CarTable = () => {
     return (
         <div>
         <Table columns={carsColumns} data={carsData}/>
+        <Footer/>
         <button className = "larsButton" onClick={()=>setRandomCarProps() }> For testing: Generate carStates & location to DB </button>
         <button className = "larsButton" onClick={()=>makeMockCars(1) }> For testing: Make mock cars to DB </button>
         </div>

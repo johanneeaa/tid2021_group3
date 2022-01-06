@@ -7,12 +7,11 @@ const Footer = () => {
 
 const {getTheme} = useContext(AppContext)
 
-return(
-<div className="footerdiv">
-<footer className="footer">
-<p style = {{background:getTheme().primary}} className="footerbody"></p>
-</footer>
-</div>
+return(       
+    <div style = {{background:getTheme().primary}} className="footerdiv">
+
+
+    </div>
 )
 }
 

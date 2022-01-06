@@ -1,14 +1,10 @@
 .footerdiv {
-  height: 40px; /*Changed the height again as it was still big*/
-  position: sticky;
-  position: -webkit-sticky; /*This is needed for Safari & IE browser*/
-}
-.footer {
-  position: -webkit-sticky; /*This is needed for Safari & IE browser*/
-  position: sticky;
-}
-.footerbody {
-  position: -webkit-sticky; /*This is needed for Safari & IE browser*/
-  position: sticky;
-  height: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5%;
+  background-color: rgb(160, 158, 158); /* defualt, should be overwritten by theme color */
+  color: white;
+  text-align: center;
 }

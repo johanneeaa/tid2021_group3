@@ -1,9 +1,5 @@
-import React, { useContext } from "react";
-import { AppContext } from "./AppProvider";
 
-const Loadscreen = (props) => {
-
-  const { getTheme } = useContext(AppContext);
+const Loadscreen = () => {
 
   return (
     <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>

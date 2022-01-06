@@ -53,16 +53,18 @@ const RentalTable = () => {
     <div>
      
       <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
-      <Footer/>
+
       <DefaultButton
         onClick={() => {
           window.location.href = "/newbooking";
         }
       }
       buttonText = {btnText}
-      >
+      />
+
         
-      </DefaultButton>
+
+
     </div>
   );
 };

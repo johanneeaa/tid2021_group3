@@ -1,9 +1,4 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  max-height: 550px;
-  overflow: auto; /*reference: https://www.w3schools.com/cssref/pr_pos_overflow.asp*/
-}
+
 
 .table {
   /* border: solid 10px color; -- this was giving a problem for internet explorer*/
@@ -24,6 +19,10 @@
   color: black;
   font-weight: 800;
   text-align: center;
+  position: -webkit - sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .tablecell {

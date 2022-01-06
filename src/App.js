@@ -16,17 +16,13 @@ import { AppProvider } from "./Components/AppProvider";
 //AppProvider added and used to pass theme according to current page
 
 function App() {
-  const temp = (
-    <main>
-      <h3>Temporary front page. Use tabs to access data</h3> <br />
-    </main>
-  );
+
   return (
     <AppProvider>
       <NavigationBar />
       <BrowserRouter>
         <Routes>
-          <Route path="" element={temp} />
+          <Route path="" element={<Rental />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/rental" element={<Rental />} />
           <Route path="/transfers" element={<Transfers />} />
