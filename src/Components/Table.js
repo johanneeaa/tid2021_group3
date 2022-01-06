@@ -98,16 +98,20 @@ export default function Table({columns, data, style, page}) {
               })}
             </Row>
           ); 
-        })}
+        })} 
         {popUpTrigger ? 
-          <PopUp 
+          <tr>
+            <td>
+              <PopUp 
             object={clickedRowObject}
             rowHeaders ={myHeaders}
             color={getTheme().primary}
             trigger={popUpTrigger} 
             page={page}
             setTrigger={setPopUpTrigger}
-          /> : null
+              />
+            </td>
+          </tr> : null
 
         // Popup starting to get messy by diffrentiating between Rental and other tabs.
         // The popup was designed to be same for all tables, but shouldn't be. 
@@ -124,12 +128,10 @@ export default function Table({columns, data, style, page}) {
       <table className = "table"
         {...getTableProps()}
       >
-        <thead>
+        <thead><tr>
           <th className = "th"
             colSpan={visibleColumns.length}
-            style={{
-              background: getTheme().primary,
-            }}
+            style={{background: getTheme().primary}}
           >
             <GlobalTableSearch
               preGlobalFilteredRows={preGlobalFilteredRows}
@@ -138,15 +140,14 @@ export default function Table({columns, data, style, page}) {
              
             />
           </th>
+          </tr>
 
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th className = "th2"
-                  {...column.getHeaderProps( column.localFilter ? console.log ("Local filter on " + column.id) : column.getSortByToggleProps()) }
-                  style={{
-                    background: getTheme().primary,
-                  }} 
+                  {...column.getHeaderProps(column.localFilter ? console.log ("Local filter on: " + column.id) : column.getSortByToggleProps()) }
+                  style={{background: getTheme().primary,}} 
                 >
                   
                   <SortOnClick column={column}/>

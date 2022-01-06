@@ -10,7 +10,7 @@ export default function Textbox4Info(props){
                 <input 
                     style = {{cursor: "default"}} // Cursor style overwritten for clarity: the user can't edit the fields 
                     placeholder = "..." 
-                    value = {props.info}
+                    defaultValue= {props.info} 
                 /> 
             </div>
         )

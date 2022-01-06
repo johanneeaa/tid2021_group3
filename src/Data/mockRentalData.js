@@ -1,5 +1,5 @@
 // - - - - - - - - -
-// Disabled in december 2021, kept for creating rentals later on. lacl@itu.dk
+// Disabled in december 2021 by lacl@itu.dk
 // - - - - - - - - -
 
 import namor from "namor";
@@ -34,7 +34,6 @@ function randomizeDate() {
 
 // config for generated names,
 // documentation and additional settings:  [ https://bit.ly/3mseVnY ]
-
 const nameSettings = {
   dictionaries: [names],
   style: "capital",

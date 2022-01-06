@@ -26,7 +26,7 @@ function PopUp(props) {
         const contentBoxes = []  // array of JSX elements "TextBox4Info" utilizing our array from the object & inherited rowHeaders from the click.
         var i = 0 
         for(const header of props.rowHeaders){
-            contentBoxes.push(<Textbox4Info title={header} info={rowInfoArray[i]}/>)
+            contentBoxes.push(<Textbox4Info key={header} title={header} info={rowInfoArray[i]}/>)
             i++
         }
 

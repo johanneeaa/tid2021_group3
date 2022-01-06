@@ -35,71 +35,72 @@ export const todaysDate = year + '-'+ month + '-' + day;
  */
 export const maxBirthDate = (year-18) + '-'+ month + '-' + day;
 
-  const timeSlots = [
-    "", //the empty slot is needed for the required functionality
-    "08:00",
-    "10:00",
-    "12:00",
-    "14:00",
-    "16:00",
-    "18:00",
-    "20:00",
-  ];
-  export const timeOptionBoxes = [];
-  timeSlots.forEach((element) => {
-    timeOptionBoxes.push(<option> {element} </option>);
-  });
+const timeSlots = [
+  "", //the empty slot is needed for the required functionality
+  "08:00",
+  "10:00",
+  "12:00",
+  "14:00",
+  "16:00",
+  "18:00",
+  "20:00",
+];
+export const timeOptionBoxes = [];
+timeSlots.forEach((element) => {
+  timeOptionBoxes.push(<option> {element} </option>);
+});
 
-  // Available carGroups for BookingForm:
-  const carGroups = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I"];
-  export const carGroupBoxes = [];
-  carGroups.forEach((element) => {
-    carGroupBoxes.push(<option> {element} </option>);
-  });
+// Available carGroups for BookingForm:
+const carGroups = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I"];
+export const carGroupBoxes = [];
+carGroups.forEach((element) => {
+  carGroupBoxes.push(<option> {element} </option>);
+});
 
-  // Available 37 rental offices for BookingForm:
-  const rentalOffices = [
-    "",
-    "AAL",
-    "AL2",
-    "AAR",
-    "AR2",
-    "BLL",
-    "BL2",
-    "BYR",
-    "BY2",
-    "CNL",
-    "COP",
-    "CO1",
-    "CO2",
-    "CO3",
-    "EBJ",
-    "EB2",
-    "FAN",
-    "FRD",
-    "GIV",
-    "HER",
-    "HOL",
-    "KRP",
-    "KST",
-    "ME2",
-    "MRW",
-    "ODE",
-    "OD2",
-    "PLM",
-    "RKE",
-    "RNN",
-    "SGD",
-    "SKS",
-    "SQW",
-    "STA",
-    "TED",
-    "TXR",
-    "UBB",
-    "YNL",
-  ];
- export const rentalOfficeBoxes = [];
-  rentalOffices.forEach((element) => {
-    rentalOfficeBoxes.push(<option> {element} </option>);
-  });
+// Available 37 rental offices for BookingForm:
+const rentalOffices = [
+  "",
+  "AAL",
+  "AL2",
+  "AAR",
+  "AR2",
+  "BLL",
+  "BL2",
+  "BYR",
+  "BY2",
+  "CNL",
+  "COP",
+  "CO1",
+  "CO2",
+  "CO3",
+  "EBJ",
+  "EB2",
+  "FAN",
+  "FRD",
+  "GIV",
+  "HER",
+  "HOL",
+  "KRP",
+  "KST",
+  "ME2",
+  "MRW",
+  "ODE",
+  "OD2",
+  "PLM",
+  "RKE",
+  "RNN",
+  "SGD",
+  "SKS",
+  "SQW",
+  "STA",
+  "TED",
+  "TXR",
+  "UBB",
+  "YNL",
+];
+
+export const rentalOfficeBoxes = [];
+rentalOffices.forEach((element) => {
+  rentalOfficeBoxes.push(<option> {element} </option>);
+});
 

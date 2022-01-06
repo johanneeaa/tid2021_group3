@@ -1,6 +1,7 @@
 import Parse from "parse";
 
 // Function generate X amount of cars for our table. Used for testing scaleability of our code.
+// After use, we found the free version of back4app max contains 100 rows. 
 // Could be improved by fecthing existing data to validate the mock data, but for now hardcoding the values once in array is good enough.
 
 export default async function makeMockCars(numOfCars) {

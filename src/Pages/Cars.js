@@ -3,13 +3,9 @@ import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
 import Footer from "../Components/Footer";
-import setRandomCarProps from "../Functions/assignRandomCarParams";
-import makeMockCars from "../Data/mockCarData";
-
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend.
 // Calls getAllCars() from "../Data/carData" to retreive the data from backend, which is mapped into the table.
-// no "fake" data (hurray!)
 
 const CarTable = () => {
     
@@ -21,10 +17,8 @@ const CarTable = () => {
         () => [
             { Header: "Car Group", accessor: "group", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter},
             { Header: "Location", accessor: "currentLocation",localFilter: true,  Filter: SelectColumnFilter}, 
-
-            { Header: "State", accessor: "currentState",getProps: (state,cellInfo, cell) =>{return {style:{ background: "blue"}}},
+            { Header: "State", accessor: "currentState", getProps: (state,cellInfo, cell) =>{return {style:{ background: "blue"}}},
             localFilter: true,  Filter: SelectColumnFilter}, 
-
             { Header: "Model", accessor: "model"},
             { Header: "Color", accessor: "color", localFilter: true, disableGlobalFilter: true, Filter: SelectColumnFilter}, 
             { Header: "No. of doors", accessor: "numberOfDoors"}, 

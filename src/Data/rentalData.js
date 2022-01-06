@@ -2,23 +2,14 @@ import Parse from "parse";
 
 const Booking = Parse.Object.extend("Booking");
 
+/** Returns array of all rental/booking objects from DB, built on Parse documentation: [ https://bit.ly/3zyu24n ] */
 export default async function getAllBookings() {
   const allBookingsQuery = new Parse.Query(Booking);
   const allBookings = await allBookingsQuery.find().catch(error => {
     console.log(error);
-  });;
+  });
 
   const allBookingsFormatted = allBookings.map((booking) => {
-
-
-    //const pickUp = booking.get("PickUpDate");
-
-    //trying to format date input - perhaps make it its own function for reuseabaility, once it is working that is
-/*     function DateFormatting(string){
-      if(string.slice(6,7) === "01") {
-        return string.slice(8,10) + " Jan";
-      }
-    }; */  //this is not working!
 
     return {
       id: booking.id,

@@ -1,6 +1,8 @@
 import namor from "namor";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 
+// Generate random data for a new customer. Used for testing purposes as to not have to hardcode a new customer each time we want one.
+
 function randomFromArray(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
