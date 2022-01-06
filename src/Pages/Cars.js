@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Table from "../Components/Table";
 import SelectColumnFilter from "../Components/Filters";
 import getAllCars from "../Data/carData";
+import Footer from "../Components/Footer";
 import setRandomCarProps from "../Functions/assignRandomCarParams";
 import makeMockCars from "../Data/mockCarData";
-import Footer from "../Components/Footer";
 
 
 // Our page for overview of cars. Returns a table with columns matching the ones from backend.

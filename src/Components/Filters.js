@@ -2,11 +2,18 @@ import React from "react";
 import { useAsyncDebounce } from "react-table"; 
 import './Styling/Filters.css';
 
-// Filter components for use in our tables
-// Snippets from table-filters [ https://react-table.tanstack.com/docs/examples/filtering ]
+// Filter components for use in our tables:
+// GlobalTableSearch used for all tables, but disabled for certain columns
+// SortOnClick used for columns with mostly unique values
+// SelectionColumnFilter used for columns standardized values
 
-// component that can be put into a table, to add a functioning search bar.
-export function GlobalFilter({ 
+// Documentation:
+// useTable [ https://bit.ly/3HF73r3 ] 
+// table-filters [ https://bit.ly/3qVZTYD ] 
+// useSortBy [ https://bit.ly/3F1zE8v ]
+
+/** Full table search bar component, default setting: on, coloumns can disable. Documentation: [ https://bit.ly/3JOdH0c ]  */
+export function GlobalTableSearch({ 
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
@@ -33,23 +40,9 @@ export function GlobalFilter({
   );
 }
 
-export function DefaultColumnFilter({ 
-
-  column: { filterValue, preFilteredRows, setFilter },
-}) {
-  const count = preFilteredRows.length
-
-  return (
-    <input
-      value={filterValue || ''}
-      onChange={e => {
-        setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-      }}
-      placeholder={`Search ${count} records...`}
-    />
-  )
-}
-
+/** Returns a span based on sorting of the clicked column. Takes {column} prop 
+ * The logic of toggle sorting is useSortBy from useTable [ https://bit.ly/3F1zE8v ]
+*/
 export function SortOnClick(props){ 
 return(                 
   <span>
@@ -57,20 +50,24 @@ return(
   </span>)
 }
 
+
+/** Returns a multi-select box in the column header, containing all available values */
 export default function SelectColumnFilter({ 
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {
   const options = React.useMemo(() => {
     const options = new Set() // Set() kinda like a hash; only holds unique values - but accesable with keys, not index
+
     preFilteredRows.forEach(row => {
       options.add(row.values[id])
     })
-   const sortedOptions = Array.from(options).sort() // sort aplhabetacally for easier use
-   
-    return [...sortedOptions.values()]  
-  }, [id, preFilteredRows])
 
-  // render a multi-select box 
+    const sortedOptions = Array.from(options).sort() // sort the selection box aplhabetacally
+
+    return [...sortedOptions.values()]  
+  }, [id, preFilteredRows]) // because of useMemo this will only re-render if values in last array [ID or preFilteredRows] change.
+
+  // render a multi-select box for the header to contain
   return (
     <select
       value={filterValue}

@@ -45,7 +45,7 @@ function TablePopUp(props) {
             Available Cars: 
             
                 <div className="popup-info"> 
-                {isLoaded ? data[0] ? <Table columns={columns} data={data} page={"carCheckout"}/> : "no avail cars, request transfer (Button) or upgrade (Button)" : "Loading..."}
+                {isLoaded ? data[0] ? <Table columns={columns} data={data} page={"carCheckout"}/> : "No avail cars on your location [Button to req transfer] [Button to upgrade]" : "Loading..."}
                 </div>
                 
                 <button className="close-button" onClick={() => props.setTrigger(false)}>X</button>

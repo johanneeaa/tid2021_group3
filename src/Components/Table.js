@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import PopUp from "./PopUp";
 import { useTable, useGlobalFilter, useFilters, useSortBy } from "react-table"; 
-import { GlobalFilter, DefaultColumnFilter, SortOnClick } from "./Filters";
+import { GlobalTableSearch, DefaultColumnFilter, SortOnClick } from "./Filters";
 import './Styling/Table.css';
 import { AppContext } from "./AppProvider";
 import styled from "styled-components"
 import changeCarState from '../Functions/changeCarState';
-import Footer from "./Footer";
 
 // Created a table based on input. Used in our pages.
 // We've split it into Table and TableRow to make it easier to manage. Could still be more optimized however.
@@ -53,15 +52,8 @@ export default function Table({columns, data, style, page}) {
     []
   )
 
-// It's important that we're using React.useMemo here to ensure that our data isn't recreated on every render [ https://bit.ly/3xSqtVD ]
-  const defaultColumn = React.useMemo( 
-    () => ({
-      Filter: DefaultColumnFilter,
-    }),
-    []
-  )
 
-  const rentalTable = useTable({ columns, data, defaultColumn, filterTypes, style}, useGlobalFilter,useFilters,useSortBy, PopUp);
+  const rentalTable = useTable({ columns, data, filterTypes, style}, useGlobalFilter,useFilters,useSortBy, PopUp);
   const {
     getTableProps,
     getTableBodyProps,
@@ -134,7 +126,7 @@ export default function Table({columns, data, style, page}) {
               background: getTheme().primary,
             }}
           >
-            <GlobalFilter
+            <GlobalTableSearch
               preGlobalFilteredRows={preGlobalFilteredRows}
               globalFilter={state.globalFilter}
               setGlobalFilter={setGlobalFilter}

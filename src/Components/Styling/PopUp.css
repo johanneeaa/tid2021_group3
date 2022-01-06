@@ -1,7 +1,6 @@
 /*code template reference: https://www.youtube.com/watch?v=i8fAO_zyFAM&t=697s*/
 
 .popup {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -10,6 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 2;
 }
 
 .popup-inner {

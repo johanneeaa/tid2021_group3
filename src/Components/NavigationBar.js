@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { AppContext } from "./AppProvider";
 import './Styling/NavigationBar.css';
 
+/** Uses theme to return a nav bar with hardcoded values for navigation to the pages. Documentation: [ https://bit.ly/3qMIjWY ] */
 export function NavigationBar() {
 
     //useContext to get theme from URL slug

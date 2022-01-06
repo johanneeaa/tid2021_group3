@@ -13,7 +13,6 @@ const CustomerTable = () => {
       { Header: "Name", accessor: "fullName" },
       { Header: "E-Mail", accessor: "email" },
       { Header: "Latest Car Group", accessor: "lastCarGroup" },
-      // { Header: "Last Booking", accessor: "lastBooking"},  //functionality that would be nice to implement at a later stage
       { Header: "Total Bookings", accessor: "totalBookings" },
       { Header: "Internal ID", accessor: "id",  }, //we need to have this visible in order to DELETE customer
     ],
@@ -31,7 +30,7 @@ const CustomerTable = () => {
   }, []);
 
   return (
-    <div>
+    <div>     
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
       <Footer/>
       <DefaultButton onClick={() => {
@@ -39,7 +38,6 @@ const CustomerTable = () => {
         }}
         buttonText = {newCustText}
       />
-    
     </div>
   );
 };

@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { AppContext } from "./AppProvider";
 import './Styling/Button.css';
 
-/* A general Button for consistency throughout layout. Takes an onClick & buttonText props.*/ 
+// Button styled more-or-less accourding to design guide. 
+// Grabs theme from AppContext in ./AppProvider
 
+/** Dynamic size and color button. Takes an onClick & buttonText props.*/ 
 const DefaultButton = (props) => {
   const { onClick, buttonText } = props;
-
   const { getTheme } = useContext(AppContext);
 
   return (
@@ -19,4 +20,5 @@ const DefaultButton = (props) => {
     </button>
   );
 };
+
 export default DefaultButton;

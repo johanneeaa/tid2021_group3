@@ -1,9 +1,10 @@
 import React, { createContext } from "react";
 
 // AppProvider is added to gain access to the AppContext. With this we can use the AppContext in our components.
-
+// Documentation [ https://bit.ly/3qS2kf0 ]
 // Here the URL location is used to determine the colors for the current theme.
 
+/**  Returns color of [ primary, highlight, mitigated, disabled ] depending of URL. Requires useContext */
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {

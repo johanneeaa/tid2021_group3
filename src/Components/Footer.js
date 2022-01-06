@@ -2,16 +2,13 @@ import { AppContext} from "./AppProvider";
 import {useContext} from 'react';
 import './Styling/Footer.css';
 
-/* A Footer component. Right now it is a bit static and a work in progress. Would be nice to make it custom to each page */
+/** Simple Footer that adjusts color according to theme and size according to screen */
 const Footer = () => {
 
 const {getTheme} = useContext(AppContext)
 
 return(       
-    <div style = {{background:getTheme().primary}} className="footerdiv">
-
-
-    </div>
+    <div style = {{background:getTheme().primary}} className="footerdiv"/>
 )
 }
 
