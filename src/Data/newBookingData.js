@@ -47,14 +47,14 @@ const timeSlots = [
 ];
 export const timeOptionBoxes = [];
 timeSlots.forEach((element) => {
-  timeOptionBoxes.push(<option> {element} </option>);
+  timeOptionBoxes.push(<option key={element}> {element} </option>);
 });
 
 // Available carGroups for BookingForm:
 const carGroups = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I"];
 export const carGroupBoxes = [];
 carGroups.forEach((element) => {
-  carGroupBoxes.push(<option> {element} </option>);
+  carGroupBoxes.push(<option key={element}> {element} </option>);
 });
 
 // Available 37 rental offices for BookingForm:
@@ -100,6 +100,6 @@ const rentalOffices = [
 ];
 export const rentalOfficeBoxes = [];
 rentalOffices.forEach((element) => {
-  rentalOfficeBoxes.push(<option> {element} </option>);
+  rentalOfficeBoxes.push(<option key={element}> {element} </option>);
 });
 
