@@ -1,5 +1,9 @@
+
 // Deleting a Customer based off an input in the form of an ID
-// built on example from TID and [ https://dashboard.back4app.com/apidocs/ ]
+// built on example from [ TID course Fall 2021 @ IT University of Copenhagen ] & [ https://dashboard.back4app.com/apidocs/ ]
+
+const APP_ID_KEY = process.env.REACT_APP_APP_KEY
+const APP_REST_KEY = process.env.REACT_APP_REST_KEY
 
 export default async function deleteCustomerByID(ID) {
   try {
@@ -8,8 +12,8 @@ export default async function deleteCustomerByID(ID) {
       {
         method: "DELETE",
         headers: {
-          "X-Parse-Application-Id": "AgzfzDrOFClmY4jztxiZnNa3dlEN8fbiDAsWV6lf",
-          "X-Parse-REST-API-Key": "ljeZr2KM6A4n3PyvZE2pOS8R4BbKyLULGVq8mhXI",
+          "X-Parse-Application-Id": APP_ID_KEY,
+          "X-Parse-REST-API-Key": APP_REST_KEY,  //note - this is the REST API key - and not the JavaScriptKey!
         },
       }
     );
@@ -19,6 +23,7 @@ export default async function deleteCustomerByID(ID) {
     }
     const data = await response.json();
     console.log("Removed object! " + data);
+    alert("Customer has been succesfully deleted!")
   } catch (error) {
     console.log(error);
   }

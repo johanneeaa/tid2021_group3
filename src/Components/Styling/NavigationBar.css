@@ -1,0 +1,40 @@
+.navbar {
+  font-size: 32px; /* changed the font size here, was very big - we should decide which size is optimal */
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar a {
+  margin: 0 20px;
+}
+
+.logo:hover {
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-link {
+  border-radius: 10px;
+}
+
+.rentallink:hover {
+  background-color: #f7e8a4;
+}
+
+.carslink:hover {
+  background-color: #6bb78b;
+}
+
+.customerslink:hover {
+  background-color: #b4c3f4;
+}
+
+.transferlink:hover {
+  background-color: #f790ce;
+}
+
+.statisticslink:hover {
+  background-color: #949494;
+}

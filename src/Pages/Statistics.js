@@ -13,6 +13,7 @@ const Statistics = () => {
     async function getCloudData() {
       setAvrgMilage(await avgMileageStats());
       setMostPopCG(await mostPopularCargroupStats());
+
     }
     getCloudData();
   }, []);
@@ -30,6 +31,8 @@ const Statistics = () => {
 export default Statistics;
 
 // functions to run the cloud computation written in back4app
+
+
 async function avgMileageStats() {
   const avgMileage = await Parse.Cloud.run("averageMileage");
   console.log("The average mileage of a car in the fleet is: " + avgMileage);

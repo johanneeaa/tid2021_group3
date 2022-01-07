@@ -1,18 +1,17 @@
-// Textbox component. Takes a title and info, if there is info, the input will "lock".  
-// Needs styling as of 28/nov/2021 @lacl
 
+/**Textbox component. Takes a title and info, if there is info, the input will "lock". */ 
 export default function Textbox4Info(props){
 
         return (
             <div>
-            <h6><b>{props.title}</b></h6>
-            <div className="inputBox">
+                <h6 style = {{cursor: "default"}}>
+                    <b>{props.title}</b>
+                </h6>
                 <input 
-                    placeholder = "..."        
-                    value = {props.info} 
-                    // Value will overwrite placeholder if props.info == true
+                    style = {{cursor: "default"}} // Cursor style overwritten for clarity: the user can't edit the fields 
+                    placeholder = "..." 
+                    defaultValue= {props.info} 
                 /> 
-            </div>
             </div>
         )
 

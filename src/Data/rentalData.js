@@ -1,40 +1,31 @@
-
 import Parse from "parse";
 
 const Booking = Parse.Object.extend("Booking");
 
+/** Returns array of all rental/booking objects from DB, built on Parse documentation: [ https://bit.ly/3zyu24n ] */
 export default async function getAllBookings() {
+  const allBookingsQuery = new Parse.Query(Booking);
+  const allBookings = await allBookingsQuery.find().catch(error => {
+    console.log(error);
+  });
 
-    const allBookingsQuery = new Parse.Query(Booking);
-    const allBookings = await allBookingsQuery.find();
+  const allBookingsFormatted = allBookings.map((booking) => {
 
-    const allBookingsFormatted = allBookings.map((booking) => {
+    return {
+      id: booking.id,
+      pickUpOffice: booking.get("PickUpOffice"),
+      pickUpDate: booking.get("PickUpDate").slice(5,10), // DateFormatting(pickUp),//booking.get("PickUpDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet
+      pickUpTime: booking.get("PickUpTime2"),
+      returnOffice: booking.get("ReturnOffice"),
+      returnDate: booking.get("ReturnDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet
+      returnTime: booking.get("ReturnTime2"),
+      bookingNumber: booking.get("BookingID"),
+      fullName: booking.get("LastName") + ", " + booking.get("FirstName"),
+      dateOfBirth: booking.get("DoB2").slice(0,4),
+      driversLicense: booking.get("DLicense"),
+      reqCarGroup: booking.get("ReqCarGroup"),
+    };
+  });
 
-        const pickUpDate = new Date(booking.get("PickUpTime")).toISOString().slice(5,10); // for hours and minutes (slicing on characters from index 0 - 10)
-        const pickUpTime = new Date(booking.get("PickUpTime")).toISOString().slice(11,16); // for hours and minutes (slicing on characters from index 0 - 10)
-
-        const returnDate = new Date(booking.get("ReturnTime")).toISOString().slice(5,10);
-        const returnTime = new Date(booking.get("ReturnTime")).toISOString().slice(11,16);
-
-        const dob = new Date(booking.get("DoB")).toISOString().slice(0,10);
-
-
-        return {
-            id: booking.id,
-            pickUpOffice: booking.get("PickUpOffice"),
-            pickUpDate:pickUpDate,
-            pickUpTime: pickUpTime,
-            returnOffice: booking.get("ReturnOffice"),
-            returnDate: returnDate,
-            returnTime: returnTime,
-            bookingNumber: booking.get("BookingID"),
-            fullName: booking.get("LastName") + ", " + booking.get("FirstName"),
-            dateOfBirth: dob,
-            driversLicense: booking.get("DriversLicense"),
-            reqCarGroup: booking.get("ReqCarGroup"),  // hardcoded requested car group - so far not able to get the data from the pointer values from back4app 
-            //requestedCarGroup: booking.get("RequestedCarGroup"), //this won't work (only for show), but I still haven't found a solution for accessing the pointer values in the database
-        }
-    })
-
-    return allBookingsFormatted
+  return allBookingsFormatted;
 }
