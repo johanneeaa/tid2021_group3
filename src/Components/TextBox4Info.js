@@ -7,7 +7,7 @@ export default function Textbox4Info(props){
                 <h6 style = {{cursor: "default"}}>
                     <b>{props.title}</b>
                 </h6>
-                <input 
+                <input readOnly
                     style = {{cursor: "default"}} // Cursor style overwritten for clarity: the user can't edit the fields 
                     placeholder = "..." 
                     defaultValue= {props.info} 
