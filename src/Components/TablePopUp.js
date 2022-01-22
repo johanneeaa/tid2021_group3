@@ -36,7 +36,7 @@ function TablePopUp(props) {
             setIsLoaded(true)
         }   
         fetchData();
-    },)
+    },[location, reqCarGroup]) //this is needed to stop the useEffect from re-rendering the data
     
 
     return  (      
@@ -49,7 +49,7 @@ function TablePopUp(props) {
                     {isLoaded ? 
                         data[0] ? 
                             <Table columns={columns} data={data} page={"carCheckout"}/> 
-                        : "No avail cars on your location [Button to req transfer] [Button to upgrade]" 
+                        : "No cars in the selected car group available on your location [Button to upgrade] [Button to req transfer] " 
                     : "Loading..."}
                 </div>
                 
