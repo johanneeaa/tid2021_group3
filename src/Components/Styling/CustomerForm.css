@@ -1,8 +1,18 @@
+.outercontainercustomer{
+  position:absolute;
+  width: 100%;
+  height:75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  background-color: #fdfdfd;
+}
+
 .inputcontainercustomer {
+  position:relative;
   text-align: center;
   display: flex-box;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   padding: 12px 20px;
   margin: 8px 0;
   background-color: #b4c3f4;
@@ -34,7 +44,7 @@
   text-align: left;
 }
 
-.button_newB {
+.button_newC {
   border-radius: 5px;
   padding: 4px 4px;
   margin: 2px 0;

@@ -4,19 +4,19 @@ import React from "react";
 import "./Styling/CustomerForm.css";
 
 /**
- * Reference: https://reactjs.org/docs/forms.html 
+ * Reference: https://reactjs.org/docs/forms.html
  * The CustomerForm is used to create a new customer in the system, it takes all the inputs given by user and adds it as a Customer in the database.
- * 
- * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to 
+ *
+ * The inputfields in the form takes both dates, numbers, texts and select inputs as props, and in order to parse as an object to
  * the database stringify the state of the object and then POST it to the database.
- * 
- * Missing functionalities: 
+ *
+ * Missing functionalities:
  * 1. const TotalBookings is static, it needs functionality to increment when customer makes new booking
  * 2. const LatestCarGroup is static, it needs functionality to update upon rental pick-up
- * TotalBookings cannot be implemented before we can add an existing customer to a new booking, 
+ * TotalBookings cannot be implemented before we can add an existing customer to a new booking,
  * and LatestCarGroup needs a pick-up window in order to update value
- *    
- * Status: Works as intended, 
+ *
+ * Status: Works as intended,
  * However, consider re-factoring into a pop-up which can then be called with 'onClick' on the two buttons we have for 'create new customer'
  */
 
@@ -52,11 +52,10 @@ export default class CustomerForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    alert("A new customer has been created: " + this.state.email);
-
+  //made a few changes from original code - so the alert box does not pop up before the object has finished parsing
+  handleSubmit = async (event) => {
     try {
-      fetch("https://parseapi.back4app.com/classes/Customer", {
+      await fetch("https://parseapi.back4app.com/classes/Customer", {
         method: "POST",
         headers: {
           "X-Parse-Application-Id": APP_ID_KEY,
@@ -67,76 +66,80 @@ export default class CustomerForm extends React.Component {
       }).then((Customer) => {
         console.log(Customer);
         return Customer.json();
+      }).then(() => {
+        event.preventDefault();
       });
     } finally {
-      event.preventDefault();
-    }
+        alert("A new customer has been created!")};
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="inputcontainercustomer">
-          <h1>Create new customer</h1>
+        <div className="outercontainercustomer">
+          <div className="inputcontainercustomer">
+            <h1>Create new customer</h1>
 
-          <label className="labelcustomer">
-            First Name:
+            <label className="labelcustomer">
+              First Name:
+              <input
+                className="input"
+                type="text"
+                name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this references the the 'Header' column
+                value={this.state.firstname}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+
+            <label className="labelcustomer">
+              Last Name:
+              <input
+                className="input"
+                type="text"
+                name="LastName"
+                value={this.state.lastname}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+
+            <br />
+
+            <label className="labelcustomer">E-mail:</label>
             <input
               className="input"
-              type="text"
-              name="FirstName" //this needs to be the same uppercase/lowercase letters as in the database - this references the the 'Header' column
-              value={this.state.firstname}
+              type="email"
+              name="Email"
+              value={this.state.email}
               onChange={this.handleChange}
               required
             />
-          </label>
-
-          <label className="labelcustomer">
-            Last Name:
+            <label className="labelcustomer">Notes:</label>
             <input
               className="input"
               type="text"
-              name="LastName"
-              value={this.state.lastname}
+              name="Notes"
+              value={this.state.notes}
               onChange={this.handleChange}
-              required
+              //required  -- removing this as notes should not be a required field
             />
-          </label>
-
-          <br />
-
-          <label className="labelcustomer">E-mail:</label>
-          <input
-            className="input"
-            type="email"
-            name="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
-          <label className="labelcustomer">Notes:</label>
-          <input
-            className="input"
-            type="text"
-            name="Notes"
-            value={this.state.notes}
-            onChange={this.handleChange}
-            //required  -- removing this as notes should not be a required field
-          /><br />
-          <input
-            className="button_cancel"
-            type="button"
-            value=" Cancel"
-            onClick={() => {
-              window.location.href = "/customer";
-            }}
-          ></input>
-          <span>{" "}</span>
-          <input
-            className="button_newB"
-            type="submit"
-            value="Save new customer"
-          ></input>
+            <br />
+            <input
+              className="button_cancel"
+              type="button"
+              value=" Cancel"
+              onClick={() => {
+                window.location.href = "/customer";
+              }}
+            ></input>
+            <span> </span>
+            <input
+              className="button_newC"
+              type="submit"
+              value="Save new customer"
+            ></input>
+          </div>
         </div>
       </form>
     );
