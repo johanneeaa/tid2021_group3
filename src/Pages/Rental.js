@@ -5,11 +5,14 @@ import SelectColumnFilter from "../Components/Filters";
 import "./Styling/Rental.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
+import {useNavigate} from "react-router-dom";
 
 /** Returns a table of upcoming rentals along with a button leading to "create new booking" and a footer. */
 const RentalTable = () => {
 
   const [rentalData, setRentalData] = useState([]);
+  const navigate = useNavigate(); //added programmatic navigation instead of using the window.location (which changes the current URL)
+  
 
   // useMemo is used, as it is required later on for useTable not to keep re-rendering, documentation: [ https://bit.ly/3HF73r3 ]
   const rentalColumns = React.useMemo(
@@ -51,7 +54,8 @@ const RentalTable = () => {
     <div>   
       <Table columns={rentalColumns} data={rentalData} page={"rental"}/>
       <Footer/>
-      <DefaultButton onClick={() => {window.location.href = "/newbooking";}} buttonText = {btnText}/>
+      <DefaultButton onClick={() => navigate('/newbooking', {replace: true})}
+      buttonText = {btnText}/>
     </div>
   );
 };

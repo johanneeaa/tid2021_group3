@@ -8,6 +8,7 @@ import Transfers from "./Pages/Transfers";
 import Customer from "./Pages/Customer";
 import Statistics from "./Pages/Statistics";
 import NewBooking from "./Pages/NewBooking";
+import NewCustomer from "./Pages/NewCustomer";
 import { AppProvider } from "./Components/AppProvider";
 
 // our App(), should containt our navigation with paths to pages
@@ -16,7 +17,6 @@ import { AppProvider } from "./Components/AppProvider";
 //AppProvider added and used to pass theme according to current page
 
 function App() {
-
   return (
     <AppProvider>
       <NavigationBar />
@@ -29,6 +29,7 @@ function App() {
           <Route path="/customer" element={<Customer />} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/newbooking" element={<NewBooking />} />
+          <Route path="/newcustomer" element={<NewCustomer />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

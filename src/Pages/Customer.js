@@ -4,9 +4,12 @@ import Table from "../Components/Table";
 import "./Styling/Customer.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
+import {useNavigate} from "react-router-dom";
 
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);
+  const navigate = useNavigate(); //added programmatic navigation instead of using the window.location (which changes the current URL)
+  
 
   const customerColumns = React.useMemo(
     () => [
@@ -33,9 +36,7 @@ const CustomerTable = () => {
     <div>     
       <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
       <Footer/>
-      <DefaultButton onClick={() => {
-          window.location.href = "/newbooking";
-        }}
+      <DefaultButton onClick={() => navigate('/newcustomer', {replace: true})}
         buttonText = {newCustText}
       />
     </div>
