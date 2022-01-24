@@ -52,6 +52,15 @@ export const AppProvider = ({ children }) => {
           disabled: "#E9EDFC",
         };
       }
+
+      case "/newCustomer": {
+        return {
+          primary: "#B4C3F4",
+          highlight: "#7F98EE",
+          mitigated: "#D2DBF9",
+          disabled: "#E9EDFC",
+        };
+      }
       default: {
         return {
           primary: "#F7E8A4",
