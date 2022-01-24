@@ -50,15 +50,16 @@ export default class BookingForm extends React.Component {
   /** The handleChange decides the data being parsed to the database - it matches the named input fields with the actual input
   https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
   https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change */
-  handleChange(event) {
+  handleChange(event){
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
-  handleSubmit(event) {
+  handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      fetch("https://parseapi.back4app.com/classes/Booking", {
+      await fetch("https://parseapi.back4app.com/classes/Booking", {
         method: "POST",
         headers: {
           "X-Parse-Application-Id": APP_ID_KEY,
@@ -72,9 +73,7 @@ export default class BookingForm extends React.Component {
       });
     } finally {
       alert(
-        "A new booking was submitted with BookingID: " + this.state.BookingID
-      );
-      event.target.preventDefault();
+        "A new booking was submitted with BookingID: " + this.state.BookingID);
     }
   };
 

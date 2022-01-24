@@ -46,14 +46,15 @@ export default class CustomerForm extends React.Component {
   //this part here decides the data being parsed to the database - matches the named input fields with the actual input
   //https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
   //https://stackoverflow.com/questions/50630846/react-passing-value-through-state-on-handle-change
-  handleChange(event) {
+  handleChange(event){
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
 
-  //made a few changes from original code - so the alert box does not pop up before the object has finished parsing
+  //made a few changes from original code to make it an async function - and the alert box does not pop up before the object has finished parsing
   handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       await fetch("https://parseapi.back4app.com/classes/Customer", {
         method: "POST",
@@ -66,9 +67,7 @@ export default class CustomerForm extends React.Component {
       }).then((Customer) => {
         console.log(Customer);
         return Customer.json();
-      }).then(() => {
-        event.preventDefault();
-      });
+      })
     } finally {
         alert("A new customer has been created!")};
   }
