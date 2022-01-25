@@ -18,7 +18,7 @@ const TransferTable = () => {
       { Header: "Car Group", accessor: "group" },
       { Header: "Status", accessor: "status" },
       { Header: "ETA", accessor: "eta" },
-      { Header: "Time of Request", accessor: "timedate" },
+      { Header: "Time of Request", accessor: "time" },
       { Header: "Type of Request ", accessor: "type" },
     ],
     []

@@ -43,8 +43,7 @@ export default async function getNeededTransfers(params) {
                     type: "Automatic", 
                     status: "Awaits...",
                     eta: "N/A",
-                    time: new Date().toLocaleTimeString("en-GB") + " " 
-                        + new Date().toLocaleDateString("en-GB"),
+                    time: /* new Date().toLocaleTimeString("en-GB")  + " "  +  */new Date().toLocaleDateString("en-GB")
                 })
             }
         }
