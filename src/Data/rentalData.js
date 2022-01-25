@@ -14,10 +14,10 @@ export default async function getAllBookings() {
     return {
       id: booking.id,
       pickUpOffice: booking.get("PickUpOffice"),
-      pickUpDate: booking.get("PickUpDate").slice(5,10), // DateFormatting(pickUp),//booking.get("PickUpDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet
+      pickUpDate: booking.get("PickUpDate").slice(5,10), //would be nicer if we could show months, jan/feb/mar etc.
       pickUpTime: booking.get("PickUpTime2"),
       returnOffice: booking.get("ReturnOffice"),
-      returnDate: booking.get("ReturnDate").slice(5,10), //would be nicer if we could should the months, but haven't found a solution for this yet
+      returnDate: booking.get("ReturnDate").slice(5,10),
       returnTime: booking.get("ReturnTime2"),
       bookingNumber: booking.get("BookingID"),
       fullName: booking.get("LastName") + ", " + booking.get("FirstName"),
