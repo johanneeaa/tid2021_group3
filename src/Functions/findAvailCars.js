@@ -10,7 +10,7 @@ export default async function findAvailCars(location, carGroup) {
     const IDsOfReadyCars=[]
 
     const Car = Parse.Object.extend("Car");
-    const query = new Parse.Query(Car); //the query limits to 100 objects, haven't had time to solve this
+    const query = new Parse.Query(Car).limit(200); //settng new limit for query, as defult is limited to 100
     
 
     query.equalTo("CurrentLocation", location);

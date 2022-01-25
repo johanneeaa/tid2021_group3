@@ -4,7 +4,7 @@ const Car = Parse.Object.extend("Car");
 
 /** Returns array of all car objects from DB, built on Parse documentation: [ https://bit.ly/3zyu24n ] */
 export default async function getAllCars() {
-  const allCarsQuery = new Parse.Query(Car);
+  const allCarsQuery = new Parse.Query(Car).limit(200);  //changed the limit to 200, default is set to 100 for query
   const allCars = await allCarsQuery.find().catch(error => {
     console.log(error);
   });
