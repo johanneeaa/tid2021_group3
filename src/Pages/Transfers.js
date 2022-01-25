@@ -18,7 +18,7 @@ const TransferTable = () => {
       { Header: "Car Group", accessor: "group" },
       { Header: "Status", accessor: "status" },
       { Header: "ETA", accessor: "eta" },
-      { Header: "Time of Request", accessor: "timedate" },
+      { Header: "Time of Request", accessor: "time" }, // changes 25/01: changed 'timedate' to 'time' - as this is how it is defined in autoRequestTransfer.js
       { Header: "Type of Request ", accessor: "type" },
     ],
     []
