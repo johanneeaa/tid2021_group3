@@ -10,12 +10,13 @@ export default async function findAvailCars(location, carGroup) {
     const IDsOfReadyCars=[]
 
     const Car = Parse.Object.extend("Car");
-    const query = new Parse.Query(Car);
+    const query = new Parse.Query(Car); //the query limits to 100 objects, haven't had time to solve this
+    
 
     query.equalTo("CurrentLocation", location);
     query.equalTo("CarState", "Ready");
     
-    if (carGroup !== ""){
+    if (carGroup !== ""){  //not currently used, but was intended for if we want to check out a car in a different car group (e.i. upgrade in the check out process)
       query.equalTo("Group", carGroup);
     }
 
@@ -23,7 +24,7 @@ export default async function findAvailCars(location, carGroup) {
       console.log("error: "+ error +" ccoured in finding cars at location");
     });
     
-    for (let i = 0; i < carsAtLocation.length; i++) {
+    for (let i = 0; i < carsAtLocation.length; i++) {  //not currently used
         const object = carsAtLocation[i];
         IDsOfReadyCars.push(object.id)
     }
