@@ -137,6 +137,9 @@ export default class CustomerForm extends React.Component {
               className="button_newC"
               type="submit"
               value="Save new customer"
+              onClick={() => {
+                window.location.href = "/customer";
+              }}
             ></input>
           </div>
         </div>
