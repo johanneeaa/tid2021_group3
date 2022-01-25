@@ -249,6 +249,9 @@ export default class BookingForm extends React.Component {
               className="confirmButton"
               type="submit"
               value=" Confirm booking "
+              onClick={() => {
+                window.location.href = "/rental";
+              }}
             ></input>{" "}
             <span></span>
             <input
