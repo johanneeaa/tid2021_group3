@@ -1,4 +1,4 @@
-import CustomerForm from "../Components/CustomerForm"; 
+import CustomerForm from "../Components/CustomerForm";
 
 function NewCustomer() {
   return (

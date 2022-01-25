@@ -4,12 +4,13 @@ import Table from "../Components/Table";
 import "./Styling/Customer.css";
 import Footer from "../Components/Footer";
 import DefaultButton from "../Components/Button";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Loadscreen from "../Components/Loadscreen";
 
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);
   const navigate = useNavigate(); //added programmatic navigation instead of using the window.location (which changes the current URL)
-  
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const customerColumns = React.useMemo(
     () => [
@@ -17,7 +18,7 @@ const CustomerTable = () => {
       { Header: "E-Mail", accessor: "email" },
       { Header: "Latest Car Group", accessor: "lastCarGroup" },
       { Header: "Total Bookings", accessor: "totalBookings" },
-      { Header: "Internal ID", accessor: "id",  }, //we need to have this visible in order to DELETE customer
+      { Header: "Internal ID", accessor: "id" }, //we need to have this visible in order to DELETE customer
     ],
     []
   );
@@ -28,16 +29,27 @@ const CustomerTable = () => {
     async function fetchData() {
       const customerDataTemp = await getAllCustomers();
       setCustomerData(customerDataTemp);
+      setIsLoaded(true);
     }
     fetchData();
   }, []);
 
   return (
-    <div>     
-      <Table columns={customerColumns} data={customerData} color={"#B4C3F4"} page={"customer"} />
-      <Footer/>
-      <DefaultButton onClick={() => navigate('/newcustomer', {replace: true})}
-        buttonText = {newCustText}
+    <div>
+      {isLoaded ? (
+        <Table
+          columns={customerColumns}
+          data={customerData}
+          color={"#B4C3F4"}
+          page={"customer"}
+        />
+      ) : (
+        <Loadscreen />
+      )}
+      <Footer />
+      <DefaultButton
+        onClick={() => navigate("/newcustomer", { replace: true })}
+        buttonText={newCustText}
       />
     </div>
   );

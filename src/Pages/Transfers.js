@@ -1,4 +1,4 @@
-// lacl 21/dec/2021 comment: this page needs more info to meet requirement. Where is transfer from/to? At what date? 
+// lacl 21/dec/2021 comment: this page needs more info to meet requirement. Where is transfer from/to? At what date?
 
 import React, { useEffect, useState } from "react";
 import Loadscreen from "../Components/Loadscreen";
@@ -9,7 +9,7 @@ import getNeededTransfers from "../Functions/autoRequestTransfer";
 
 const TransferTable = () => {
   const [transferData, setTransferData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const transferColumns = React.useMemo(
     () => [
@@ -28,15 +28,22 @@ const TransferTable = () => {
     async function fetchData() {
       const transferDataTemp = await getNeededTransfers();
       setTransferData(transferDataTemp);
-      setIsLoaded(true)
+      setIsLoaded(true);
     }
     fetchData();
   }, []);
 
   return (
     <div>
-      {isLoaded ? <Table columns={transferColumns} data={transferData} color={"#F790CE"} /> : <Loadscreen/>
-  }
+      {isLoaded ? (
+        <Table
+          columns={transferColumns}
+          data={transferData}
+          color={"#F790CE"}
+        />
+      ) : (
+        <Loadscreen />
+      )}
       <Footer />
     </div>
   );
