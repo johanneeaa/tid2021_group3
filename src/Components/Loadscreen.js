@@ -1,6 +1,9 @@
 
-// Loadscreen, only implimented in transfer table, as that is slow to fecth/calculate the data
-// loading .gif is fetched from internet, might be deleted at some point, should be local
+/**
+ * loadscreen implemented on all the table windows, in case there is a slow connection to the database while fetching data, 
+ * the user is aware, that they just need to be a little bit more patient with this screen
+ * @returns Loadscreen
+ */
 
 const Loadscreen = () => {
   return (
